@@ -1,7 +1,7 @@
 import Page from '@/components/page'
 import Section from '@/components/section'
 import Image from 'next/image'
-import mandado from '../../public/images/mandado.jpg'
+import mandado from '../public/images/mandado.jpg'
 
 const Index = () => (
 	<Page>
