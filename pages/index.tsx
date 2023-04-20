@@ -1,14 +1,19 @@
 import Page from '@/components/page'
 import Section from '@/components/section'
 import Image from 'next/image'
-import mandado from '../public/images/mandado.jpg'
+import mandado from '../public/images/mandado2.jpg'
 
 const Index = () => (
 	<Page>
 		<Section>
-			<div className='grid grid-flow-row grid-cols-4 grid-rows-2 gap-4'>
-				<div className='col-span-2 row-span-2'>
-					<Image className='rounded-full' src={mandado} alt='mandado' />
+			<div className='flex grid grid-flow-row grid-cols-4 grid-rows-2 items-center gap-4'>
+				<div className='col-span-2 row-span-2 pt-2.5'>
+					<Image
+						className='rounded-full '
+						src={mandado}
+						alt='mandado'
+						priority
+					/>
 				</div>
 
 				<div className='col-span-2 row-span-2'>

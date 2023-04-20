@@ -1,5 +1,12 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import Diversity3RoundedIcon from '@mui/icons-material/Diversity3Rounded'
+import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded'
+import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded'
+import SupportAgentRoundedIcon from '@mui/icons-material/SupportAgentRounded'
+import HelpRoundedIcon from '@mui/icons-material/HelpRounded'
+import QuestionAnswerRoundedIcon from '@mui/icons-material/QuestionAnswerRounded'
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded'
 
 const BottomNav = () => {
 	const router = useRouter()
@@ -8,22 +15,48 @@ const BottomNav = () => {
 		<div className='sm:hidden'>
 			<nav className='fixed bottom-0 w-full border-t bg-zinc-100 pb-safe dark:border-zinc-800 dark:bg-zinc-900'>
 				<div className='mx-auto flex h-16 max-w-md items-center justify-around px-6'>
-					{links.map(({ href, label, icon }) => (
-						<Link key={label} href={href}>
-							<a
-								className={`flex h-full w-full flex-col items-center justify-center space-y-1 ${
-									router.pathname === href
-										? 'text-indigo-500 dark:text-indigo-400'
-										: 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50'
-								}`}
-							>
-								{icon}
-								<span className='text-xs text-zinc-600 dark:text-zinc-400'>
-									{label}
-								</span>
-							</a>
-						</Link>
-					))}
+					<Link key={'questions'} href={'/views/faq'}>
+						<a
+							className={`flex h-full w-full flex-col items-center justify-center space-y-1 ${
+								router.pathname === '/views/faq'
+									? 'text-indigo-500 dark:text-indigo-400'
+									: 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50'
+							}`}
+						>
+							<QuestionAnswerRoundedIcon />
+							<span className='text-xs text-zinc-600 dark:text-zinc-400'>
+								FAQ
+							</span>
+						</a>
+					</Link>
+					<Link key={'home'} href={'/'}>
+						<a
+							className={`flex h-full w-full flex-col items-center justify-center space-y-1 ${
+								router.pathname === '/faq'
+									? 'text-indigo-500 dark:text-indigo-400'
+									: 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50'
+							}`}
+						>
+							<HomeRoundedIcon />
+							<span className='text-xs text-zinc-600 dark:text-zinc-400'>
+								INICIO
+							</span>
+						</a>
+					</Link>
+					<Link key={'support'} href={'/views/support'}>
+						<a
+							className={`flex h-full w-full flex-col items-center justify-center space-y-1 ${
+								router.pathname === '/support'
+									? 'text-indigo-500 dark:text-indigo-400'
+									: 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50'
+							}`}
+						>
+							<SupportAgentRoundedIcon />
+							<span className='text-xs text-zinc-600 dark:text-zinc-400'>
+								SOPORTE
+							</span>
+						</a>
+					</Link>
 				</div>
 			</nav>
 		</div>

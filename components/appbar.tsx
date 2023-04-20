@@ -1,10 +1,14 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import IconButton from '@mui/material/IconButton'
+import Button from '@mui/material/Button'
+import Avatar from '@mui/material/Avatar'
 
 const links = [
-	{ label: 'Story', href: '/story' },
-	{ label: 'Recipes', href: '/recipes' },
+	{ label: 'FAQ', href: '/views/faq' },
+	{ label: 'INICIO', href: '/' },
+	{ label: 'SOPORTE', href: '/views/support' },
 ]
 
 const Appbar = () => {
@@ -61,14 +65,15 @@ const Appbar = () => {
 							</div>
 						</div>
 
-						<div
-							title='Gluten Free'
-							className='h-10 w-10 rounded-full bg-zinc-200 bg-cover bg-center shadow-inner dark:bg-zinc-800'
-							style={{
-								backgroundImage:
-									'url(https://images.unsplash.com/photo-1612480797665-c96d261eae09?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80)',
-							}}
-						/>
+						<IconButton
+							size='small'
+							edge='end'
+							aria-label='account of current user'
+							aria-haspopup='true'
+							color='inherit'
+						>
+							<Avatar sx={{ bgcolor: 'indigo' }}>LR</Avatar>
+						</IconButton>
 					</nav>
 				</div>
 			</header>
