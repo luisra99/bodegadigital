@@ -13,46 +13,90 @@ const BottomNav = () => {
 
 	return (
 		<div className='sm:hidden'>
-			<nav className='fixed bottom-0 w-full border-t bg-zinc-100 pb-safe dark:border-zinc-800 dark:bg-zinc-900'>
+			<nav
+				className='fixed bottom-0 w-full border-t bg-zinc-100 pb-safe dark:border-zinc-800 dark:bg-zinc-900'
+				style={{
+					background:
+						'linear-gradient(180deg, rgb(63, 63, 65) 0%, rgb(36, 35, 36) 100%)',
+					border: 'none',
+					filter: 'drop-shadow(0px 2px 7px #000)',
+				}}
+			>
 				<div className='mx-auto flex h-16 max-w-md items-center justify-around px-6'>
 					<Link key={'questions'} href={'/views/faq'}>
 						<a
-							className={`flex h-full w-full flex-col items-center justify-center space-y-1 ${
-								router.pathname === '/views/faq'
-									? 'text-indigo-500 dark:text-indigo-400'
-									: 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50'
-							}`}
+							style={{
+								color: '#e8e8e8',
+								filter:
+									router.pathname === '/views/faq'
+										? 'drop-shadow(0px 2px 7px #1ab83c)'
+										: 'none',
+							}}
+							className={`flex h-full w-full flex-col items-center justify-center space-y-1`}
 						>
 							<QuestionAnswerRoundedIcon />
-							<span className='text-xs text-zinc-600 dark:text-zinc-400'>
+							<span
+								className='text-xs text-zinc-600 dark:text-zinc-400'
+								style={{
+									color: '#e8e8e8',
+									filter:
+										router.pathname === '/views/faq'
+											? 'drop-shadow(0px 2px 7px #1ab83c)'
+											: 'none',
+								}}
+							>
 								FAQ
 							</span>
 						</a>
 					</Link>
 					<Link key={'home'} href={'/'}>
 						<a
-							className={`flex h-full w-full flex-col items-center justify-center space-y-1 ${
-								router.pathname === '/faq'
-									? 'text-indigo-500 dark:text-indigo-400'
-									: 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50'
-							}`}
+							style={{
+								color: '#e8e8e8',
+								filter:
+									router.pathname === '/'
+										? 'drop-shadow(0px 2px 7px #1ab83c)'
+										: 'none',
+							}}
+							className={`flex h-full w-full flex-col items-center justify-center space-y-1`}
 						>
 							<HomeRoundedIcon />
-							<span className='text-xs text-zinc-600 dark:text-zinc-400'>
+							<span
+								className='text-xs text-zinc-600 dark:text-zinc-400'
+								style={{
+									color: '#e8e8e8',
+									filter:
+										router.pathname === '/'
+											? 'drop-shadow(0px 2px 7px #1ab83c)'
+											: 'none',
+								}}
+							>
 								INICIO
 							</span>
 						</a>
 					</Link>
 					<Link key={'support'} href={'/views/support'}>
 						<a
-							className={`flex h-full w-full flex-col items-center justify-center space-y-1 ${
-								router.pathname === '/support'
-									? 'text-indigo-500 dark:text-indigo-400'
-									: 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50'
-							}`}
+							style={{
+								color: '#e8e8e8',
+								filter:
+									router.pathname === '/views/support'
+										? 'drop-shadow(0px 2px 7px #1ab83c)'
+										: 'none',
+							}}
+							className={`flex h-full w-full flex-col items-center justify-center space-y-1`}
 						>
 							<SupportAgentRoundedIcon />
-							<span className='text-xs text-zinc-600 dark:text-zinc-400'>
+							<span
+								className='text-xs text-zinc-600 dark:text-zinc-400'
+								style={{
+									color: '#e8e8e8',
+									filter:
+										router.pathname === '/views/support'
+											? 'drop-shadow(0px 2px 7px #1ab83c)'
+											: 'none',
+								}}
+							>
 								SOPORTE
 							</span>
 						</a>
