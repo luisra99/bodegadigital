@@ -1,2 +1,9 @@
-node_modules
+# Generated via Next.js
 .next
+node_modules.zip
+# Generated via Node.js
+node_modules
+
+# Generated via next-pwa
+**/public/workbox**
+**/public/sw**
