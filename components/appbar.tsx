@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import IconButton from '@mui/material/IconButton'
 import Button from '@mui/material/Button'
 import Avatar from '@mui/material/Avatar'
-import { useSession, signIn, signOut } from 'next-auth/react'
+// import { useSession, signIn, signOut } from 'next-auth/react'
 
 const links = [
 	{ label: 'FAQ', href: '/views/faq' },
@@ -23,7 +23,7 @@ const Appbar = () => {
 	const [isOnline, setIsOnline] = useState(
 		typeof window !== 'undefined' ? navigator.onLine : {}
 	)
-	const { data: session } = useSession()
+	// const { data: session } = useSession()
 	const router = useRouter()
 	const [logged, setLogged] = useState(false)
 	useEffect(() => {
