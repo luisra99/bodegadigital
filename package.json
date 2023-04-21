@@ -18,7 +18,7 @@
 		"formik": "^2.2.9",
 		"material": "^0.5.3",
 		"next": "^13.3.0",
-		"next-auth": "^4.22.1",
+		"next-auth": "^4.0.0-beta.7",
 		"next-pwa": "^5.5.2",
 		"next-themes": "^0.2.0",
 		"pnpm": "^8.3.1",
