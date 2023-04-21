@@ -9,12 +9,12 @@ const Index = () => (
 		<Section>
 			<div className='flex grid grid-flow-row grid-cols-4 grid-rows-2 items-center gap-4'>
 				<div className='col-span-2 row-span-2 pt-2.5'>
-					<Image
+					{/* <Image
 						className='rounded-full '
 						src={'../public/images/mandado2.JPG'}
 						alt='mandado'
 						priority
-					/>
+					/> */}
 				</div>
 
 				<div className='col-span-2 row-span-2'>
