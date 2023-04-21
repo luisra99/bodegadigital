@@ -46,7 +46,7 @@ const Appbar = () => {
 	}, [isOnline])
 
 	return (
-		<div className='fixed top-0 left-0 z-20 w-full bg-zinc-900 pt-safe'>
+		<div className='fixed left-0 top-0 z-20 w-full bg-zinc-900 pt-safe'>
 			<header
 				className='border-b bg-zinc-100 px-safe dark:border-zinc-800 dark:bg-zinc-900'
 				style={{
@@ -70,20 +70,20 @@ const Appbar = () => {
 						<div className='hidden sm:block'>
 							<div className='flex items-center space-x-6'>
 								{(logged ? sessionLinks : links).map(({ label, href }) => (
-									<Link key={label} href={href}>
-										<a
-											className={`text-sm text-neutral-200 ${
-												router.pathname === href ? 'font-bold' : 'font-normal'
-											}`}
-											style={{
-												filter:
-													router.pathname === href
-														? 'drop-shadow(0px 2px 7px #1ab83c)'
-														: 'none',
-											}}
-										>
-											{label}
-										</a>
+									<Link
+										key={label}
+										href={href}
+										className={`text-sm text-neutral-200 ${
+											router.pathname === href ? 'font-bold' : 'font-normal'
+										}`}
+										style={{
+											filter:
+												router.pathname === href
+													? 'drop-shadow(0px 2px 7px #1ab83c)'
+													: 'none',
+										}}
+									>
+										{label}
 									</Link>
 								))}
 							</div>

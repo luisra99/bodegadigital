@@ -32,16 +32,16 @@ const BottomNav = () => {
 							filter: active ? 'drop-shadow(0px 2px 7px #1ab83c)' : 'none',
 						}
 						return (
-							<Link key={label} href={href}>
-								<a
-									style={style}
-									className={`flex h-full w-full flex-col items-center justify-center space-x-2`}
-								>
-									{icon}
-									<span className='text-sm' style={style}>
-										{label}
-									</span>
-								</a>
+							<Link
+								key={label}
+								href={href}
+								style={style}
+								className={`flex h-full w-full flex-col items-center justify-center space-x-2`}
+							>
+								{icon}
+								<span className='text-sm' style={style}>
+									{label}
+								</span>
 							</Link>
 						)
 					})}
