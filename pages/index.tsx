@@ -1,7 +1,6 @@
 import Page from '@/components/page'
 import Section from '@/components/section'
 import Image from 'next/image'
-import mandado from '../public/images/mandado2.jpg'
 import { getData } from '../service/wso2'
 import Link from 'next/link'
 
@@ -12,7 +11,7 @@ const Index = () => (
 				<div className='col-span-2 row-span-2 pt-2.5'>
 					<Image
 						className='rounded-full '
-						src={mandado}
+						src={'../public/images/mandado2.JPG'}
 						alt='mandado'
 						priority
 					/>
