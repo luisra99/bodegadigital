@@ -3,6 +3,7 @@ import Section from '@/components/section'
 import Image from 'next/image'
 import mandado from '../public/images/mandado2.jpg'
 import { getData } from '../service/wso2'
+import Link from 'next/link'
 
 const Index = () => (
 	<Page>
@@ -39,7 +40,7 @@ const Index = () => (
 					</span>
 					<div className='p-2'>
 						<button className='border-none-500 rounded border-transparent bg-transparent py-2 px-4 font-semibold text-blue-700'>
-							<a href='/auth-forms/signup'>REGISTRATSE</a>
+							<Link href='/auth-forms/signup'>REGISTRATSE</Link>
 						</button>
 						<button className='rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700'>
 							ACCEDER
@@ -52,21 +53,19 @@ const Index = () => (
 )
 export async function getServerSideProps() {
 	let params = {
-		key: 'APIM_MTZ',
-		api: 'API_Norma_ENDPOINT',
-		action: '/api/nomenclador',
+		key: 'APIM_FUC',
+		api: 'API_DCPR_CONSULTA',
+		action: '/api/v1/listar-consumidores-bodega',
 		method: 'get',
-		params: { limite: 1000, inicio: 0, nomenclador: 6 },
+		params: { oficina_id: 65, bodega_id: 4896 },
 		data: {},
 	}
-	const { data, message, cantidad } = await getData(params)
+	const data = await getData(params)
 	// setDatos(data)
-	console.log('GetServerSidePropsData', data)
+	// console.log('GetServerSidePropsData', data)
 	return {
 		props: {
 			datos: data || null,
-			cantidad: cantidad || 0,
-			message: message || null,
 		},
 	}
 }
