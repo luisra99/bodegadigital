@@ -50,22 +50,22 @@ const Index = () => (
 		</Section>
 	</Page>
 )
-export async function getServerSideProps() {
-	let params = {
-		key: 'APIM_FUC',
-		api: 'API_DCPR_CONSULTA',
-		action: '/api/v1/listar-consumidores-bodega',
-		method: 'get',
-		params: { oficina_id: 65, bodega_id: 4896 },
-		data: {},
-	}
-	const data = await getData(params)
-	// setDatos(data)
-	// console.log('GetServerSidePropsData', data)
-	return {
-		props: {
-			datos: data || null,
-		},
-	}
-}
+// export async function getServerSideProps() {
+// 	let params = {
+// 		key: 'APIM_FUC',
+// 		api: 'API_DCPR_CONSULTA',
+// 		action: '/api/v1/listar-consumidores-bodega',
+// 		method: 'get',
+// 		params: { oficina_id: 65, bodega_id: 4896 },
+// 		data: {},
+// 	}
+// 	const data = await getData(params)
+// 	// setDatos(data)
+// 	// console.log('GetServerSidePropsData', data)
+// 	return {
+// 		props: {
+// 			datos: data || null,
+// 		},
+// 	}
+// }
 export default Index
