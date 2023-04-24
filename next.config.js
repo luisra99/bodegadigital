@@ -1,11 +1,20 @@
-const withPWA = require('next-pwa')
+/** @type {import('next').NextConfig} */
 const runtimeCaching = require('next-pwa/cache')
-
-module.exports = withPWA({
-	pwa: {
+const withPWA = require('next-pwa')(
+	{
+		disable: process.env.NODE_ENV === 'development',
 		dest: 'public',
+		register: true,
+		skipWaiting: false,
 		runtimeCaching,
 	},
+	{}
+)
+const nextConfig = withPWA({})
+
+module.exports = nextConfig
+module.exports = {
+	reactStrictMode: true,
 	env: {
 		WSO2: {
 			APIM_MTZ: {
@@ -35,4 +44,4 @@ module.exports = withPWA({
 			},
 		},
 	},
-})
+}
