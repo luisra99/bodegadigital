@@ -4,7 +4,6 @@ export interface RequestData {
   url: string;
   data: object;
 }
-
 export interface RequestOptions {
   method: string;
   url: string;
@@ -14,7 +13,7 @@ export interface GetDataParams {
   key: string;
   api: string;
   action: string;
-  method?: "GET" | "POST" | "get" | "post";
+  method?: 'GET' | 'POST' | 'get' | 'post';
   params?: object;
   data?: object;
 }
