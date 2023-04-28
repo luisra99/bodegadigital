@@ -54,7 +54,7 @@ export default function GTable(
                 <TableCell
                   key={index}
                   align={type != 'number' ? 'left' : 'center'}
-                  className={getColumnClass(index)}
+                  className={getColumnClass(index + additionalColumnCount)}
                 >
                   {header}
                 </TableCell>
