@@ -1,12 +1,13 @@
-import axios from "axios";
-import { RequestOptions, RequestData } from "../interface/request-interface";
+import { RequestOptions, RequestData } from '../interfaces/request-interface';
+
+import axios from 'axios';
 
 export function MakeRequest(
   wso2EndPoint: string,
   nextEndPoint: string,
   method: string,
   body: object,
-  params: object
+  params: object,
 ) {
   const data: RequestData = {
     method,
@@ -15,7 +16,7 @@ export function MakeRequest(
     data: body,
   };
   const options: RequestOptions = {
-    method: "post",
+    method: 'post',
     url: nextEndPoint,
     data,
   };
@@ -23,10 +24,10 @@ export function MakeRequest(
 }
 
 async function getService(options: object) {
-  console.log("GetServiceOptions", options);
+  console.log('GetServiceOptions', options);
   try {
     const response = await axios.request(options);
-    console.log("GetServiceResponse", response);
+    console.log('GetServiceResponse', response);
     return response.data || response;
   } catch (error) {
     console.error(error);
