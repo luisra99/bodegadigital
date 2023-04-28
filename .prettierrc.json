@@ -10,9 +10,10 @@
     "^@mui/(.*)$",
     "<THIRD_PARTY_MODULES>",
     "^@/(.*)$",
-    "^[./]"
+    "^[./]",
+    "^[./(.sass)]"
   ],
-  "importOrderGroupNamespaceSpecifiers": true,
+  "importOrderGroupNamespaceSpecifiers": false,
   "importOrderSeparation": true,
-  "importOrderSortSpecifiers": true
+  "importOrderSortSpecifiers": false
 }
