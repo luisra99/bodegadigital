@@ -4,6 +4,10 @@ $md: 900px
 $lg: 1220px
 $xl: 1536px
 
+$editButonColor:#ff9100
+$deleteButonColor:#dd3333
+$viewMoreColor:#959595
+
 @media (max-width: $sm)
     .col-3
         display: none
@@ -43,3 +47,16 @@ $xl: 1536px
 @media (max-width: $xl)
     .col-x
         display: none
+
+.icon-crud
+    margin: 4px
+    transition: all .2s ease-in-out 
+    cursor: pointer
+.icon-crud:hover
+    transform: scale(1.4)
+.edit
+    color:$editButonColor
+.delete
+    color:$deleteButonColor
+.more
+    color:$viewMoreColor

@@ -1,3 +1,6 @@
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import Fab from '@mui/material/Fab';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
@@ -88,12 +91,9 @@ export default function GTable(
                     {!!hiddenCellsCount && <TableCell align="center">... </TableCell>}
                     {!readOnly && (
                       <TableCell align="center">
-                        <Fab variant="extended" color="primary" size="small">
-                          Editar
-                        </Fab>
-                        <Fab variant="extended" color="primary" size="small">
-                          Eliminar
-                        </Fab>
+                        <EditIcon className="icon-crud edit" />
+                        <DeleteIcon className="icon-crud delete" />
+                        <RemoveRedEyeIcon className="icon-crud more" />
                       </TableCell>
                     )}
                   </TableRow>
