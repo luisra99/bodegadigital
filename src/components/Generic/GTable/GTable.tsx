@@ -38,7 +38,10 @@ export default function GTable(
   const responsiveValue = (breakPoint: keyof ResponsiveMatrix) =>
     totalColumnCount > 7 ? 12 : responsiveMatrix[breakPoint][totalColumnCount - 1];
 
-  const getColumnClass = (index: number) => `col-${index > 8 ? 'x' : index}`;
+  const getColumnClass = (index: number) => 
+{const cols=index+additionalColumnCount
+return `col-${ cols> 8 ? 'x' : cols}`
+}
 
   const { xs, sm, md, lg, xl } = {
     xs: responsiveValue('xs'),
