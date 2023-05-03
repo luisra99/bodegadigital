@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
@@ -12,12 +12,12 @@ function Pages() {
       <Routes>
         {Object.values(routes).map(({ path, component: Component, subPath }) => {
           return (
-            <React.Fragment key={path}>
+            <Fragment key={path}>
               {Component && <Route key={path} path={path} element={<Component />} />}
               {subPath &&
                 Object.values(subPath).map(({ path: childPath, component: Component2 }) => {
                   return (
-                    <React.Fragment key={childPath}>
+                    <Fragment key={childPath}>
                       {Component2 && (
                         <Route
                           key={`${childPath}`}
@@ -25,10 +25,10 @@ function Pages() {
                           element={<Component2 />}
                         />
                       )}
-                    </React.Fragment>
+                    </Fragment>
                   );
                 })}
-            </React.Fragment>
+            </Fragment>
           );
         })}
       </Routes>

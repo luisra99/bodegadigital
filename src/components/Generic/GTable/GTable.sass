@@ -8,6 +8,8 @@ $editButonColor:#ff9100
 $deleteButonColor:#dd3333
 $viewMoreColor:#959595
 
+
+
 @media (max-width: $sm)
     .col-3
         display: none
@@ -23,8 +25,12 @@ $viewMoreColor:#959595
         display: none
     .col-x
         display: none
+    .show-more-sm
+        display: none
+    
+    
 
-@media (max-width: $md)
+@media (max-width: $md ) and (min-width: $sm)
     .col-5
         display: none
     .col-6
@@ -35,17 +41,23 @@ $viewMoreColor:#959595
         display: none
     .col-x
         display: none
+    .show-more-md
+        display: none
 
-@media (max-width: $lg)
+@media (max-width: $lg) and (min-width: $md)
     .col-7
         display: none
     .col-8
         display: none
     .col-x
         display: none
+    .show-more-lg
+        display: none
 
-@media (max-width: $xl)
+@media (min-width: $lg) 
     .col-x
+        display: none
+    .show-more-xl
         display: none
 
 .icon-crud
@@ -60,3 +72,10 @@ $viewMoreColor:#959595
     color:$deleteButonColor
 .more
     color:$viewMoreColor
+
+    &--alone
+        @extend .more
+        padding-left: 0px
+        padding-right: 0px
+        margin-left: 0px
+        margin-right: 0px

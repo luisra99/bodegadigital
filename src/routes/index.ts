@@ -20,14 +20,14 @@ const routes: Routes = {
     icon: HomeIcon,
   },
   [Pages.Page1]: {
-    component: asyncComponentLoader(() => import('@/pages/Page1/Page1')),
-    path: '/page-1',
+    component: asyncComponentLoader(() => import('@/pages/NucleoPage')),
+    path: '/nucleo',
     title: 'Núcleo',
     icon: Groups2Icon,
   },
   [Pages.Page2]: {
     component: asyncComponentLoader(() => import('@/pages/ProductosPage')),
-    path: '/page-2',
+    path: '/productos',
     title: 'Productos',
     icon: ShoppingCartIcon,
   },
@@ -43,7 +43,7 @@ const routes: Routes = {
     icon: SettingsIcon,
     subPath: {
       [Pages.Aplicación]: {
-        component: asyncComponentLoader(() => import('@/pages/Page1/Page1')),
+        component: asyncComponentLoader(() => import('@/pages/NucleoPage/')),
         path: 'not',
         title: 'Aplicación',
         icon: DisplaySettingsIcon,

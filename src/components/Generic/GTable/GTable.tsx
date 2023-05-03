@@ -1,7 +1,6 @@
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
-import Fab from '@mui/material/Fab';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -27,21 +26,28 @@ export default function GTable(
   const visibleColumnsCount = columnsCount - hiddenCellsCount;
   const additionalColumnCount = readOnly ? 0 : 1;
   const totalColumnCount = visibleColumnsCount + additionalColumnCount;
-
+  //Para una correcta configuracion si se modifica colsToShow debe modificarse el estilo del acrchivo Gtable.sass
   const responsiveMatrix: ResponsiveMatrix = {
-    xs: [6, 12, 12, 12, 12, 12, 12],
-    sm: [4, 6, 10, 12, 12, 12, 12],
-    md: [3, 4, 6, 6, 10, 11, 12],
-    lg: [2, 3, 4, 4, 9, 10, 11],
-    xl: [1, 2, 3, 4, 9, 10, 11],
+    xs: { matrix: [6, 12, 12, 12, 12, 12, 12], colsToShow: 3 },
+    sm: { matrix: [4, 6, 10, 12, 12, 12, 12], colsToShow: 3 },
+    md: { matrix: [3, 4, 6, 6, 10, 11, 12], colsToShow: 5 },
+    lg: { matrix: [2, 3, 4, 4, 9, 10, 11], colsToShow: 7 },
+    xl: { matrix: [1, 2, 3, 4, 9, 10, 11], colsToShow: 8 },
   };
-  const responsiveValue = (breakPoint: keyof ResponsiveMatrix) =>
-    totalColumnCount > 7 ? 12 : responsiveMatrix[breakPoint][totalColumnCount - 1];
+  const responsiveValue = (breakPoint: keyof ResponsiveMatrix): ResponsiveValue => {
+    return {
+      value: totalColumnCount > 7 ? 12 : responsiveMatrix[breakPoint]?.matrix[totalColumnCount - 1],
+      class:
+        totalColumnCount > responsiveMatrix[breakPoint]?.colsToShow
+          ? ''
+          : `show-more-${breakPoint}`,
+    };
+  };
 
-  const getColumnClass = (index: number) => 
-{const cols=index+additionalColumnCount
-return `col-${ cols> 8 ? 'x' : cols}`
-}
+  const getColumnClass = (index: number) => {
+    const cols = index + additionalColumnCount;
+    return `col-${cols > 8 ? 'x' : cols}`;
+  };
 
   const { xs, sm, md, lg, xl } = {
     xs: responsiveValue('xs'),
@@ -51,7 +57,15 @@ return `col-${ cols> 8 ? 'x' : cols}`
     xl: responsiveValue('xl'),
   };
   return (
-    <Grid item xs={xs} sm={sm} md={md} lg={lg} xl={xl} minWidth={'275px'}>
+    <Grid
+      item
+      xs={xs.value}
+      sm={sm.value}
+      md={md.value}
+      lg={lg.value}
+      xl={xl.value}
+      minWidth={'275px'}
+    >
       <TableContainer component={Paper}>
         <Table aria-label="simple table">
           <TableHead>
@@ -65,12 +79,13 @@ return `col-${ cols> 8 ? 'x' : cols}`
                   {header}
                 </TableCell>
               ))}
-              {!!hiddenCellsCount && (
-                <TableCell align="center" key={-1}>
-                  Detalles
-                </TableCell>
-              )}
-              {!readOnly && (
+              {readOnly ? (
+                <TableCell
+                  align="center"
+                  key={-3}
+                  className={` icon-crud more ${xs.class} ${sm.class} ${md.class} ${lg.class} ${xl.class}`}
+                ></TableCell>
+              ) : (
                 <TableCell align="center" key={-2}>
                   Acciones
                 </TableCell>
@@ -80,36 +95,45 @@ return `col-${ cols> 8 ? 'x' : cols}`
           <TableBody>
             {data ? (
               data.length > 0 ? (
-                data.map((dataItem: any, index: number) => (
-                  <TableRow key={index}>
+                data.map((dataItem: any, dataIndex: number) => (
+                  <TableRow key={dataIndex}>
                     {columns.map(({ name, type }, index) => (
                       <TableCell
                         align={type != 'number' ? 'left' : 'center'}
-                        key={index}
+                        key={`${dataIndex}-${index}`}
                         className={getColumnClass(index)}
                       >
                         {dataItem[name]}
                       </TableCell>
                     ))}
-                    {!!hiddenCellsCount && <TableCell align="center">... </TableCell>}
-                    {!readOnly && (
-                      <TableCell align="center">
+
+                    {!readOnly ? (
+                      <TableCell align="center" key={`actions-${dataIndex}`}>
                         <EditIcon className="icon-crud edit" />
                         <DeleteIcon className="icon-crud delete" />
-                        <RemoveRedEyeIcon className="icon-crud more" />
+                        <RemoveRedEyeIcon
+                          className={`icon-crud more ${xs.class} ${sm.class} ${md.class} ${lg.class} ${xl.class}`}
+                        />
+                      </TableCell>
+                    ) : (
+                      <TableCell
+                        key={`more-${dataIndex}`}
+                        className={`more--alone ${xs.class} ${sm.class} ${md.class} ${lg.class} ${xl.class}`}
+                      >
+                        <RemoveRedEyeIcon className="icon-crud more--alone" />
                       </TableCell>
                     )}
                   </TableRow>
                 ))
               ) : (
-                <TableRow>
+                <TableRow key="no-data-key">
                   <TableCell colSpan={hiddenCellsCount} align={'center'}>
                     <h4>No existen datos</h4>
                   </TableCell>
                 </TableRow>
               )
             ) : (
-              <TableRow>
+              <TableRow key="conextion-error-key">
                 <TableCell colSpan={hiddenCellsCount} align={'center'}>
                   No se pudo conectar
                 </TableCell>
@@ -123,11 +147,11 @@ return `col-${ cols> 8 ? 'x' : cols}`
 }
 
 type ResponsiveMatrix = {
-  xs: number[];
-  sm: number[];
-  md: number[];
-  lg: number[];
-  xl: number[];
+  xs: { matrix: number[]; colsToShow: number };
+  sm: { matrix: number[]; colsToShow: number };
+  md: { matrix: number[]; colsToShow: number };
+  lg: { matrix: number[]; colsToShow: number };
+  xl: { matrix: number[]; colsToShow: number };
 };
 
 interface Operations {
@@ -145,7 +169,10 @@ interface Filter {
   operator: keyof Operations;
   value: any;
 }
-
+interface ResponsiveValue {
+  value: number;
+  class: string;
+}
 function compare(property: number | string, operator: keyof Operations, value: any) {
   const operations: Operations = {
     '<': () => property < value,
