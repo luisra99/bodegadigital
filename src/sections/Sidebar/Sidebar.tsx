@@ -31,7 +31,7 @@ function Sidebar() {
 
   function drawerMenu(routesList: Routes = routes, level = 1) {
     return Object.values(routesList)
-      .filter(({ title }) => title)
+      .filter(({ title, hide }) => title && !hide)
       .map(({ subPath, path, title, icon: Icon, func }) => {
         if (!subPath) {
           return (

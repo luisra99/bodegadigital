@@ -16,9 +16,9 @@ function useNotifications(): [Notification[], Actions] {
   const [notifications, setNotifications] = useRecoilState(notificationsState);
 
   const push = useCallback(
-    (notification: Partial<Notification>) => {
+    (notification: Partial<Notification>, id: string) => {
       // TODO (Suren): use uuid
-      const id = Math.random().toString();
+
       setNotifications((notifications): Notification[] => [
         // TODO (Suren): use immer
         ...notifications,

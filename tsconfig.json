@@ -18,7 +18,10 @@
     "baseUrl": "./",
     "types": ["vite-plugin-pwa/client", "@types/node"],
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@interfaces/*": ["src/shared/interfaces/*"],
+      "@services/*": ["src/shared/service/*"],
+      "@components/*": ["src/shared/components/*"]
     }
   },
   "include": ["src"],

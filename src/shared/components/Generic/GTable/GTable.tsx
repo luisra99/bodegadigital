@@ -1,5 +1,6 @@
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
@@ -10,7 +11,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
-import { Column } from '@/interfaces/common';
+import { Column } from '@interfaces/common';
 
 import './GTable.sass';
 
@@ -120,7 +121,7 @@ export default function GTable(
                         key={`more-${dataIndex}`}
                         className={`more--alone ${xs.class} ${sm.class} ${md.class} ${lg.class} ${xl.class}`}
                       >
-                        <RemoveRedEyeIcon className="icon-crud more--alone" />
+                        <MoreVertIcon className="icon-crud more--alone" />
                       </TableCell>
                     )}
                   </TableRow>

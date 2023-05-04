@@ -2,29 +2,29 @@ import isMobile from '@/utils/is-mobile';
 
 import type { Notifications } from './types';
 
-const title = 'React PWA';
+const title = 'Bodega Virtual';
 
-const email = 'auther-email@gmail.com';
+const email = 'soportebodegavirtual@xetid.cu';
 
-const repository = 'https://github.com/suren-atoyan/react-pwa';
+const repository = 'https://xetid.ci';
 
 const messages = {
   app: {
     crash: {
-      title: 'Oooops... Sorry, I guess, something went wrong. You can:',
+      title: 'Ups... Lo sentimos, algo fue mal con la aplicacion. Usted puede:',
       options: {
-        email: `contact with author by this email - ${email}`,
-        reset: 'Press here to reset the application',
+        email: `contactar con soporte via correo - ${email}`,
+        reset: 'Reiniciar la aplicacion',
       },
     },
   },
   loader: {
-    fail: 'Hmmmmm, there is something wrong with this component loading process... Maybe trying later would be the best idea',
+    fail: 'Hmmmmm, algo fue mal con la carga de este componente... Quizas sea una buena idea intentarlo mas tarde',
   },
   images: {
-    failed: 'something went wrong during image loading :(',
+    failed: 'algo fue mal mientras se cargaba esta imagen :(',
   },
-  404: 'Hey bro? What are you looking for?',
+  404: 'Amigo? Que estas buscando?',
 };
 
 const dateFormat = 'MMMM DD, YYYY';

@@ -25,6 +25,7 @@ type PathRouteCustomProps = {
   type?: MenuItemType;
   icon?: FC<SvgIconProps>;
   subPath?: Routes;
+  hide?: boolean;
   func?(): void;
 };
 

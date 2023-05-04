@@ -6,7 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import Typography from '@mui/material/Typography';
 
-import { FlexBox } from '@/components/styled';
+import { FlexBox } from '@/shared/components/styled';
 import useHotKeysDialog from '@/store/hotkeys';
 import useSidebar from '@/store/sidebar';
 import useTheme from '@/store/theme';

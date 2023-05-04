@@ -5,10 +5,11 @@ import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 
-import GTable from '@/components/Generic/GTable/GTable';
-import GTableContainer from '@/components/Generic/GTableContainer/GTableContainer';
-import Meta from '@/components/Meta';
-import { Column } from '@/interfaces/common';
+import { Column } from '@interfaces/common';
+
+import GTable from '@/shared/components/Generic/GTable/GTable';
+import GTableContainer from '@/shared/components/Generic/GTableContainer/GTableContainer';
+import Meta from '@/shared/components/Meta';
 
 import '../../theme/App.sass';
 
@@ -437,6 +438,7 @@ function ProductosPage() {
       >
         CARGAR DATOS
       </Button>
+      <p>asdl</p>
 
       <Box sx={{ width: '100%', height: '100%', justifyContent: 'space-between' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>

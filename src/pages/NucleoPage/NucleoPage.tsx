@@ -1,10 +1,10 @@
 import { Box, Button } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
-import GTable from '@/components/Generic/GTable/GTable';
-import GTableContainer from '@/components/Generic/GTableContainer/GTableContainer';
-import Meta from '@/components/Meta';
 import { Column } from '@/interfaces/common';
+import GTable from '@/shared/components/Generic/GTable/GTable';
+import GTableContainer from '@/shared/components/Generic/GTableContainer/GTableContainer';
+import Meta from '@/shared/components/Meta';
 
 import axios from 'axios';
 

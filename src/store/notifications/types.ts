@@ -7,7 +7,7 @@ interface Notification {
 }
 
 type Actions = {
-  push: (notification: Partial<Notification>) => SnackbarKey;
+  push: (notification: Partial<Notification>, id: string) => SnackbarKey;
   close: (key: SnackbarKey, dismissAll?: boolean) => void;
   remove: (key: SnackbarKey) => void;
 };

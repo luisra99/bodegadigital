@@ -1,4 +1,7 @@
+import { Link } from 'react-router-dom';
+
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import CloseIcon from '@mui/icons-material/Close';
 import ThemeIcon from '@mui/icons-material/InvertColors';
 import MenuIcon from '@mui/icons-material/Menu';
 import Alert from '@mui/material/Alert';
@@ -11,8 +14,9 @@ import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 
-import { FlexBox } from '@/components/styled';
 import { repository, title } from '@/config';
+import { FlexBox } from '@/shared/components/styled';
+import { Notification } from '@/shared/interfaces/common';
 import useHotKeysDialog from '@/store/hotkeys';
 import useNotifications from '@/store/notifications';
 import useSidebar from '@/store/sidebar';
@@ -27,24 +31,75 @@ function Header() {
   const [, notificationsActions] = useNotifications();
   const [, hotKeysDialogActions] = useHotKeysDialog();
 
-  function showNotification() {
-    notificationsActions.push({
-      options: {
-        // Show fully customized notification
-        // Usually, to show a notification, you'll use something like this:
-        // notificationsActions.push({ message: ... })
-        // `message` accepts string as well as ReactNode
-        // But you also can use:
-        // notificationsActions.push({ options: { content: ... } })
-        // to show fully customized notification
-        content: (
-          <Alert severity="info">
-            <AlertTitle>Notification demo (random IT jokes :))</AlertTitle>
-            {getRandomJoke()}
-          </Alert>
-        ),
+  function showNotification(notification: Notification) {
+    const {
+      type,
+      title = '',
+      subTitle = '',
+      content = '',
+      additionalContent: { title: additionalTitle = '', content: additionalContent = '' } = {},
+      advice = '',
+      price = '',
+    } = notification;
+    const id = Math.random().toString();
+    notificationsActions.push(
+      {
+        options: {
+          // Show fully customized notification
+          // Usually, to show a notification, you'll use something like this:
+          // notificationsActions.push({ message: ... })
+          // `message` accepts string as well as ReactNode
+          // But you also can use:
+          // notificationsActions.push({ options: { content: ... } })
+          // to show fully customized notification
+          content: (
+            <Alert
+              severity={type}
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => {
+                    notificationsActions.close(id);
+                  }}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+            >
+              <AlertTitle>{title}</AlertTitle>
+              <b>{subTitle}: </b>
+              {content}
+              {price && ` - $${price}.`}
+              {!!additionalTitle && (
+                <>
+                  <br />
+                  <b>{additionalTitle}: </b>
+                  {additionalContent}
+                </>
+              )}
+              {!!advice && (
+                <>
+                  <br />
+                  <p
+                    style={{
+                      textAlign: 'end',
+                      marginTop: '0px',
+                      marginBottom: '0px',
+                      marginRight: '10px',
+                    }}
+                  >
+                    <i>{advice}</i>
+                  </p>
+                </>
+              )}
+            </Alert>
+          ),
+        },
       },
-    });
+      id,
+    );
   }
 
   return (
@@ -62,8 +117,21 @@ function Header() {
             >
               <MenuIcon />
             </IconButton>
-            <Button onClick={showNotification} color="info">
-              {title}
+            <Button
+              onClick={() =>
+                showNotification({
+                  type: 'info',
+                  title: 'Producto nuevo en la TRD "Los Combatientes"',
+                  subTitle: 'Productos',
+                  content: 'Aceite, Pan, Azucar',
+                  additionalContent: { title: 'Distribucion', content: 'Por CDR' },
+                  advice: 'Miercoles 16:00h',
+                  price: '250.00',
+                })
+              }
+              color="info"
+            >
+              Ejemplo Aviso
             </Button>
           </FlexBox>
           <FlexBox>
@@ -88,7 +156,7 @@ function Header() {
 
             <Divider orientation="vertical" flexItem />
             <Tooltip title="Opciones de usuario" arrow>
-              <IconButton color="info" edge="end" size="large">
+              <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
                 <AccountCircleIcon />
               </IconButton>
             </Tooltip>
