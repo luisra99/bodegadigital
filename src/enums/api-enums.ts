@@ -1,4 +1,4 @@
-enum Api {
+export enum Api {
   Oficinas = 'oficinas',
   Bodegas = 'bodegas',
   Productos = 'productos',

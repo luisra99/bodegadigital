@@ -1,7 +1,8 @@
 import { Box, Button } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
-import { Column } from '@/interfaces/common';
+import { Column } from '@interfaces/common';
+
 import GTable from '@/shared/components/Generic/GTable/GTable';
 import GTableContainer from '@/shared/components/Generic/GTableContainer/GTableContainer';
 import Meta from '@/shared/components/Meta';

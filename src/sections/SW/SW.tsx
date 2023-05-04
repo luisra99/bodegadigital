@@ -28,27 +28,34 @@ function SW() {
   }, [setOfflineReady, setNeedRefresh, notificationsActions]);
 
   useEffect(() => {
+    const id = Math.random().toString();
     if (offlineReady) {
-      notificationsActions.push({
-        options: {
-          autoHideDuration: 4500,
-          content: <Alert severity="success">App is ready to work offline.</Alert>,
+      notificationsActions.push(
+        {
+          options: {
+            autoHideDuration: 4500,
+            content: <Alert severity="success">App is ready to work offline.</Alert>,
+          },
         },
-      });
+        id,
+      );
     } else if (needRefresh) {
-      notificationKey.current = notificationsActions.push({
-        message: 'New content is available, click on reload button to update.',
-        options: {
-          variant: 'warning',
-          persist: true,
-          action: (
-            <>
-              <Button onClick={() => updateServiceWorker(true)}>Reload</Button>
-              <Button onClick={close}>Close</Button>
-            </>
-          ),
+      notificationKey.current = notificationsActions.push(
+        {
+          message: 'New content is available, click on reload button to update.',
+          options: {
+            variant: 'warning',
+            persist: true,
+            action: (
+              <>
+                <Button onClick={() => updateServiceWorker(true)}>Reload</Button>
+                <Button onClick={close}>Close</Button>
+              </>
+            ),
+          },
         },
-      });
+        id,
+      );
     }
   }, [close, needRefresh, offlineReady, notificationsActions, updateServiceWorker]);
 
