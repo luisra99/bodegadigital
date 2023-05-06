@@ -21,7 +21,7 @@ import {
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
-import { FieldConfig, FieldInputProps, FormikConfig, FormikProps } from 'formik';
+import { FormikProps } from 'formik';
 import { ErrorMessage, Field, Form, Formik, useFormikContext } from 'formik';
 import * as Yup from 'yup';
 
@@ -55,7 +55,7 @@ export function GForm({
   load?: () => void;
   buttons: GFormButtons;
 }) {
-  const formikRef = useRef<FormikProps<any> | null>(null);
+  // const formikRef = useRef<FormikProps<any> | null>(null);
   const [formSchema, setFormSchema] = useState<any>({});
   const [formSource, setFormDataSource] = useState<any>({});
   const [validationSchema, setValidationSchema] = useState<any>({});
@@ -149,7 +149,7 @@ export function GForm({
   }
   function GenericDateTime({ errors, label, name, touched, type, values }: GControlProps) {
     const handleChange = (event: any) => {
-      formikRef?.current?.setFieldValue(name, event.target.value);
+      // formikRef?.current?.setFieldValue(name, event.target.value);
     };
     const hasError = !!touched[name] && !!errors[name];
     return (
@@ -176,7 +176,7 @@ export function GForm({
   }
   function GenericCheckBox({ errors, label, name, values }: GControlProps): JSX.Element {
     const handleChange = (event: any) => {
-      formikRef?.current?.setFieldValue(name, event.target.checked);
+      // formikRef?.current?.setFieldValue(name, event.target.checked);
     };
     return (
       <>
@@ -238,7 +238,7 @@ export function GForm({
   }
   function GenericSelectField({ name, label, sons, touched, errors, values }: GControlProps) {
     const handleChange = (event: any) => {
-      formikRef?.current?.setFieldValue(name, event.target.value);
+      // formikRef?.current?.setFieldValue(name, event.target.value);
       //   childHandler(event.target, sons);
     };
 
@@ -405,7 +405,7 @@ export function GForm({
     <>
       <Formik
         initialValues={formSchema}
-        innerRef={formikRef}
+        // innerRef={formikRef}
         validationSchema={validationSchema}
         validateOnChange
         onSubmit={(values, { setSubmitting }) => {
