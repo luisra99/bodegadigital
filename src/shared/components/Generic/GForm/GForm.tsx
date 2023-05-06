@@ -21,8 +21,7 @@ import {
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
-import { FormikProps } from 'formik';
-import { ErrorMessage, Field, Form, Formik, useFormikContext } from 'formik';
+import { ErrorMessage, Field, Form, Formik, useFormikContext, FormikProps } from 'formik';
 import * as Yup from 'yup';
 
 import { ControlType } from '@/enums/form-enums';
