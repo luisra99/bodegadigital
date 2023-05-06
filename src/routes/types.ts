@@ -5,6 +5,7 @@ import type { SvgIconProps } from '@mui/material/SvgIcon';
 
 enum Pages {
   Welcome,
+  SignUp,
   Page1,
   Page2,
   Page3,
@@ -13,6 +14,7 @@ enum Pages {
   Perfil,
   Aplicación,
   Estilo,
+  Notification,
 }
 enum MenuItemType {
   'Header',
