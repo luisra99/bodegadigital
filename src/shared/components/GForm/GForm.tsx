@@ -40,15 +40,6 @@ import {
 
 import axios from 'axios';
 
-export function GForm(props: GFormProps) {
-  const {
-    controls,
-    id,
-    endpoint,
-    handleClose,
-    load,
-    buttons = { apply: 'Aplicar', icons: true },
-  } = props;
-
+export function GForm() {
   return <></>;
 }
