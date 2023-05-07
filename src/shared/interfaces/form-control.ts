@@ -1,4 +1,4 @@
-import { FormikErrors, FormikTouched } from 'formik';
+// import { FormikErrors, FormikTouched } from 'formik';
 import { AnyObject } from 'yup';
 
 import { ControlType } from '@/enums/form-enums';
@@ -51,12 +51,12 @@ export type DictionaryValidationFunctions = Record<
   (schema: AnyObject, args: ValidateArgs) => AnyObject
 >;
 export type DictionaryValidationBasic = Record<ControlType, AnyObject>;
-export interface GControlProps extends GFormControl, IFormikProps {}
-export interface IFormikProps {
-  values: any;
-  errors: FormikErrors<any>;
-  touched: FormikTouched<any>;
-}
+// export interface GControlProps extends GFormControl, IFormikProps {}
+// export interface IFormikProps {
+//   values: any;
+//   errors: FormikErrors<any>;
+//   touched: FormikTouched<any>;
+// }
 
 export interface MyObject {
   [key: string]: any;
