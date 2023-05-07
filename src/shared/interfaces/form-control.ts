@@ -68,3 +68,11 @@ export interface ResponsiveValues {
   lg: number;
   xl: number;
 }
+export interface GFormProps {
+  controls: GFormControl[];
+  id?: string | number;
+  endpoint: string;
+  handleClose?: () => void;
+  load?: () => void;
+  buttons: GFormButtons;
+}

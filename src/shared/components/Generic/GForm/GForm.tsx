@@ -35,25 +35,20 @@ import {
   IFormikProps,
   ValidatorsSchema,
   GFormButtons,
+  GFormProps,
 } from '@/shared/interfaces/form-control';
 
 import axios from 'axios';
 
-export function GForm({
-  controls,
-  id,
-  endpoint,
-  handleClose,
-  load,
-  buttons = { apply: 'Aplicar', icons: true },
-}: {
-  controls: GFormControl[];
-  id?: string | number;
-  endpoint: string;
-  handleClose?: () => void;
-  load?: () => void;
-  buttons: GFormButtons;
-}) {
+export function GForm(props: GFormProps) {
+  const {
+    controls,
+    id,
+    endpoint,
+    handleClose,
+    load,
+    buttons = { apply: 'Aplicar', icons: true },
+  } = props;
   // const formikRef = useRef<FormikProps<any> | null>(null);
   const [formSchema, setFormSchema] = useState<any>({});
   const [formSource, setFormDataSource] = useState<any>({});
