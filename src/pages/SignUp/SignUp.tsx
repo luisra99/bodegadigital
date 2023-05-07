@@ -27,7 +27,7 @@ export default function SignUp() {
             Complete los siguientes campos para comenzar a disfrutar del servicio de bodega virtual
           </h4>
 
-          <GForm
+          {/* <GForm
             buttons={{ apply: 'Comenzar', icons: false }}
             controls={[
               {
@@ -133,7 +133,7 @@ export default function SignUp() {
               },
             ]}
             endpoint="asd"
-          />
+          /> */}
         </Box>
       </Container>
     </FullSizeCenteredFlexBox>
