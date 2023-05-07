@@ -54,8 +54,8 @@ export type DictionaryValidationBasic = Record<ControlType, AnyObject>;
 export interface GControlProps extends GFormControl, IFormikProps {}
 export interface IFormikProps {
   values: any;
-  // errors: FormikErrors<any>;
-  // touched: FormikTouched<any>;
+  errors: any;
+  touched: any;
 }
 
 export interface MyObject {
