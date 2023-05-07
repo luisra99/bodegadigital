@@ -432,43 +432,44 @@ export function GForm(props: GFormProps) {
   }
 
   return (
-    <Formik
-      initialValues={formSchema}
-      // innerRef={formikRef}
-      validationSchema={validationSchema}
-      validateOnChange
-      onSubmit={(values, { setSubmitting }) => {
-        console.log('valoressssss', values);
-        // const button = target.name;
-        if (id) {
-          // MakeRequest(wso2EndPoint, nextEndPoint, 'put', values, {}).then((response) => {
-          //   response && setSubmitting(false) && load();
-          //   setNotification(response);
-          // });
-        } else {
-          // MakeRequest(wso2EndPoint, nextEndPoint, 'post', values, {}).then((response) => {
-          //   response && setSubmitting(false) && load();
-          //   // if(!response.message)
-          //   setNotification(response);
-          //   resetForm();
-          // });
-        }
-      }}
-    >
-      {(props: FormikProps<any>) => {
-        const { values, isValid } = props;
-        // console.log(props);
-        return (
-          <Form>
-            <Box>
-              <Grid container direction="row" justifyContent="space-evenly" spacing={2} padding={2}>
-                <FormElement controls={controls} formikProps={props} />
-                <SubmitButton disabled={!isValid} values={values} />
-              </Grid>
-            </Box>
-          </Form>
-        );
-      }}
-    </Formik>
+    // <Formik
+    //   initialValues={formSchema}
+    //   // innerRef={formikRef}
+    //   validationSchema={validationSchema}
+    //   validateOnChange
+    //   onSubmit={(values, { setSubmitting }) => {
+    //     console.log('valoressssss', values);
+    //     // const button = target.name;
+    //     if (id) {
+    //       // MakeRequest(wso2EndPoint, nextEndPoint, 'put', values, {}).then((response) => {
+    //       //   response && setSubmitting(false) && load();
+    //       //   setNotification(response);
+    //       // });
+    //     } else {
+    //       // MakeRequest(wso2EndPoint, nextEndPoint, 'post', values, {}).then((response) => {
+    //       //   response && setSubmitting(false) && load();
+    //       //   // if(!response.message)
+    //       //   setNotification(response);
+    //       //   resetForm();
+    //       // });
+    //     }
+    //   }}
+    // >
+    //   {(props: FormikProps<any>) => {
+    //     const { values, isValid } = props;
+    //     // console.log(props);
+    //     return (
+    //       <Form>
+    //         <Box>
+    //           <Grid container direction="row" justifyContent="space-evenly" spacing={2} padding={2}>
+    //             <FormElement controls={controls} formikProps={props} />
+    //             <SubmitButton disabled={!isValid} values={values} />
+    //           </Grid>
+    //         </Box>
+    //       </Form>
+    //     );
+    //   }}
+    // </Formik>
+    <></>
   );
 }
