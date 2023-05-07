@@ -438,9 +438,9 @@ export function GForm({
                   spacing={2}
                   padding={2}
                 >
-                  {controls.map((value) => {
+                  {/* {controls.map((value) => {
                     return getFormElement(value, { errors, touched, values });
-                  })}
+                  })} */}
                   <SubmitButton disabled={!isValid} values={values} />
                 </Grid>
               </Box>
