@@ -13,6 +13,7 @@ enum Pages {
   Perfil,
   Aplicación,
   Estilo,
+  SignIn,
 }
 enum MenuItemType {
   'Header',

@@ -399,6 +399,46 @@ export function GForm({
       </Grid>
     );
   };
+  function FormElement(props: any) {
+    const { controls, formikProps } = props;
+    const { errors, touched, values } = formikProps;
+
+    return controls.map(
+      ({ name, label, options, placeHolder, style, url, type, sons, pattern }: GFormControl) => {
+        if (!name) return null;
+        const Component = typeComponentMap[type];
+
+        if (!Component) return null;
+        const length = controls.length > 2 ? 6 : 12;
+        const { xs, sm, md, lg, xl } = style || {
+          xs: 12,
+          sm: 12,
+          md: length,
+          lg: length,
+          xl: length,
+        };
+        const GControlProps = {
+          name,
+          label,
+          options,
+          placeHolder,
+          style,
+          url,
+          sons,
+          pattern,
+          errors,
+          touched,
+          type,
+          values,
+        };
+        return (
+          <Grid item xs={xs} sm={sm} md={md} lg={lg} xl={xl} key={name}>
+            <Component {...GControlProps} />
+          </Grid>
+        );
+      },
+    );
+  }
 
   return (
     <Formik
@@ -425,15 +465,13 @@ export function GForm({
       }}
     >
       {(props: FormikProps<any>) => {
-        const { errors, touched, values, isValid, isSubmitting } = props;
+        const { values, isValid } = props;
         // console.log(props);
         return (
           <Form>
             <Box>
               <Grid container direction="row" justifyContent="space-evenly" spacing={2} padding={2}>
-                {controls.map((value) => {
-                  return getFormElement(value, { errors, touched, values });
-                })}
+                <FormElement controls={controls} formikProps={props} />
                 <SubmitButton disabled={!isValid} values={values} />
               </Grid>
             </Box>
