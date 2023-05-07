@@ -109,16 +109,8 @@ export function GForm(props: GFormProps) {
     'datetime-local': GenericDateTime,
   };
 
-  function GenericTextField({
-    errors,
-    label,
-    name,
-    values,
-    pattern,
-    type,
-    placeHolder,
-    touched,
-  }: GControlProps): JSX.Element {
+  function GenericTextField(props: GControlProps) {
+    const { errors, label, name, values, pattern, type, placeHolder, touched } = props;
     return (
       <FormControl fullWidth>
         <Field
@@ -141,7 +133,8 @@ export function GForm(props: GFormProps) {
       </FormControl>
     );
   }
-  function GenericDateTime({ errors, label, name, touched, type, values }: GControlProps) {
+  function GenericDateTime(props: GControlProps) {
+    const { errors, label, name, touched, type, values } = props;
     const handleChange = (event: any) => {
       // formikRef?.current?.setFieldValue(name, event.target.value);
     };
@@ -168,7 +161,8 @@ export function GForm(props: GFormProps) {
       </FormControl>
     );
   }
-  function GenericCheckBox({ errors, label, name, values }: GControlProps): JSX.Element {
+  function GenericCheckBox(props: GControlProps) {
+    const { errors, label, name, values } = props;
     const handleChange = (event: any) => {
       // formikRef?.current?.setFieldValue(name, event.target.checked);
     };
@@ -211,7 +205,8 @@ export function GForm(props: GFormProps) {
       </>
     );
   }
-  function GenericRadioButtonGroup({ name, label, options }: GControlProps) {
+  function GenericRadioButtonGroup(props: GControlProps) {
+    const { name, label, options } = props;
     return (
       <FormControl>
         {label && <FormLabel id="demo-row-radio-buttons-group-label">{label}</FormLabel>}
@@ -230,7 +225,8 @@ export function GForm(props: GFormProps) {
       </FormControl>
     );
   }
-  function GenericSelectField({ name, label, sons, touched, errors, values }: GControlProps) {
+  function GenericSelectField(props: GControlProps) {
+    const { name, label, sons, touched, errors, values } = props;
     const handleChange = (event: any) => {
       // formikRef?.current?.setFieldValue(name, event.target.value);
       //   childHandler(event.target, sons);
@@ -320,7 +316,7 @@ export function GForm(props: GFormProps) {
     }
     return options;
   };
-  async function initForm(controls: GFormControl[]) {
+  const initForm = async (controls: GFormControl[]) => {
     const initialFormData: MyObject = {};
     const validationSchema: MyObject = {};
     const formDataSource: MyObject = {};
@@ -354,46 +350,46 @@ export function GForm(props: GFormProps) {
       setValidationSchema(Yup.object().shape({ ...validationSchema }));
       // !!id && SetEditValues(id);
     });
-  }
-  const getFormElement = (
-    { name, label, options, placeHolder, style, url, type, sons, pattern }: GFormControl,
-    { errors, touched, values }: IFormikProps,
-  ) => {
-    if (!name) return null;
-    const amountOfControls = Object.keys(controls).length;
-    const Component = typeComponentMap[type];
-
-    if (!Component) return null;
-
-    const props = {
-      name,
-      label,
-      options,
-      placeHolder,
-      style,
-      url,
-      sons,
-      pattern,
-      errors,
-      touched,
-      type,
-      values,
-    };
-    const { xs, sm, md, lg, xl } = style ?? {};
-    return (
-      <Grid
-        item
-        xs={xs ? xs : 12}
-        sm={sm ? sm : 12}
-        md={md ? md : amountOfControls > 2 ? 6 : 12}
-        lg={lg ? lg : amountOfControls > 2 ? 6 : 12}
-        xl={xl ? xl : amountOfControls > 2 ? 6 : 12}
-        key={name}
-      >
-        <Component {...props} />
-      </Grid>
-    );
   };
+  // const getFormElement = (
+  //   { name, label, options, placeHolder, style, url, type, sons, pattern }: GFormControl,
+  //   { errors, touched, values }: IFormikProps,
+  // ) => {
+  //   if (!name) return null;
+  //   const amountOfControls = Object.keys(controls).length;
+  //   const Component = typeComponentMap[type];
+
+  //   if (!Component) return null;
+
+  //   const props = {
+  //     name,
+  //     label,
+  //     options,
+  //     placeHolder,
+  //     style,
+  //     url,
+  //     sons,
+  //     pattern,
+  //     errors,
+  //     touched,
+  //     type,
+  //     values,
+  //   };
+  //   const { xs, sm, md, lg, xl } = style ?? {};
+  //   return (
+  //     <Grid
+  //       item
+  //       xs={xs ? xs : 12}
+  //       sm={sm ? sm : 12}
+  //       md={md ? md : amountOfControls > 2 ? 6 : 12}
+  //       lg={lg ? lg : amountOfControls > 2 ? 6 : 12}
+  //       xl={xl ? xl : amountOfControls > 2 ? 6 : 12}
+  //       key={name}
+  //     >
+  //       <Component {...props} />
+  //     </Grid>
+  //   );
+  // };
   function FormElement(props: any) {
     const { controls, formikProps } = props;
     const { errors, touched, values } = formikProps;
@@ -459,7 +455,7 @@ export function GForm(props: GFormProps) {
         }
       }}
     >
-      {/* {(props: FormikProps<any>) => {
+      {(props: FormikProps<any>) => {
         const { values, isValid } = props;
         // console.log(props);
         return (
@@ -472,7 +468,7 @@ export function GForm(props: GFormProps) {
             </Box>
           </Form>
         );
-      }} */}
+      }}
     </Formik>
   );
 }
