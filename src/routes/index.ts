@@ -32,10 +32,20 @@ const routes: Routes = {
     icon: ShoppingCartIcon,
   },
   [Pages.Page3]: {
-    component: asyncComponentLoader(() => import('@/pages/Page3/Page3')),
+    component: asyncComponentLoader(() => import('@/pages/Profile')),
     path: '/profile',
     title: 'Perfil',
     hide: true,
+  },
+  // [Pages.SignUp]: {
+  //   component: asyncComponentLoader(() => import('@/pages/SignUp')),
+  //   path: '/signup',
+  //   title: 'Registrarse',
+  // },
+  [Pages.Notification]: {
+    component: asyncComponentLoader(() => import('@/pages/Notifications')),
+    path: '/notifications',
+    title: '',
   },
   [Pages.Page4]: {
     path: '/other',
