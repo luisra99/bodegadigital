@@ -4,11 +4,9 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CloseIcon from '@mui/icons-material/Close';
 import ThemeIcon from '@mui/icons-material/InvertColors';
 import MenuIcon from '@mui/icons-material/Menu';
-import Notifications from '@mui/icons-material/Notifications';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import AppBar from '@mui/material/AppBar';
-import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
@@ -155,20 +153,7 @@ function Header() {
                 <ThemeIcon />
               </IconButton>
             </Tooltip>
-            <Divider orientation="vertical" flexItem />
-            <Tooltip title="Notificaciones" arrow>
-              <IconButton
-                color="info"
-                edge="end"
-                size="large"
-                component={Link}
-                to={'/notifications'}
-              >
-                <Badge badgeContent={4} max={99} color="error">
-                  <Notifications />
-                </Badge>
-              </IconButton>
-            </Tooltip>
+
             <Divider orientation="vertical" flexItem />
             <Tooltip title="Opciones de usuario" arrow>
               <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
