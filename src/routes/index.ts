@@ -37,11 +37,11 @@ const routes: Routes = {
     title: 'Perfil',
     hide: true,
   },
-  [Pages.SignUp]: {
-    component: asyncComponentLoader(() => import('@/pages/SignUp')),
-    path: '/signup',
-    title: 'Registrarse',
-  },
+  // [Pages.SignUp]: {
+  //   component: asyncComponentLoader(() => import('@/pages/SignUp')),
+  //   path: '/signup',
+  //   title: 'Registrarse',
+  // },
   [Pages.Notification]: {
     component: asyncComponentLoader(() => import('@/pages/Notifications')),
     path: '/notifications',
