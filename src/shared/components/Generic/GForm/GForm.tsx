@@ -325,7 +325,7 @@ export function GForm({
     }
     return options;
   };
-  const initForm = async (controls: GFormControl[]) => {
+  async function initForm(controls: GFormControl[]) {
     const initialFormData: MyObject = {};
     const validationSchema: MyObject = {};
     const formDataSource: MyObject = {};
@@ -359,7 +359,7 @@ export function GForm({
       setValidationSchema(Yup.object().shape({ ...validationSchema }));
       // !!id && SetEditValues(id);
     });
-  };
+  }
   const getFormElement = (
     { name, label, options, placeHolder, style, url, type, sons, pattern }: GFormControl,
     { errors, touched, values }: IFormikProps,
