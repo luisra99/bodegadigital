@@ -83,21 +83,21 @@ export function GForm(props: GFormProps) {
     date: Yup.date(),
     'datetime-local': Yup.date(),
   };
-  const validationFunctions: DictionaryValidationFunctions = {
-    required: (schema, { message }) => schema.required(message),
-    length: (schema, { message, value }) => schema.length(value, `${message} ${value}`),
-    min: (schema, { message, value }) => schema.min(value, `${message} ${value}`),
-    max: (schema, { message, value }) => schema.max(value, `${message} ${value}`),
-    moreThan: (schema, { message, value }) => schema.moreThan(value, message),
-    lessThan: (schema, { message, value }) => schema.lessThan(value, message),
-    integer: (schema, { message }) => schema.integer(message),
-    positive: (schema, { message }) => schema.positive(message),
-    negative: (schema, { message }) => schema.negative(message),
-    regular_expression: (schema, { message, value }) => schema.matches(value, message),
-    email: (schema, { message }) => schema.email(message),
-    url: (schema, { message }) => schema.url(message),
-    oneOf: (schema, { message, value }) => schema.oneOf(value, message),
-  };
+  // const validationFunctions: DictionaryValidationFunctions = {
+  //   required: (schema, { message }) => schema.required(message),
+  //   length: (schema, { message, value }) => schema.length(value, `${message} ${value}`),
+  //   min: (schema, { message, value }) => schema.min(value, `${message} ${value}`),
+  //   max: (schema, { message, value }) => schema.max(value, `${message} ${value}`),
+  //   moreThan: (schema, { message, value }) => schema.moreThan(value, message),
+  //   lessThan: (schema, { message, value }) => schema.lessThan(value, message),
+  //   integer: (schema, { message }) => schema.integer(message),
+  //   positive: (schema, { message }) => schema.positive(message),
+  //   negative: (schema, { message }) => schema.negative(message),
+  //   regular_expression: (schema, { message, value }) => schema.matches(value, message),
+  //   email: (schema, { message }) => schema.email(message),
+  //   url: (schema, { message }) => schema.url(message),
+  //   oneOf: (schema, { message, value }) => schema.oneOf(value, message),
+  // };
   const typeComponentMap: MyObject = {
     text: GenericTextField,
     email: GenericTextField,
@@ -334,15 +334,15 @@ export function GForm(props: GFormProps) {
           formDataSource[name] = dataSource;
         }
 
-        validators &&
-          Object.keys(validators).forEach((validatorKey) => {
-            const key = validatorKey as keyof ValidatorsSchema;
-            const validator = validationFunctions[validatorKey];
-            const validatorArgs = validators[key];
-            if (validator && validatorArgs) {
-              validationSchema[name] = validator(validationSchema[name], validatorArgs);
-            }
-          });
+        // validators &&
+        //   Object.keys(validators).forEach((validatorKey) => {
+        //     const key = validatorKey as keyof ValidatorsSchema;
+        //     const validator = validationFunctions[validatorKey];
+        //     const validatorArgs = validators[key];
+        //     if (validator && validatorArgs) {
+        //       validationSchema[name] = validator(validationSchema[name], validatorArgs);
+        //     }
+        //   });
       }),
     ).then(() => {
       setFormSchema(initialFormData);
