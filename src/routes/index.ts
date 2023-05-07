@@ -31,7 +31,7 @@ const routes: Routes = {
     title: 'Productos',
     icon: ShoppingCartIcon,
   },
-  [Pages.SignIn]: {
+  [Pages.SignUp]: {
     component: asyncComponentLoader(() => import('@/pages/SignUp')),
     path: '/signUp',
     title: 'Registrarse',

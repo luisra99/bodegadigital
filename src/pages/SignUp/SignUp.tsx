@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
 import { ControlType } from '@/enums/form-enums';
-// import { GForm } from '@/shared/components/Generic/GForm/GForm';
+import { GForm } from '@/shared/components/Generic/GForm/GForm';
 import { FullSizeCenteredFlexBox } from '@/shared/components/styled';
 
 export default function SignUp() {
@@ -27,7 +27,7 @@ export default function SignUp() {
             Complete los siguientes campos para comenzar a disfrutar del servicio de bodega virtual
           </h4>
 
-          {/* <GForm
+          <GForm
             buttons={{ apply: 'Comenzar', icons: false }}
             controls={[
               {
@@ -133,7 +133,7 @@ export default function SignUp() {
               },
             ]}
             endpoint="asd"
-          /> */}
+          />
         </Box>
       </Container>
     </FullSizeCenteredFlexBox>
