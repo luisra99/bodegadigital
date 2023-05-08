@@ -63,7 +63,7 @@ export default function Notifications() {
         { name: 'Pasadas', badge: notificationsCount },
       ]}
     >
-      <List sx={{ width: '100%' }}>
+      <List sx={{ width: '100%', marginTop: '-24px' }}>
         <>
           <h4 className="notification-header">
             <b>Nucleo</b>
@@ -197,7 +197,7 @@ export default function Notifications() {
           )}
         </>
       </List>
-      <List sx={{ width: '100%' }}>
+      <List sx={{ width: '100%', marginTop: '-24px' }}>
         <>
           <h4 className="notification-header">
             <b>Nucleo</b>

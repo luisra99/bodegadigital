@@ -78,7 +78,7 @@ function GTabPanel({ children, tabs }: { children: any[]; tabs: TabHead[] }) {
       </Box>
       {children.map((child: any, index: number) => (
         <TabPanel value={value} index={index} key={index}>
-          <div style={{ margin: '-24px' }}>{child}</div>
+          {child}
         </TabPanel>
       ))}
     </Box>

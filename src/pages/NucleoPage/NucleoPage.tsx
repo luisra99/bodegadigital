@@ -80,7 +80,7 @@ function NucleoPage() {
         </Typography>
         <Button variant={'contained'}>Solicitar registro</Button>
       </Box>
-      <Box sx={{ textAlign: 'center' }}>
+      {/* <Box sx={{ textAlign: 'center' }}>
         <Typography p={2} variant="h6" textAlign={'center'}>
           Jefe de núcleo:
           <br />
@@ -99,7 +99,7 @@ function NucleoPage() {
             true,
           )}
         </GTableContainer>
-      </Box>
+      </Box> */}
     </>
   );
 }
