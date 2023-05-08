@@ -41,7 +41,6 @@ export default function SignUp() {
                   required: {
                     message: 'Requerido',
                   },
-                  email: { message: 'Debe insertar un correo valido' },
                 },
                 style: {
                   xs: 12,
@@ -63,7 +62,11 @@ export default function SignUp() {
                   },
                   length: {
                     value: 11,
-                    message: 'El carnet debe tener una longitud de 11 caracteres',
+                    message: 'El carnet debe tener un tamanio especifico ',
+                  },
+                  regular_expression: {
+                    value: /^(\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])\d{5})$/g,
+                    message: 'El carnet no es valido',
                   },
                 },
                 style: {

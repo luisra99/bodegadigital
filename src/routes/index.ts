@@ -31,12 +31,6 @@ const routes: Routes = {
     title: 'Productos',
     icon: ShoppingCartIcon,
   },
-  [Pages.SignUp]: {
-    component: asyncComponentLoader(() => import('@/pages/SignUp')),
-    path: '/signUp',
-    title: 'Registrarse',
-    icon: ShoppingCartIcon,
-  },
   [Pages.Page3]: {
     component: asyncComponentLoader(() => import('@/pages/Page3/Page3')),
     path: '/profile',

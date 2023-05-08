@@ -83,7 +83,10 @@ export function GForm(props: GFormProps) {
     number: Yup.number(),
     text: Yup.string(),
     'text-area': Yup.string(),
-    email: Yup.string().email('El correo debe tener el formato xxxx@xxx.xxx'),
+    email: Yup.string().matches(
+      /^((?!\.)[\w_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/,
+      'El correo debe tener el formato xxxx@xxx.xxx',
+    ),
     select: Yup.string().notOneOf(['-1'], 'Debe seleccionar un valor'),
     checkbox: Yup.boolean(),
     radioGroup: Yup.string().notOneOf([''], 'Debe seleccionar un valor'),
