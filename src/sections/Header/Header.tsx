@@ -114,7 +114,7 @@ function Header() {
               edge="start"
               color="info"
               aria-label="menu"
-              sx={{ mr: 1 }}
+              sx={{ mr: 1, color: '#3f51b5' }}
             >
               <MenuIcon />
             </IconButton>
@@ -131,6 +131,7 @@ function Header() {
                 })
               }
               color="info"
+              sx={{ color: '#3f51b5' }}
             >
               Ejemplo Aviso
             </Button>
@@ -149,13 +150,13 @@ function Header() {
               </Tooltip>
             </FlexBox>
             <Divider orientation="vertical" flexItem />
-            <Tooltip title="Cambiar tema" arrow>
+            <Tooltip title="Cambiar tema" arrow sx={{ color: '#3f51b5' }}>
               <IconButton color="info" edge="end" size="large" onClick={themeActions.toggle}>
                 <ThemeIcon />
               </IconButton>
             </Tooltip>
             <Divider orientation="vertical" flexItem />
-            <Tooltip title="Notificaciones" arrow>
+            <Tooltip title="Notificaciones" arrow sx={{ color: '#3f51b5' }}>
               <IconButton
                 color="info"
                 edge="end"
@@ -169,7 +170,7 @@ function Header() {
               </IconButton>
             </Tooltip>
             <Divider orientation="vertical" flexItem />
-            <Tooltip title="Opciones de usuario" arrow>
+            <Tooltip title="Opciones de usuario" arrow sx={{ color: '#3f51b5' }}>
               <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
                 <AccountCircleIcon />
               </IconButton>
