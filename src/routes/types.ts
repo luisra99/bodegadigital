@@ -14,6 +14,7 @@ enum Pages {
   Aplicación,
   Estilo,
   SignUp,
+  Notification,
 }
 enum MenuItemType {
   'Header',

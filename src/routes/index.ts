@@ -31,6 +31,11 @@ const routes: Routes = {
     title: 'Productos',
     icon: ShoppingCartIcon,
   },
+  [Pages.Notification]: {
+    component: asyncComponentLoader(() => import('@/pages/Notifications')),
+    path: '/notifications',
+    title: '',
+  },
   [Pages.Page3]: {
     component: asyncComponentLoader(() => import('@/pages/Page3/Page3')),
     path: '/profile',

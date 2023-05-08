@@ -47,43 +47,41 @@ function GTabPanel({ children, tabs }: { children: any[]; tabs: TabHead[] }) {
     setValue(newValue);
   };
   return (
-    <>
-      <Box sx={{ width: '100%', height: '100%', justifyContent: 'space-between' }}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            aria-label="basic tabs example"
-            variant="fullWidth"
-          >
-            {tabs?.map(({ name, badge }, index) => (
-              <Tab
-                label={
-                  <>
-                    <p style={{ margin: '0px' }}>
-                      {name}
-                      <Badge
-                        badgeContent={badge}
-                        max={99}
-                        color="primary"
-                        sx={{ marginLeft: '15px', marginTop: '-5px' }}
-                      />
-                    </p>
-                  </>
-                }
-                {...a11yProps(index)}
-                key={index}
-              />
-            ))}
-          </Tabs>
-        </Box>
-        {children.map((child: any, index: number) => (
-          <TabPanel value={value} index={index} key={index}>
-            {child}
-          </TabPanel>
-        ))}
+    <Box sx={{ width: '100%', height: '100%', justifyContent: 'space-between' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="basic tabs example"
+          variant="fullWidth"
+        >
+          {tabs?.map(({ name, badge }, index) => (
+            <Tab
+              label={
+                <>
+                  <p style={{ margin: '0px' }}>
+                    {name}
+                    <Badge
+                      badgeContent={badge}
+                      max={99}
+                      color="primary"
+                      sx={{ marginLeft: '15px', marginTop: '-5px' }}
+                    />
+                  </p>
+                </>
+              }
+              {...a11yProps(index)}
+              key={index}
+            />
+          ))}
+        </Tabs>
       </Box>
-    </>
+      {children.map((child: any, index: number) => (
+        <TabPanel value={value} index={index} key={index}>
+          <div style={{ margin: '-24px' }}>{child}</div>
+        </TabPanel>
+      ))}
+    </Box>
   );
 }
 
