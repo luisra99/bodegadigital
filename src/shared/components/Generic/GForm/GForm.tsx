@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 import SaveAsIcon from '@mui/icons-material/SaveAs';
 import SaveRoundedIcon from '@mui/icons-material/SaveRounded';
@@ -56,7 +56,7 @@ export function GForm(props: GFormProps) {
     load,
     buttons = { apply: 'Aplicar', icons: true },
   } = props;
-  const { setFieldValue } = useFormikContext();
+  const formikRef = useRef<FormikProps<any>>(null);
   const [formSchema, setFormSchema] = useState<any>({});
   const [formSource, setFormDataSource] = useState<any>({});
   const [validationSchema, setValidationSchema] = useState<any>({});
@@ -143,7 +143,7 @@ export function GForm(props: GFormProps) {
   function GenericDateTime(props: GControlProps) {
     const { errors, label, name, touched, type, values } = props;
     const handleChange = (event: any) => {
-      setFieldValue(name, event.target.value);
+      formikRef?.current?.setFieldValue(name, event.target.value);
     };
     const hasError = !!touched[name] && !!errors[name];
     return (
@@ -171,7 +171,7 @@ export function GForm(props: GFormProps) {
   function GenericCheckBox(props: GControlProps) {
     const { errors, label, name, values } = props;
     const handleChange = (event: any) => {
-      setFieldValue(name, event.target.checked);
+      formikRef?.current?.setFieldValue(name, event.target.checked);
     };
     return (
       <>
@@ -235,7 +235,7 @@ export function GForm(props: GFormProps) {
   function GenericSelectField(props: GControlProps) {
     const { name, label, sons, touched, errors, values } = props;
     const handleChange = (event: any) => {
-      setFieldValue(name, event.target.value);
+      formikRef?.current?.setFieldValue(name, event.target.value);
       //   childHandler(event.target, sons);
     };
 
@@ -403,7 +403,7 @@ export function GForm(props: GFormProps) {
   return (
     <Formik
       initialValues={formSchema}
-      // innerRef={formikRef}
+      innerRef={formikRef}
       validationSchema={validationSchema}
       validateOnChange
       onSubmit={(values, { setSubmitting }) => {
