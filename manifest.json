@@ -2,7 +2,7 @@
   "name": "XetidPWATemplate",
   "short_name": "XPWA",
   "description": "Starter kit for PWA",
-  "theme_color": "#ffffff",
+  "theme_color": "#00000",
   "icons": [
     {
       "src": "pwa-192x192.png",
