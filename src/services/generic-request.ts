@@ -1,4 +1,4 @@
-import { RequestOptions, RequestData } from '../interfaces/request-interface';
+import { RequestOptions, RequestData } from '@interfaces/request-interface';
 
 import axios from 'axios';
 

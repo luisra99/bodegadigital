@@ -1,6 +1,6 @@
-import axios from 'axios';
+import { ApiConfig } from '@interfaces/request-interface';
 
-import { ApiConfig } from '../interfaces/request-interface';
+import axios from 'axios';
 
 export async function getToken(key: any) {
   const config = process.env.WSO2?.[key] as ApiConfig | undefined;
