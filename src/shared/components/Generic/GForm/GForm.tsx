@@ -56,7 +56,7 @@ export function GForm(props: GFormProps) {
     load,
     buttons = { apply: 'Aplicar', icons: true },
   } = props;
-  // const formikRef = useRef<FormikProps<any> | null>(null);
+  const { setFieldValue } = useFormikContext();
   const [formSchema, setFormSchema] = useState<any>({});
   const [formSource, setFormDataSource] = useState<any>({});
   const [validationSchema, setValidationSchema] = useState<any>({});
@@ -143,7 +143,7 @@ export function GForm(props: GFormProps) {
   function GenericDateTime(props: GControlProps) {
     const { errors, label, name, touched, type, values } = props;
     const handleChange = (event: any) => {
-      // formikRef?.current?.setFieldValue(name, event.target.value);
+      setFieldValue(name, event.target.value);
     };
     const hasError = !!touched[name] && !!errors[name];
     return (
@@ -171,7 +171,7 @@ export function GForm(props: GFormProps) {
   function GenericCheckBox(props: GControlProps) {
     const { errors, label, name, values } = props;
     const handleChange = (event: any) => {
-      // formikRef?.current?.setFieldValue(name, event.target.checked);
+      setFieldValue(name, event.target.checked);
     };
     return (
       <>
@@ -235,7 +235,7 @@ export function GForm(props: GFormProps) {
   function GenericSelectField(props: GControlProps) {
     const { name, label, sons, touched, errors, values } = props;
     const handleChange = (event: any) => {
-      // formikRef?.current?.setFieldValue(name, event.target.value);
+      setFieldValue(name, event.target.value);
       //   childHandler(event.target, sons);
     };
 
@@ -341,15 +341,15 @@ export function GForm(props: GFormProps) {
           formDataSource[name] = dataSource;
         }
 
-        // validators &&
-        //   Object.keys(validators).forEach((validatorKey) => {
-        //     const key = validatorKey as keyof ValidatorsSchema;
-        //     const validator = validationFunctions[validatorKey];
-        //     const validatorArgs = validators[key];
-        //     if (validator && validatorArgs) {
-        //       validationSchema[name] = validator(validationSchema[name], validatorArgs);
-        //     }
-        //   });
+        validators &&
+          Object.keys(validators).forEach((validatorKey) => {
+            const key = validatorKey as keyof ValidatorsSchema;
+            const validator = validationFunctions[validatorKey];
+            const validatorArgs = validators[key];
+            if (validator && validatorArgs) {
+              validationSchema[name] = validator(validationSchema[name], validatorArgs);
+            }
+          });
       }),
     ).then(() => {
       setFormSchema(initialFormData);
@@ -358,45 +358,7 @@ export function GForm(props: GFormProps) {
       // !!id && SetEditValues(id);
     });
   };
-  // const getFormElement = (
-  //   { name, label, options, placeHolder, style, url, type, sons, pattern }: GFormControl,
-  //   { errors, touched, values }: IFormikProps,
-  // ) => {
-  //   if (!name) return null;
-  //   const amountOfControls = Object.keys(controls).length;
-  //   const Component = typeComponentMap[type];
 
-  //   if (!Component) return null;
-
-  //   const props = {
-  //     name,
-  //     label,
-  //     options,
-  //     placeHolder,
-  //     style,
-  //     url,
-  //     sons,
-  //     pattern,
-  //     errors,
-  //     touched,
-  //     type,
-  //     values,
-  //   };
-  //   const { xs, sm, md, lg, xl } = style ?? {};
-  //   return (
-  //     <Grid
-  //       item
-  //       xs={xs ? xs : 12}
-  //       sm={sm ? sm : 12}
-  //       md={md ? md : amountOfControls > 2 ? 6 : 12}
-  //       lg={lg ? lg : amountOfControls > 2 ? 6 : 12}
-  //       xl={xl ? xl : amountOfControls > 2 ? 6 : 12}
-  //       key={name}
-  //     >
-  //       <Component {...props} />
-  //     </Grid>
-  //   );
-  // };
   function FormElement(props: any) {
     const { controls, formikProps } = props;
     const { errors, touched, values } = formikProps;
