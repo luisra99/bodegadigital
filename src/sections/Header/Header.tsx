@@ -131,14 +131,14 @@ function Header() {
                 })
               }
               color="info"
-              sx={{ color: '#3f51b5' }}
+              sx={{ color: '#3f51b5', display: { xs: 'none', md: 'block' } }}
             >
-              Ejemplo Aviso
+              Probar Aviso
             </Button>
           </FlexBox>
           <FlexBox>
             <FlexBox>
-              <Tooltip title="Hot keys" arrow>
+              <Tooltip title="Hot keys" arrow sx={{ display: { xs: 'none', md: 'block' } }}>
                 <HotKeysButton
                   size="small"
                   variant="outlined"
@@ -149,13 +149,17 @@ function Header() {
                 </HotKeysButton>
               </Tooltip>
             </FlexBox>
-            <Divider orientation="vertical" flexItem />
+
             <Tooltip title="Cambiar tema" arrow sx={{ color: '#3f51b5' }}>
               <IconButton color="info" edge="end" size="large" onClick={themeActions.toggle}>
                 <ThemeIcon />
               </IconButton>
             </Tooltip>
-            <Divider orientation="vertical" flexItem />
+            <Divider
+              orientation="vertical"
+              flexItem
+              sx={{ margin: '0px', paddingLeft: '10px', paddingRight: '10px' }}
+            />
             <Tooltip title="Notificaciones" arrow sx={{ color: '#3f51b5' }}>
               <IconButton
                 color="info"
@@ -169,7 +173,11 @@ function Header() {
                 </Badge>
               </IconButton>
             </Tooltip>
-            <Divider orientation="vertical" flexItem />
+            <Divider
+              orientation="vertical"
+              flexItem
+              sx={{ margin: '0px', paddingLeft: '10px', paddingRight: '10px' }}
+            />
             <Tooltip title="Opciones de usuario" arrow sx={{ color: '#3f51b5' }}>
               <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
                 <AccountCircleIcon />
