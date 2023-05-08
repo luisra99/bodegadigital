@@ -10,52 +10,45 @@ import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 
 import GTabPanel from '@/shared/components/Generic/GTabPanel/GTabPanel';
+import { CustomNotification } from '@/shared/interfaces/common';
 
 import './Notifications.sass';
 
-interface NotificationItem {
-  title: string;
-  subtitle: string;
-  content: string;
-  secondarySubtitle?: string;
-  secondaryContent?: string;
-  price?: number;
-}
 export default function Notifications() {
-  const [NotificationsOffice, setNotificationOffice] = useState<NotificationItem[]>([
+  const [NotificationsOffice, setNotificationOffice] = useState<CustomNotification[]>([
     {
       title: "Modulo en la TRD 'Los Combatientes'",
-      subtitle: 'Productos',
+      subTitle: 'Productos',
       content: 'Pan, Leche, Aceite, Azucar,Detergente, Jabon',
-      secondarySubtitle: 'Distribucion',
+      secondarySubTitle: 'Distribucion',
       secondaryContent: 'Por CDR (actual 4)',
       price: 80.0,
     },
     {
       title: "Modulo en la TRD 'Los Combatientes'",
-      subtitle: 'Productos',
+      subTitle: 'Productos',
       content: 'Pan, Leche, Aceite, Azucar,Detergente, Jabon',
-      secondarySubtitle: 'Distribucion',
-      secondaryContent: 'Por CDR (actual 4)',
-      price: 80.0,
-    },
-  ]);
-  const [NotificationsStore, setNotificationStore] = useState<NotificationItem[]>([
-    {
-      title: "Modulo en la TRD 'Los Combatientes'",
-      subtitle: 'Productos',
-      content: 'Pan, Leche, Aceite, Azucar,Detergente, Jabon',
-      secondarySubtitle: 'Distribucion',
+      secondarySubTitle: 'Distribucion',
       secondaryContent: 'Por CDR (actual 4)',
       price: 80.0,
     },
   ]);
-  const [NotificationsNuke, setNotificationNuke] = useState<NotificationItem[]>([
+  const [NotificationsStore, setNotificationStore] = useState<CustomNotification[]>([
     {
       title: "Modulo en la TRD 'Los Combatientes'",
-      subtitle: 'Productos',
+      subTitle: 'Productos',
       content: 'Pan, Leche, Aceite, Azucar,Detergente, Jabon',
-      secondarySubtitle: 'Distribucion',
+      secondarySubTitle: 'Distribucion',
+      secondaryContent: 'Por CDR (actual 4)',
+      price: 80.0,
+    },
+  ]);
+  const [NotificationsNuke, setNotificationNuke] = useState<CustomNotification[]>([
+    {
+      title: "Modulo en la TRD 'Los Combatientes'",
+      subTitle: 'Productos',
+      content: 'Pan, Leche, Aceite, Azucar,Detergente, Jabon',
+      secondarySubTitle: 'Distribucion',
       secondaryContent: 'Por CDR (actual 4)',
       price: 80.0,
     },
@@ -67,40 +60,42 @@ export default function Notifications() {
     <GTabPanel
       tabs={[
         { name: 'Activas', badge: notificationsCount },
-        { name: 'Pasadas', badge: 3 },
+        { name: 'Pasadas', badge: notificationsCount },
       ]}
     >
       <List sx={{ width: '100%' }}>
         <>
-          <h4 className="notification-header">Nucleo</h4>
+          <h4 className="notification-header">
+            <b>Nucleo</b>
+          </h4>
           {NotificationsNuke.map(
             (
               {
                 title,
-                subtitle,
+                subTitle,
                 content,
-                secondarySubtitle,
+                secondarySubTitle,
                 secondaryContent,
                 price,
-              }: NotificationItem,
+              }: CustomNotification,
               index: number,
             ) => {
               return (
                 <Fragment key={index}>
-                  <ListItem alignItems="flex-start" sx={{ display: 'table' }}>
+                  <ListItem alignItems="flex-start" className="notification-item">
                     <ListItemText
                       primary={title}
                       secondary={
                         <React.Fragment>
                           <Typography component="span" variant="body2" color="text.primary">
-                            {`${subtitle} - `}
+                            {`${subTitle} - `}
                           </Typography>
                           {content}
-                          {secondarySubtitle && (
+                          {secondarySubTitle && (
                             <>
                               <br />
                               <Typography component="span" variant="body2" color="text.primary">
-                                {`${secondarySubtitle} - `}
+                                {`${secondarySubTitle} - `}
                               </Typography>
                               {secondaryContent}
                             </>
@@ -108,42 +103,42 @@ export default function Notifications() {
                         </React.Fragment>
                       }
                     />
-                    {price && <p style={{ margin: '0px', textAlign: 'right' }}>Precio: ${price}</p>}
+                    {price && <p className="price-tag">Precio: ${price}</p>}
                   </ListItem>
-                  <Divider component="li" />
                 </Fragment>
               );
             },
           )}
+          <Divider component="li" />
           <h4 className="notification-header">Bodega</h4>
           {NotificationsStore.map(
             (
               {
                 title,
-                subtitle,
+                subTitle,
                 content,
-                secondarySubtitle,
+                secondarySubTitle,
                 secondaryContent,
                 price,
-              }: NotificationItem,
+              }: CustomNotification,
               index: number,
             ) => {
               return (
                 <Fragment key={index}>
-                  <ListItem alignItems="flex-start" sx={{ display: 'table' }}>
+                  <ListItem alignItems="flex-start" className="notification-item">
                     <ListItemText
                       primary={title}
                       secondary={
                         <React.Fragment>
                           <Typography component="span" variant="body2" color="text.primary">
-                            {`${subtitle} - `}
+                            {`${subTitle} - `}
                           </Typography>
                           {content}
-                          {secondarySubtitle && (
+                          {secondarySubTitle && (
                             <>
                               <br />
                               <Typography component="span" variant="body2" color="text.primary">
-                                {`${secondarySubtitle} - `}
+                                {`${secondarySubTitle} - `}
                               </Typography>
                               {secondaryContent}
                             </>
@@ -151,42 +146,42 @@ export default function Notifications() {
                         </React.Fragment>
                       }
                     />
-                    {price && <p style={{ margin: '0px', textAlign: 'right' }}>Precio: ${price}</p>}
+                    {price && <p className="price-tag">Precio: ${price}</p>}
                   </ListItem>
-                  <Divider component="li" />
                 </Fragment>
               );
             },
           )}
+          <Divider component="li" />
           <h4 className="notification-header">Oficina de comercio</h4>
           {NotificationsOffice.map(
             (
               {
                 title,
-                subtitle,
+                subTitle,
                 content,
-                secondarySubtitle,
+                secondarySubTitle,
                 secondaryContent,
                 price,
-              }: NotificationItem,
+              }: CustomNotification,
               index: number,
             ) => {
               return (
                 <Fragment key={index}>
-                  <ListItem alignItems="flex-start" sx={{ display: 'table' }}>
+                  <ListItem alignItems="flex-start" className="notification-item">
                     <ListItemText
                       primary={title}
                       secondary={
                         <React.Fragment>
                           <Typography component="span" variant="body2" color="text.primary">
-                            {`${subtitle} - `}
+                            {`${subTitle} - `}
                           </Typography>
                           {content}
-                          {secondarySubtitle && (
+                          {secondarySubTitle && (
                             <>
                               <br />
                               <Typography component="span" variant="body2" color="text.primary">
-                                {`${secondarySubtitle} - `}
+                                {`${secondarySubTitle} - `}
                               </Typography>
                               {secondaryContent}
                             </>
@@ -194,9 +189,8 @@ export default function Notifications() {
                         </React.Fragment>
                       }
                     />
-                    {price && <p style={{ margin: '0px', textAlign: 'right' }}>Precio: ${price}</p>}
+                    {price && <p className="price-tag">Precio: ${price}</p>}
                   </ListItem>
-                  <Divider component="li" />
                 </Fragment>
               );
             },
@@ -205,35 +199,37 @@ export default function Notifications() {
       </List>
       <List sx={{ width: '100%' }}>
         <>
-          <h4 className="notification-header">Nucleo</h4>
+          <h4 className="notification-header">
+            <b>Nucleo</b>
+          </h4>
           {NotificationsNuke.map(
             (
               {
                 title,
-                subtitle,
+                subTitle,
                 content,
-                secondarySubtitle,
+                secondarySubTitle,
                 secondaryContent,
                 price,
-              }: NotificationItem,
+              }: CustomNotification,
               index: number,
             ) => {
               return (
                 <Fragment key={index}>
-                  <ListItem alignItems="flex-start" sx={{ display: 'table' }}>
+                  <ListItem alignItems="flex-start" className="notification-item">
                     <ListItemText
                       primary={title}
                       secondary={
                         <React.Fragment>
                           <Typography component="span" variant="body2" color="text.primary">
-                            {`${subtitle} - `}
+                            {`${subTitle} - `}
                           </Typography>
                           {content}
-                          {secondarySubtitle && (
+                          {secondarySubTitle && (
                             <>
                               <br />
                               <Typography component="span" variant="body2" color="text.primary">
-                                {`${secondarySubtitle} - `}
+                                {`${secondarySubTitle} - `}
                               </Typography>
                               {secondaryContent}
                             </>
@@ -241,42 +237,42 @@ export default function Notifications() {
                         </React.Fragment>
                       }
                     />
-                    {price && <p style={{ margin: '0px', textAlign: 'right' }}>Precio: ${price}</p>}
+                    {price && <p className="price-tag">Precio: ${price}</p>}
                   </ListItem>
-                  <Divider component="li" />
                 </Fragment>
               );
             },
           )}
+          <Divider component="li" />
           <h4 className="notification-header">Bodega</h4>
           {NotificationsStore.map(
             (
               {
                 title,
-                subtitle,
+                subTitle,
                 content,
-                secondarySubtitle,
+                secondarySubTitle,
                 secondaryContent,
                 price,
-              }: NotificationItem,
+              }: CustomNotification,
               index: number,
             ) => {
               return (
                 <Fragment key={index}>
-                  <ListItem alignItems="flex-start" sx={{ display: 'table' }}>
+                  <ListItem alignItems="flex-start" className="notification-item">
                     <ListItemText
                       primary={title}
                       secondary={
                         <React.Fragment>
                           <Typography component="span" variant="body2" color="text.primary">
-                            {`${subtitle} - `}
+                            {`${subTitle} - `}
                           </Typography>
                           {content}
-                          {secondarySubtitle && (
+                          {secondarySubTitle && (
                             <>
                               <br />
                               <Typography component="span" variant="body2" color="text.primary">
-                                {`${secondarySubtitle} - `}
+                                {`${secondarySubTitle} - `}
                               </Typography>
                               {secondaryContent}
                             </>
@@ -284,42 +280,42 @@ export default function Notifications() {
                         </React.Fragment>
                       }
                     />
-                    {price && <p style={{ margin: '0px', textAlign: 'right' }}>Precio: ${price}</p>}
+                    {price && <p className="price-tag">Precio: ${price}</p>}
                   </ListItem>
-                  <Divider component="li" />
                 </Fragment>
               );
             },
           )}
+          <Divider component="li" />
           <h4 className="notification-header">Oficina de comercio</h4>
           {NotificationsOffice.map(
             (
               {
                 title,
-                subtitle,
+                subTitle,
                 content,
-                secondarySubtitle,
+                secondarySubTitle,
                 secondaryContent,
                 price,
-              }: NotificationItem,
+              }: CustomNotification,
               index: number,
             ) => {
               return (
                 <Fragment key={index}>
-                  <ListItem alignItems="flex-start" sx={{ display: 'table' }}>
+                  <ListItem alignItems="flex-start" className="notification-item">
                     <ListItemText
                       primary={title}
                       secondary={
                         <React.Fragment>
                           <Typography component="span" variant="body2" color="text.primary">
-                            {`${subtitle} - `}
+                            {`${subTitle} - `}
                           </Typography>
                           {content}
-                          {secondarySubtitle && (
+                          {secondarySubTitle && (
                             <>
                               <br />
                               <Typography component="span" variant="body2" color="text.primary">
-                                {`${secondarySubtitle} - `}
+                                {`${secondarySubTitle} - `}
                               </Typography>
                               {secondaryContent}
                             </>
@@ -327,9 +323,8 @@ export default function Notifications() {
                         </React.Fragment>
                       }
                     />
-                    {price && <p style={{ margin: '0px', textAlign: 'right' }}>Precio: ${price}</p>}
+                    {price && <p className="price-tag">Precio: ${price}</p>}
                   </ListItem>
-                  <Divider component="li" />
                 </Fragment>
               );
             },

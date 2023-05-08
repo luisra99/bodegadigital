@@ -25,20 +25,9 @@ function Welcome() {
     <>
       <Meta title="Welcome" />
       {sesionIsConfig ? (
-        <FullSizeCenteredFlexBox flexDirection={isPortrait ? 'column' : 'row'}>
-          <Image alt="react-router" src={rrLogo} />
-          <Image alt="vite" src={viteLogo} />
-          <Image alt="typescript" src={tsLogo} />
-          <Image
-            alt="react"
-            src={reactLogo}
-            sx={{ width, height }}
-            onClick={() => setConfig(false)}
-          />
-          <Image alt="mui" src={muiLogo} />
-          <Image alt="recoil" src={recoilLogo} />
-          <Image alt="pwa" src={pwaLogo} />
-        </FullSizeCenteredFlexBox>
+        <h1 onClick={() => setConfig(false)} style={{ textAlign: 'center' }}>
+          Bienvenido
+        </h1>
       ) : (
         <SignUp />
       )}

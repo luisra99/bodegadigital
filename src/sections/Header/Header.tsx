@@ -18,7 +18,7 @@ import Tooltip from '@mui/material/Tooltip';
 
 import { repository, title } from '@/config';
 import { FlexBox } from '@/shared/components/styled';
-import { Notification } from '@/shared/interfaces/common';
+import { CustomNotification } from '@/shared/interfaces/common';
 import useHotKeysDialog from '@/store/hotkeys';
 import useNotifications from '@/store/notifications';
 import useSidebar from '@/store/sidebar';
@@ -32,13 +32,14 @@ function Header() {
   const [, notificationsActions] = useNotifications();
   const [, hotKeysDialogActions] = useHotKeysDialog();
 
-  function showNotification(notification: Notification) {
+  function showNotification(notification: CustomNotification) {
     const {
       type,
       title = '',
       subTitle = '',
       content = '',
-      additionalContent: { title: additionalTitle = '', content: additionalContent = '' } = {},
+      secondarySubTitle = '',
+      secondaryContent = '',
       advice = '',
       price = '',
     } = notification;
@@ -73,11 +74,11 @@ function Header() {
               <b>{subTitle}: </b>
               {content}
               {price && ` - $${price}.`}
-              {!!additionalTitle && (
+              {!!secondarySubTitle && (
                 <>
                   <br />
-                  <b>{additionalTitle}: </b>
-                  {additionalContent}
+                  <b>{secondarySubTitle}: </b>
+                  {secondaryContent}
                 </>
               )}
               {!!advice && (
@@ -125,9 +126,10 @@ function Header() {
                   title: 'Producto nuevo en la TRD "Los Combatientes"',
                   subTitle: 'Productos',
                   content: 'Aceite, Pan, Azucar',
-                  additionalContent: { title: 'Distribucion', content: 'Por CDR' },
+                  secondarySubTitle: 'Distribucion',
+                  secondaryContent: 'Por CDR',
                   advice: 'Miercoles 16:00h',
-                  price: '250.00',
+                  price: 250.0,
                 })
               }
               color="info"
