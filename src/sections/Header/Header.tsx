@@ -36,8 +36,7 @@ function Header() {
   const [, notificationsActions] = useNotifications();
   const [, hotKeysDialogActions] = useHotKeysDialog();
   // const [session, setSession] = useState(true);
-  const { state, signIn, signOut } = useAuthContext();
-
+  const { state, signIn, signOut, getBasicUserInfo } = useAuthContext();
   function showNotification(notification: CustomNotification) {
     const {
       type,
@@ -109,7 +108,6 @@ function Header() {
       id,
     );
   }
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar color="transparent" elevation={1} position="static">
@@ -189,14 +187,34 @@ function Header() {
                   sx={{ margin: '0px', paddingLeft: '10px', paddingRight: '10px' }}
                 />
                 <Tooltip title="Opciones de usuario" arrow sx={{ color: '#3f51b5' }}>
-                  <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
+                  {/* <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}> */}
+                  <IconButton
+                    color="info"
+                    edge="end"
+                    size="large"
+                    onClick={() => {
+                      signOut().then(() => {
+                        //Logica de cierre de sesion
+                      });
+                    }}
+                  >
                     <AccountCircleIcon />
                   </IconButton>
                 </Tooltip>
               </>
             ) : (
               <Tooltip title="Iniciar sesion" arrow sx={{ color: '#3f51b5' }}>
-                <IconButton color="info" edge="end" size="large" onClick={() => signIn()}>
+                <IconButton
+                  color="info"
+                  edge="end"
+                  size="large"
+                  onClick={() => {
+                    signIn().then(({ username }) => {
+                      //Consultar datos del perfil
+                      console.log(username);
+                    });
+                  }}
+                >
                   <LoginIcon />
                 </IconButton>
               </Tooltip>

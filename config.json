@@ -1,7 +1,7 @@
 {
-  "clientID": "asd",
-  "baseUrl": "https://apim-fuc.xutil.cu/devportal/apis",
-  "signInRedirectURL": "https://localhost:3000/welcome",
-  "signOutRedirectURL": "https://localhost:3000/welcome",
-  "scope": ["profile"]
+  "clientID": "eWVhDCeXhI4oG4WoYeGCCK8i9Ica",
+  "baseUrl": "https://wso2-is.mtz.xetid.cu",
+  "signInRedirectURL": "http://10.12.110.148:5173/welcome",
+  "signOutRedirectURL": "http://10.12.110.148:5173/welcome",
+  "scope": ["openid", "profile"]
 }
