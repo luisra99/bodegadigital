@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CloseIcon from '@mui/icons-material/Close';
 import ThemeIcon from '@mui/icons-material/InvertColors';
+import LoginIcon from '@mui/icons-material/Login';
 import MenuIcon from '@mui/icons-material/Menu';
 import Notifications from '@mui/icons-material/Notifications';
 import Alert from '@mui/material/Alert';
@@ -15,6 +17,8 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
+
+import { useSession, signIn, signOut } from 'next-auth/react';
 
 import { repository, title } from '@/config';
 import { FlexBox } from '@/shared/components/styled';
@@ -31,6 +35,7 @@ function Header() {
   const [, themeActions] = useTheme();
   const [, notificationsActions] = useNotifications();
   const [, hotKeysDialogActions] = useHotKeysDialog();
+  const [session, setSession] = useState(true);
 
   function showNotification(notification: CustomNotification) {
     const {
@@ -162,29 +167,39 @@ function Header() {
               flexItem
               sx={{ margin: '0px', paddingLeft: '10px', paddingRight: '10px' }}
             />
-            <Tooltip title="Notificaciones" arrow sx={{ color: '#3f51b5' }}>
-              <IconButton
-                color="info"
-                edge="end"
-                size="large"
-                component={Link}
-                to={'/notifications'}
-              >
-                <Badge badgeContent={4} max={99} color="error">
-                  <Notifications />
-                </Badge>
-              </IconButton>
-            </Tooltip>
-            <Divider
-              orientation="vertical"
-              flexItem
-              sx={{ margin: '0px', paddingLeft: '10px', paddingRight: '10px' }}
-            />
-            <Tooltip title="Opciones de usuario" arrow sx={{ color: '#3f51b5' }}>
-              <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
-                <AccountCircleIcon />
-              </IconButton>
-            </Tooltip>
+            {session ? (
+              <>
+                <Tooltip title="Notificaciones" arrow sx={{ color: '#3f51b5' }}>
+                  <IconButton
+                    color="info"
+                    edge="end"
+                    size="large"
+                    component={Link}
+                    to={'/notifications'}
+                  >
+                    <Badge badgeContent={4} max={99} color="error">
+                      <Notifications />
+                    </Badge>
+                  </IconButton>
+                </Tooltip>
+                <Divider
+                  orientation="vertical"
+                  flexItem
+                  sx={{ margin: '0px', paddingLeft: '10px', paddingRight: '10px' }}
+                />
+                <Tooltip title="Opciones de usuario" arrow sx={{ color: '#3f51b5' }}>
+                  <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
+                    <AccountCircleIcon />
+                  </IconButton>
+                </Tooltip>
+              </>
+            ) : (
+              <Tooltip title="Iniciar sesion" arrow sx={{ color: '#3f51b5' }}>
+                <IconButton color="info" edge="end" size="large">
+                  <LoginIcon />
+                </IconButton>
+              </Tooltip>
+            )}
           </FlexBox>
         </Toolbar>
       </AppBar>

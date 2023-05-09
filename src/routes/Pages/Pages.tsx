@@ -1,36 +1,51 @@
-import { Fragment } from 'react';
+import { Fragment, useState, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
+
+import NotFound from '@/pages/NotFound';
+import Welcome from '@/pages/Welcome';
+import Loading from '@/shared/components/Loading';
 
 import routes from '..';
 import { getPageHeight } from './utils';
 
 function Pages() {
+  const [session, setSession] = useState(true);
   return (
     <Box sx={{ height: (theme) => getPageHeight(theme) }}>
       <Routes>
-        {Object.values(routes).map(({ path, component: Component, subPath }) => {
-          return (
-            <Fragment key={path}>
-              {Component && <Route key={path} path={path} element={<Component />} />}
-              {subPath &&
-                Object.values(subPath).map(({ path: childPath, component: Component2 }) => {
-                  return (
-                    <Fragment key={childPath}>
-                      {Component2 && (
-                        <Route
-                          key={`${childPath}`}
-                          path={`${childPath}`}
-                          element={<Component2 />}
-                        />
-                      )}
-                    </Fragment>
-                  );
-                })}
-            </Fragment>
-          );
-        })}
+        <Route
+          path="/"
+          element={
+            <Suspense fallback={<Loading />}>
+              <Welcome />
+            </Suspense>
+          }
+        />
+        {session &&
+          Object.values(routes).map(({ path, component: Component, subPath }) => {
+            return (
+              <Fragment key={path}>
+                {Component && <Route key={path} path={path} element={<Component />} />}
+                {subPath &&
+                  Object.values(subPath).map(({ path: childPath, component: Component2 }) => {
+                    return (
+                      <Fragment key={childPath}>
+                        {Component2 && (
+                          <Route
+                            key={`${childPath}`}
+                            path={`${childPath}`}
+                            element={<Component2 />}
+                          />
+                        )}
+                      </Fragment>
+                    );
+                  })}
+              </Fragment>
+            );
+          })}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Box>
   );
