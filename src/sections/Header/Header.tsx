@@ -18,8 +18,6 @@ import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 
-import { useSession, signIn, signOut } from 'next-auth/react';
-
 import { repository, title } from '@/config';
 import { FlexBox } from '@/shared/components/styled';
 import { CustomNotification } from '@/shared/interfaces/common';
