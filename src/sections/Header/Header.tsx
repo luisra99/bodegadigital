@@ -18,6 +18,8 @@ import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 
+import { useAuthContext } from '@asgardeo/auth-react';
+
 import { repository, title } from '@/config';
 import { FlexBox } from '@/shared/components/styled';
 import { CustomNotification } from '@/shared/interfaces/common';
@@ -33,7 +35,8 @@ function Header() {
   const [, themeActions] = useTheme();
   const [, notificationsActions] = useNotifications();
   const [, hotKeysDialogActions] = useHotKeysDialog();
-  const [session, setSession] = useState(true);
+  // const [session, setSession] = useState(true);
+  const { state, signIn, signOut } = useAuthContext();
 
   function showNotification(notification: CustomNotification) {
     const {
@@ -165,7 +168,7 @@ function Header() {
               flexItem
               sx={{ margin: '0px', paddingLeft: '10px', paddingRight: '10px' }}
             />
-            {session ? (
+            {state.isAuthenticated ? (
               <>
                 <Tooltip title="Notificaciones" arrow sx={{ color: '#3f51b5' }}>
                   <IconButton
@@ -193,7 +196,7 @@ function Header() {
               </>
             ) : (
               <Tooltip title="Iniciar sesion" arrow sx={{ color: '#3f51b5' }}>
-                <IconButton color="info" edge="end" size="large">
+                <IconButton color="info" edge="end" size="large" onClick={() => signIn()}>
                   <LoginIcon />
                 </IconButton>
               </Tooltip>

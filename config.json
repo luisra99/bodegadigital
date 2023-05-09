@@ -1,7 +1,7 @@
 {
-  "clientID": "",
-  "baseUrl": "",
-  "signInRedirectURL": "https://localhost:3000",
-  "signOutRedirectURL": "https://localhost:3000",
+  "clientID": "asd",
+  "baseUrl": "https://apim-fuc.xutil.cu/devportal/apis",
+  "signInRedirectURL": "https://localhost:3000/welcome",
+  "signOutRedirectURL": "https://localhost:3000/welcome",
   "scope": ["profile"]
 }
