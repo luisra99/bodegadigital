@@ -17,11 +17,13 @@ import './GTable.sass';
 
 export default function GTable(
   data: any,
-  { prop, operator, value }: Filter,
   messageForEmpty: string,
-  columns: any[],
+  columns: Column[],
   readOnly: boolean,
+  fullWith = false,
+  filter?: Filter,
 ) {
+  const { prop, operator, value } = filter || {};
   const columnsCount = columns?.length;
   const hiddenCellsCount = columns?.filter((column: Column) => !column.name).length;
   const visibleColumnsCount = columnsCount - hiddenCellsCount;
@@ -37,7 +39,10 @@ export default function GTable(
   };
   const responsiveValue = (breakPoint: keyof ResponsiveMatrix): ResponsiveValue => {
     return {
-      value: totalColumnCount > 7 ? 12 : responsiveMatrix[breakPoint]?.matrix[totalColumnCount - 1],
+      value:
+        fullWith || totalColumnCount > 7
+          ? 12
+          : responsiveMatrix[breakPoint]?.matrix[totalColumnCount - 1],
       class:
         totalColumnCount > responsiveMatrix[breakPoint]?.colsToShow
           ? ''

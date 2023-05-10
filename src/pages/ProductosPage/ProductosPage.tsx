@@ -200,13 +200,11 @@ function ProductosPage() {
           {content.map(({ productos }: { productos: any[] }, index) => {
             return (
               <Fragment key={index}>
-                {GTable(
-                  productos,
-                  { prop: 'adquirido', operator: '==', value: null },
-                  'No hay productos por comprar ',
-                  porComprarColmuns,
-                  true,
-                )}
+                {GTable(productos, 'No hay productos por comprar ', porComprarColmuns, true, {
+                  prop: 'adquirido',
+                  operator: '==',
+                  value: null,
+                })}
               </Fragment>
             );
           })}
@@ -215,13 +213,11 @@ function ProductosPage() {
           {content.map(({ productos }: { productos: any[] }, index) => {
             return (
               <Fragment key={index}>
-                {GTable(
-                  productos,
-                  { prop: 'adquirido', operator: '==', value: null },
-                  'No hay productos por comprar ',
-                  compradosColmuns,
-                  false,
-                )}
+                {GTable(productos, 'No hay productos por comprar ', compradosColmuns, false, {
+                  prop: 'adquirido',
+                  operator: '==',
+                  value: null,
+                })}
               </Fragment>
             );
           })}
@@ -245,13 +241,11 @@ function ProductosPage() {
             {content.map(({ productos }: { productos: any[] }, index) => {
               return (
                 <Fragment key={index}>
-                  {GTable(
-                    productos,
-                    { prop: 'adquirido', operator: '==', value: null },
-                    'No hay productos por comprar ',
-                    porComprarColmuns,
-                    true,
-                  )}
+                  {GTable(productos, 'No hay productos por comprar ', porComprarColmuns, true, {
+                    prop: 'adquirido',
+                    operator: '==',
+                    value: null,
+                  })}
                 </Fragment>
               );
             })}
@@ -262,13 +256,11 @@ function ProductosPage() {
             {content.map(({ productos }: { productos: any[] }, index) => {
               return (
                 <Fragment key={index}>
-                  {GTable(
-                    productos,
-                    { prop: 'adquirido', operator: '==', value: null },
-                    'No hay productos por comprar ',
-                    compradosColmuns,
-                    false,
-                  )}
+                  {GTable(productos, 'No hay productos por comprar ', compradosColmuns, false, {
+                    prop: 'adquirido',
+                    operator: '==',
+                    value: null,
+                  })}
                 </Fragment>
               );
             })}

@@ -1,5 +1,5 @@
 import axios from 'axios';
 
-export function CheckIfClientIsRegistered(params: any) {
+export function CheckRegisteredAndReturnNukeData(params: any) {
   return;
 }
