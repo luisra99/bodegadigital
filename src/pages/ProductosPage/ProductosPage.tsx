@@ -200,11 +200,7 @@ function ProductosPage() {
           {content.map(({ productos }: { productos: any[] }, index) => {
             return (
               <Fragment key={index}>
-                {GTable(productos, 'No hay productos por comprar ', porComprarColmuns, true, {
-                  prop: 'adquirido',
-                  operator: '==',
-                  value: null,
-                })}
+                {GTable(productos, 'No hay productos por comprar ', porComprarColmuns, true)}
               </Fragment>
             );
           })}
@@ -213,11 +209,7 @@ function ProductosPage() {
           {content.map(({ productos }: { productos: any[] }, index) => {
             return (
               <Fragment key={index}>
-                {GTable(productos, 'No hay productos por comprar ', compradosColmuns, false, {
-                  prop: 'adquirido',
-                  operator: '==',
-                  value: null,
-                })}
+                {GTable(productos, 'No hay productos por comprar ', compradosColmuns, false)}
               </Fragment>
             );
           })}
@@ -241,11 +233,7 @@ function ProductosPage() {
             {content.map(({ productos }: { productos: any[] }, index) => {
               return (
                 <Fragment key={index}>
-                  {GTable(productos, 'No hay productos por comprar ', porComprarColmuns, true, {
-                    prop: 'adquirido',
-                    operator: '==',
-                    value: null,
-                  })}
+                  {GTable(productos, 'No hay productos por comprar ', porComprarColmuns, true)}
                 </Fragment>
               );
             })}
@@ -256,11 +244,7 @@ function ProductosPage() {
             {content.map(({ productos }: { productos: any[] }, index) => {
               return (
                 <Fragment key={index}>
-                  {GTable(productos, 'No hay productos por comprar ', compradosColmuns, false, {
-                    prop: 'adquirido',
-                    operator: '==',
-                    value: null,
-                  })}
+                  {GTable(productos, 'No hay productos por comprar ', compradosColmuns, false)}
                 </Fragment>
               );
             })}
