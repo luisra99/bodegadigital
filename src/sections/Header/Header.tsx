@@ -55,7 +55,7 @@ function Header() {
             </IconButton>
             <Button
               onClick={() =>
-                showNotification(notificationStack, {
+                showNotification(notificationsActions, {
                   type: 'info',
                   title: 'Producto nuevo en la TRD "Los Combatientes"',
                   subTitle: 'Productos',

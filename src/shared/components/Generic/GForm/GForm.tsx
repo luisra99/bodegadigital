@@ -40,9 +40,7 @@ import {
   GFormControl,
   MyObject,
   Option,
-  IFormikProps,
   ValidatorsSchema,
-  GFormButtons,
   GFormProps,
 } from '@/shared/interfaces/form-control';
 import { showNotification } from '@/utils/notification/notification';
