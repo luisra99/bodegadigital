@@ -12,12 +12,12 @@ import { ProfileContent } from '@/shared/interfaces/common';
 
 import './Profile.sass';
 
-function Page3() {
+function Profile() {
   const [profileContent, setProfileContent] = useState<ProfileContent>(GetProfileConfiguration);
   console.log(profileContent);
   return (
     <>
-      <Meta title="page 3" />
+      <Meta title="Perfil" />
       <Grid container spacing={2} justifyContent="space-around" mt={2}>
         <Grid item xs={12} sm={12} md={6} lg={5} xl={4}>
           <div style={{ display: 'flex', justifyContent: 'center' }}></div>
@@ -96,4 +96,4 @@ function Page3() {
   );
 }
 
-export default Page3;
+export default Profile;

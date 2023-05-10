@@ -6,8 +6,11 @@ import Container from '@mui/material/Container';
 import { ControlType } from '@/enums/form-enums';
 import { GForm } from '@/shared/components/Generic/GForm/GForm';
 import { FullSizeCenteredFlexBox } from '@/shared/components/styled';
+import useNotifications from '@/store/notifications';
 
 export default function SignUp() {
+  const [, notificationsActions] = useNotifications();
+
   return (
     <FullSizeCenteredFlexBox>
       <Container component="main" maxWidth="xs">
@@ -135,7 +138,8 @@ export default function SignUp() {
                 },
               },
             ]}
-            endpoint="asd"
+            endpoint="bodegaVirtual/endpoint"
+            notificationStack={notificationsActions}
           />
         </Box>
       </Container>

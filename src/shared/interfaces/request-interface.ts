@@ -1,3 +1,5 @@
+import { AxiosHeaders } from 'axios';
+
 export interface RequestData {
   method: string;
   params: object;
@@ -28,4 +30,8 @@ export interface ApiConfig {
   GW_IP: string;
   GW_PORT: string;
   API: string;
+}
+type AxiosHeaderValue = AxiosHeaders | string | string[] | number | boolean | null;
+export interface RawAxiosHeaders {
+  [key: string]: AxiosHeaderValue;
 }

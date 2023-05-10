@@ -24,7 +24,7 @@ const routes: Routes = {
     title: '',
   },
   [Pages.Perfil]: {
-    component: asyncComponentLoader(() => import('@/pages/Profile/Profile')),
+    component: asyncComponentLoader(() => import('@/pages/Profile')),
     path: '/profile',
     title: 'Perfil',
   },

@@ -22,11 +22,11 @@ import { useAuthContext } from '@asgardeo/auth-react';
 
 import { repository, title } from '@/config';
 import { FlexBox } from '@/shared/components/styled';
-import { CustomNotification } from '@/shared/interfaces/common';
 import useHotKeysDialog from '@/store/hotkeys';
 import useNotifications from '@/store/notifications';
 import useSidebar from '@/store/sidebar';
 import useTheme from '@/store/theme';
+import { showNotification } from '@/utils/notification/notification';
 
 import { HotKeysButton } from './styled';
 
@@ -37,77 +37,7 @@ function Header() {
   const [, hotKeysDialogActions] = useHotKeysDialog();
   // const [session, setSession] = useState(true);
   const { state, signIn, signOut, getBasicUserInfo } = useAuthContext();
-  function showNotification(notification: CustomNotification) {
-    const {
-      type,
-      title = '',
-      subTitle = '',
-      content = '',
-      secondarySubTitle = '',
-      secondaryContent = '',
-      advice = '',
-      price = '',
-    } = notification;
-    const id = Math.random().toString();
-    notificationsActions.push(
-      {
-        options: {
-          // Show fully customized notification
-          // Usually, to show a notification, you'll use something like this:
-          // notificationsActions.push({ message: ... })
-          // `message` accepts string as well as ReactNode
-          // But you also can use:
-          // notificationsActions.push({ options: { content: ... } })
-          // to show fully customized notification
-          content: (
-            <Alert
-              severity={type}
-              action={
-                <IconButton
-                  aria-label="close"
-                  color="inherit"
-                  size="small"
-                  onClick={() => {
-                    notificationsActions.close(id);
-                  }}
-                >
-                  <CloseIcon fontSize="inherit" />
-                </IconButton>
-              }
-            >
-              <AlertTitle>{title}</AlertTitle>
-              <b>{subTitle}: </b>
-              {content}
-              {price && ` - $${price}.`}
-              {!!secondarySubTitle && (
-                <>
-                  <br />
-                  <b>{secondarySubTitle}: </b>
-                  {secondaryContent}
-                </>
-              )}
-              {!!advice && (
-                <>
-                  <br />
-                  <p
-                    style={{
-                      textAlign: 'end',
-                      marginTop: '0px',
-                      marginBottom: '0px',
-                      marginRight: '10px',
-                    }}
-                  >
-                    <i>{advice}</i>
-                  </p>
-                </>
-              )}
-            </Alert>
-          ),
-        },
-      },
-      id,
-    );
-  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar color="transparent" elevation={1} position="static">
@@ -125,7 +55,7 @@ function Header() {
             </IconButton>
             <Button
               onClick={() =>
-                showNotification({
+                showNotification(notificationStack, {
                   type: 'info',
                   title: 'Producto nuevo en la TRD "Los Combatientes"',
                   subTitle: 'Productos',

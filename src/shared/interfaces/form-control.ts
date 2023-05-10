@@ -2,6 +2,7 @@ import { AnyObject } from 'yup';
 
 import { ControlType } from '@/enums/form-enums';
 import { FormikErrors, FormikTouched } from '@/shared/customModules/formik';
+import { Actions } from '@/store/notifications/types';
 
 export interface Option {
   label: string;
@@ -75,4 +76,5 @@ export interface GFormProps {
   handleClose?: () => void;
   load?: () => void;
   buttons: GFormButtons;
+  notificationStack: Actions;
 }

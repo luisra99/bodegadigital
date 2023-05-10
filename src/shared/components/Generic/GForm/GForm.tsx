@@ -24,6 +24,7 @@ import Grid from '@mui/material/Grid';
 import * as Yup from 'yup';
 
 import { ControlType } from '@/enums/form-enums';
+import { getToken } from '@/services/wso2';
 import {
   ErrorMessage,
   Field,
@@ -44,6 +45,7 @@ import {
   GFormButtons,
   GFormProps,
 } from '@/shared/interfaces/form-control';
+import { showNotification } from '@/utils/notification/notification';
 
 import axios from 'axios';
 
@@ -55,6 +57,7 @@ export function GForm(props: GFormProps) {
     handleClose,
     load,
     buttons = { apply: 'Aplicar', icons: true },
+    notificationStack,
   } = props;
   const formikRef = useRef<FormikProps<any>>(null);
   const [formSchema, setFormSchema] = useState<any>({});
@@ -409,21 +412,33 @@ export function GForm(props: GFormProps) {
       innerRef={formikRef}
       validationSchema={validationSchema}
       validateOnChange
-      onSubmit={(values, { setSubmitting }) => {
+      onSubmit={(values, { setSubmitting, resetForm }) => {
         console.log('valoressssss', values);
-        // const button = target.name;
+        // const headers = await getToken();
         if (id) {
-          // MakeRequest(wso2EndPoint, nextEndPoint, 'put', values, {}).then((response) => {
-          //   response && setSubmitting(false) && load();
-          //   setNotification(response);
-          // });
+          axios.put(endpoint, values, {}).then((response) => {
+            setSubmitting(false);
+            load?.();
+            showNotification(notificationStack, {
+              title: 'Respuesta',
+              subTitle: 'Servicio',
+              type: 'info',
+              content: 'response.data',
+            });
+          });
         } else {
-          // MakeRequest(wso2EndPoint, nextEndPoint, 'post', values, {}).then((response) => {
-          //   response && setSubmitting(false) && load();
-          //   // if(!response.message)
-          //   setNotification(response);
-          //   resetForm();
-          // });
+          axios.post(endpoint, values, {}).then((response) => {
+            setSubmitting(false);
+            load?.();
+            showNotification(notificationStack, {
+              title: 'Respuesta',
+              subTitle: 'Servicio',
+              type: 'info',
+              content: 'response.data',
+            });
+          });
+
+          resetForm();
         }
       }}
     >

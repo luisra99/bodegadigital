@@ -1,12 +1,12 @@
-import { ApiConfig } from '@interfaces/request-interface';
+import { ApiConfig, RawAxiosHeaders } from '@interfaces/request-interface';
 
 import axios from 'axios';
 
-export async function getToken(key: any) {
+export async function getToken(key?: any): Promise<RawAxiosHeaders> {
   const config = process.env.WSO2?.[key] as ApiConfig | undefined;
   if (!config) {
     console.error(`Config not found for key ${key}`);
-    return null;
+    return {};
   }
 
   const { AM_CONSUMER_KEY, AM_CONSUMER_SECRET, AM_PROTOCOL, AM_IP, AM_PORT, AM_TOKEN_ENDPOINT } =
@@ -29,9 +29,14 @@ export async function getToken(key: any) {
       },
     });
     console.log('Token', response.data);
-    return response.data;
+    const { access_token } = response.data || {};
+
+    return {
+      Authorization: `Bearer ${access_token}`,
+      'Access-Control-Allow-Origin': '*',
+    };
   } catch (error: any) {
     console.error(`Error occurred while fetching token. Details: ${error.message}`);
-    return null;
+    return {};
   }
 }
