@@ -3,7 +3,9 @@ import { useState } from 'react';
 import { Avatar, Badge, Box, Button, Grid } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
-import { GetProfileConfiguration } from '@/services/user/user.services';
+import { useAuthContext } from '@asgardeo/auth-react';
+
+import { GetProfileConfiguration, ReclaimRegistration } from '@/services/user/user.services';
 import GTable from '@/shared/components/Generic/GTable/GTable';
 import GTableContainer from '@/shared/components/Generic/GTableContainer/GTableContainer';
 import Meta from '@/shared/components/Meta';
@@ -13,7 +15,9 @@ import './Profile.sass';
 
 function Profile() {
   const [profileContent, setProfileContent] = useState<ProfileContent>(GetProfileConfiguration);
-  console.log(profileContent);
+  const [requestButton, activeButton] = useState<boolean>(true);
+  const { state, signOut } = useAuthContext();
+
   return (
     <>
       <Meta title="Perfil" />
@@ -73,6 +77,7 @@ function Profile() {
                     [
                       { header: 'Carnet', name: 'ci', type: 'text' },
                       { header: 'Nombre', name: 'nombre', type: 'text' },
+                      { header: 'Apellido', name: 'primer_apellido', type: 'text' },
                     ],
 
                     true,
@@ -86,12 +91,27 @@ function Profile() {
               <Typography p={4} variant="h5" textAlign={'center'}>
                 Usted no se encuentra registrado en su núcleo
               </Typography>
-              <Button variant={'contained'}>Solicitar registro</Button>
+              <Button
+                variant={'contained'}
+                disabled={!requestButton}
+                onClick={() => ReclaimRegistration(activeButton, profileContent.profile.ci)}
+              >
+                Solicitar registro
+              </Button>
             </Box>
           )}
         </Grid>
         <Grid item xs={12} sx={{ textAlign: 'center', margin: '20px' }}>
-          <Button variant={'outlined'} color="error">
+          <Button
+            variant={'outlined'}
+            color="error"
+            onClick={() => {
+              signOut().then(() => {
+                //Consultar datos del perfil
+                console.log('SESIÓN CERRADA');
+              });
+            }}
+          >
             CERRAR SESIÓN
           </Button>
         </Grid>

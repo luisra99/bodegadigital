@@ -2,17 +2,32 @@ import { InfoNucleo, ProfileContent, UserProfile } from '@/shared/interfaces/com
 
 import axios from 'axios';
 
+const api = import.meta.env.VITE_BODEGA_ENDPOINT;
+const claim_api = import.meta.env.VITE_BODEGA_CLAIM;
+const profile_api = import.meta.env.VITE_BODEGA_PROFILE;
+
 export function SetProfileConfiguration(params: any) {
   return;
 }
 export function GetProfileConfiguration(params?: any): ProfileContent {
   //consumir servicio
+  // axios.get(api + profile_api,userId).then((result: any) => {
+  //   return result;
+  // });
   return { profile: profile, nucleo: infoNucleo };
 }
 export function UpdateProfileConfiguration(params: any) {
   return;
 }
-
+export function ReclaimRegistration(setState: (value: any) => void, ci: string) {
+  setState(false);
+  console.log(ci);
+  // axios.post(api + claim_api, ci).then((result: any) => {
+  //   setState(true);
+  //   return result;
+  // });
+  setTimeout(() => setState(true), 5000);
+}
 //SeedData
 const profile: UserProfile = {
   foto: '/public/2022_08_23_21_19_IMG_8946.JPG',

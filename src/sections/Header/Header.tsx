@@ -113,16 +113,7 @@ function Header() {
                 />
                 <Tooltip title="Opciones de usuario" arrow sx={{ color: '#3f51b5' }}>
                   {/* <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}> */}
-                  <IconButton
-                    color="info"
-                    edge="end"
-                    size="large"
-                    onClick={() => {
-                      signOut().then(() => {
-                        //Logica de cierre de sesion
-                      });
-                    }}
-                  >
+                  <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
                     <AccountCircleIcon />
                   </IconButton>
                 </Tooltip>
@@ -144,6 +135,34 @@ function Header() {
                 </IconButton>
               </Tooltip>
             )}
+            <Divider
+              orientation="vertical"
+              flexItem
+              sx={{ margin: '0px', paddingLeft: '10px', paddingRight: '10px' }}
+            />
+            <Tooltip title="Opciones de usuario" arrow sx={{ color: '#3f51b5' }}>
+              <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
+                <AccountCircleIcon />
+              </IconButton>
+            </Tooltip>
+            <Divider
+              orientation="vertical"
+              flexItem
+              sx={{ margin: '0px', paddingLeft: '10px', paddingRight: '10px' }}
+            />
+            <Tooltip title="Notificaciones" arrow sx={{ color: '#3f51b5' }}>
+              <IconButton
+                color="info"
+                edge="end"
+                size="large"
+                component={Link}
+                to={'/notifications'}
+              >
+                <Badge badgeContent={4} max={99} color="error">
+                  <Notifications />
+                </Badge>
+              </IconButton>
+            </Tooltip>
           </FlexBox>
         </Toolbar>
       </AppBar>

@@ -5,16 +5,16 @@ import type { SvgIconProps } from '@mui/material/SvgIcon';
 
 enum Pages {
   Welcome,
-  Page1,
-  Page2,
-  Page3,
-  Page4,
-  NotFound,
-  Perfil,
+  Productos,
+  MisNucleos,
   Aplicación,
   Estilo,
-  SignUp,
+  NotFound,
   Notification,
+  Perfil,
+  SignUp,
+  Suscripción,
+  Ajustes,
 }
 enum MenuItemType {
   'Header',

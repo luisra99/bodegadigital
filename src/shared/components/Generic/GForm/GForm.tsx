@@ -414,6 +414,7 @@ export function GForm(props: GFormProps) {
       validationSchema={validationSchema}
       validateOnChange
       onSubmit={(values, { setSubmitting, resetForm }) => {
+        const { email, ci, tomo, folio, phone } = values || {};
         console.log('valoressssss', values);
         // const headers = await getToken();
         if (id) {
@@ -445,7 +446,7 @@ export function GForm(props: GFormProps) {
                 title: 'Respuesta',
                 subTitle: 'Servicio',
                 type: 'info',
-                content: 'response.data',
+                content: `${email} ${ci} ${tomo} ${folio} ${phone}`,
               }),
             5000,
           );

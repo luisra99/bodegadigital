@@ -3,12 +3,16 @@ import { lazy, Suspense } from 'react';
 
 import { Button, Typography, Box } from '@mui/material';
 
+import { useAuthContext } from '@asgardeo/auth-react';
+
 import Loading from '@/shared/components/Loading';
 import Meta from '@/shared/components/Meta';
 
 function Welcome() {
   //Consultar si la sesion esta configurada
   const [sessionIsConfig, setConfig] = useState(true);
+  const { state, signIn } = useAuthContext();
+
   const MyLazyComponent = lazy(() => import('@/pages/SignUp/SignUp'));
 
   return (
@@ -28,7 +32,17 @@ function Welcome() {
             Este sistema le permitirá un mejor acceso a las informaciones del acontecer gastronómico
             de nuestra sociedad
           </Typography>
-          <Button variant={'contained'}>Comenzar</Button>
+          <Button
+            variant={'contained'}
+            onClick={() => {
+              signIn().then(({ username }) => {
+                //Consultar datos del perfil
+                console.log(username);
+              });
+            }}
+          >
+            Comenzar
+          </Button>
         </Box>
       ) : (
         <Suspense fallback={<Loading />}>

@@ -1,4 +1,6 @@
+import CreditScoreIcon from '@mui/icons-material/CreditScore';
 import HomeIcon from '@mui/icons-material/Home';
+import RecentActorsIcon from '@mui/icons-material/RecentActors';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
@@ -12,31 +14,38 @@ const routes: Routes = {
     title: 'Inicio',
     icon: HomeIcon,
   },
-  [Pages.Page2]: {
+  [Pages.Productos]: {
     component: asyncComponentLoader(() => import('@/pages/ProductosPage')),
     path: '/productos',
     title: 'Productos',
     icon: ShoppingCartIcon,
   },
+  [Pages.MisNucleos]: {
+    component: asyncComponentLoader(() => import('@/pages/NotFound/NotFound')),
+    path: '/nukes',
+    title: 'Mis núcleos',
+    icon: RecentActorsIcon,
+  },
   [Pages.Notification]: {
     component: asyncComponentLoader(() => import('@/pages/Notifications')),
     path: '/notifications',
-    title: 'Notificación',
+    title: '',
   },
   [Pages.Perfil]: {
     component: asyncComponentLoader(() => import('@/pages/Profile')),
     path: '/profile',
-    title: 'Perfil',
+    title: '',
   },
-  [Pages.Page4]: {
+  [Pages.Ajustes]: {
     path: '/other',
     title: 'Ajustes',
     icon: SettingsIcon,
     subPath: {
-      [Pages.Estilo]: {
-        component: asyncComponentLoader(() => import('@/pages/ProductosPage')),
-        path: 'nost',
-        title: 'Estilo',
+      [Pages.Suscripción]: {
+        component: asyncComponentLoader(() => import('@/pages/NotFound/NotFound')),
+        path: '/subscription',
+        title: 'Suscripción',
+        icon: CreditScoreIcon,
       },
     },
   },
