@@ -6,20 +6,20 @@ const title = 'Bodega Virtual';
 
 const email = 'soportebodegavirtual@xetid.cu';
 
-const repository = 'https://xetid.ci';
+const repository = 'https://xetid.cu';
 
 const messages = {
   app: {
     crash: {
-      title: 'Ups... Lo sentimos, algo fue mal con la aplicacion. Usted puede:',
+      title: 'Ups... Lo sentimos, algo fue mal con la aplicación. Usted puede:',
       options: {
         email: `contactar con soporte via correo - ${email}`,
-        reset: 'Reiniciar la aplicacion',
+        reset: 'Reiniciar la aplicación',
       },
     },
   },
   loader: {
-    fail: 'Hmmmmm, algo fue mal con la carga de este componente... Quizas sea una buena idea intentarlo mas tarde',
+    fail: 'Hmmmmm, algo fue mal con la carga de este componente... Quizás sea una buena idea intentarlo mas tarde',
   },
   images: {
     failed: 'algo fue mal mientras se cargaba esta imagen :(',

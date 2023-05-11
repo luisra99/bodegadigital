@@ -1,9 +1,8 @@
-import { Fragment, useState, Suspense } from 'react';
+import { Fragment, useState, Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 
-import NotFound from '@/pages/NotFound';
 import Welcome from '@/pages/Welcome';
 import Loading from '@/shared/components/Loading';
 
@@ -12,6 +11,7 @@ import { getPageHeight } from './utils';
 
 function Pages() {
   const [session, setSession] = useState(true);
+  const NotFound = lazy(() => import('@/pages/NotFound'));
   return (
     <Box sx={{ height: (theme) => getPageHeight(theme) }}>
       <Routes>
@@ -45,7 +45,14 @@ function Pages() {
               </Fragment>
             );
           })}
-        <Route path="*" element={<NotFound />} />
+        <Route
+          path="*"
+          element={
+            <Suspense fallback={<Loading />}>
+              <NotFound />
+            </Suspense>
+          }
+        />
       </Routes>
     </Box>
   );

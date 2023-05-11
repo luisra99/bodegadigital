@@ -26,22 +26,22 @@ function HotKeys() {
 
   return (
     <Dialog fullWidth maxWidth="xs" onClose={hotKeysDialogActions.close} open={isHotKeysDialogOpen}>
-      <DialogTitle>Hot Keys</DialogTitle>
+      <DialogTitle>Comandos</DialogTitle>
       <DialogContent>
         <FlexBox alignItems="center" height={50} justifyContent="space-between">
-          <Typography>Toggle Theme</Typography>
+          <Typography>Alternar tema</Typography>
           <Button color="warning" variant="outlined" onClick={themeActions.toggle}>
             alt + t
           </Button>
         </FlexBox>
         <FlexBox alignItems="center" height={50} justifyContent="space-between">
-          <Typography>Toggle Sidebar</Typography>
+          <Typography>Alternar menú</Typography>
           <Button color="warning" variant="outlined" onClick={sidebarActions.toggle}>
             alt + s
           </Button>
         </FlexBox>
         <FlexBox alignItems="center" height={50} justifyContent="space-between">
-          <Typography>Toggle Hot Keys&apos; Dialog</Typography>
+          <Typography>Alternar dialogo de&apos; teclas rápidas</Typography>
           <Button color="warning" variant="outlined" onClick={hotKeysDialogActions.toggle}>
             alt + /
           </Button>
