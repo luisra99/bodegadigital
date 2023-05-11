@@ -1,66 +1,28 @@
 import * as React from 'react';
-import { useState, Fragment } from 'react';
+import { useState, Fragment, useEffect } from 'react';
 
-import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 
-import {
-  GetStoreNotifications,
-  GetOfficeNotifications,
-  GetNukeNotifications,
-} from '@/services/notification/notification.services';
+import { GetNotifications } from '@/services/notification/notification.services';
 import GTabPanel from '@/shared/components/Generic/GTabPanel/GTabPanel';
 import { CustomNotification } from '@/shared/interfaces/common';
 
 import './Notifications.sass';
 
 export default function Notifications() {
-  const [NotificationsOffice, setNotificationOffice] = useState<CustomNotification[]>([
-    {
-      title: "Modulo en la TRD 'Los Combatientes'",
-      subTitle: 'Productos',
-      content: 'Pan, Leche, Aceite, Azucar,Detergente, Jabon',
-      secondarySubTitle: 'Distribucion',
-      secondaryContent: 'Por CDR (actual 4)',
-      price: 80.0,
-    },
-    {
-      title: "Modulo en la TRD 'Los Combatientes'",
-      subTitle: 'Productos',
-      content: 'Pan, Leche, Aceite, Azucar,Detergente, Jabon',
-      secondarySubTitle: 'Distribucion',
-      secondaryContent: 'Por CDR (actual 4)',
-      price: 80.0,
-    },
-  ]);
-  const [NotificationsStore, setNotificationStore] = useState<CustomNotification[]>([
-    {
-      title: "Modulo en la TRD 'Los Combatientes'",
-      subTitle: 'Productos',
-      content: 'Pan, Leche, Aceite, Azucar,Detergente, Jabon',
-      secondarySubTitle: 'Distribucion',
-      secondaryContent: 'Por CDR (actual 4)',
-      price: 80.0,
-    },
-  ]);
-  const [NotificationsNuke, setNotificationNuke] = useState<CustomNotification[]>([
-    {
-      title: "Modulo en la TRD 'Los Combatientes'",
-      subTitle: 'Productos',
-      content: 'Pan, Leche, Aceite, Azucar,Detergente, Jabon',
-      secondarySubTitle: 'Distribucion',
-      secondaryContent: 'Por CDR (actual 4)',
-      price: 80.0,
-    },
-  ]);
+  const [notifications, setNotifications] = useState({ office: [], store: [], nuke: [] });
+  useEffect(() => {
+    GetNotifications().then((response) => {
+      setNotifications(response);
+    });
+  }, []);
+  const { office, store, nuke } = notifications;
 
-  const notificationsCount =
-    NotificationsOffice.length + NotificationsStore.length + NotificationsNuke.length;
+  const notificationsCount = office.length + store.length + nuke.length;
   return (
     <GTabPanel
       tabs={[
@@ -71,9 +33,9 @@ export default function Notifications() {
       <List sx={{ width: '100%', marginTop: '-24px' }}>
         <>
           <h4 className="notification-header">
-            <b>Nucleo</b>
+            <b>Núcleo</b>
           </h4>
-          {NotificationsNuke.map(
+          {nuke.map(
             (
               {
                 title,
@@ -116,7 +78,7 @@ export default function Notifications() {
           )}
           <Divider component="li" />
           <h4 className="notification-header">Bodega</h4>
-          {NotificationsStore.map(
+          {store.map(
             (
               {
                 title,
@@ -159,7 +121,7 @@ export default function Notifications() {
           )}
           <Divider component="li" />
           <h4 className="notification-header">Oficina de comercio</h4>
-          {NotificationsOffice.map(
+          {office.map(
             (
               {
                 title,
@@ -205,9 +167,9 @@ export default function Notifications() {
       <List sx={{ width: '100%', marginTop: '-24px' }}>
         <>
           <h4 className="notification-header">
-            <b>Nucleo</b>
+            <b>Núcleo</b>
           </h4>
-          {NotificationsNuke.map(
+          {nuke.map(
             (
               {
                 title,
@@ -250,7 +212,7 @@ export default function Notifications() {
           )}
           <Divider component="li" />
           <h4 className="notification-header">Bodega</h4>
-          {NotificationsStore.map(
+          {store.map(
             (
               {
                 title,
@@ -293,7 +255,7 @@ export default function Notifications() {
           )}
           <Divider component="li" />
           <h4 className="notification-header">Oficina de comercio</h4>
-          {NotificationsOffice.map(
+          {office.map(
             (
               {
                 title,
