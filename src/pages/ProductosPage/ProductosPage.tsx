@@ -12,8 +12,6 @@ import GTable from '@/shared/components/Generic/GTable/GTable';
 import GTableContainer from '@/shared/components/Generic/GTableContainer/GTableContainer';
 import Meta from '@/shared/components/Meta';
 
-import '../../theme/App.sass';
-
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
