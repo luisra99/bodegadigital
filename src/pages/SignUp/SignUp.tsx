@@ -65,7 +65,7 @@ export default function SignUp() {
                   },
                   length: {
                     value: 11,
-                    message: 'El carnet debe tener un tamanio especifico ',
+                    message: 'El carnet debe tener un tamaño especifico ',
                   },
                   regular_expression: {
                     value: /^(\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])\d{5})$/g,
@@ -140,6 +140,7 @@ export default function SignUp() {
             ]}
             endpoint="bodegaVirtual/endpoint"
             notificationStack={notificationsActions}
+            redirect="/profile"
           />
         </Box>
       </Container>

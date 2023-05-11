@@ -77,4 +77,5 @@ export interface GFormProps {
   load?: () => void;
   buttons: GFormButtons;
   notificationStack: Actions;
+  redirect?: string;
 }

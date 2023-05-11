@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import SaveAsIcon from '@mui/icons-material/SaveAs';
 import SaveRoundedIcon from '@mui/icons-material/SaveRounded';
@@ -56,7 +57,9 @@ export function GForm(props: GFormProps) {
     load,
     buttons = { apply: 'Aplicar', icons: true },
     notificationStack,
+    redirect,
   } = props;
+  const navigate = useNavigate();
   const formikRef = useRef<FormikProps<any>>(null);
   const [formSchema, setFormSchema] = useState<any>({});
   const [formSource, setFormDataSource] = useState<any>({});
@@ -173,7 +176,7 @@ export function GForm(props: GFormProps) {
     );
   }
   function GenericCheckBox(props: GControlProps) {
-    const { errors, label, name, values } = props;
+    const { label, name, values } = props;
     const handleChange = (event: any) => {
       formikRef?.current?.setFieldValue(name, event.target.checked);
     };
@@ -275,7 +278,7 @@ export function GForm(props: GFormProps) {
     );
   }
   function SubmitButton(props: any) {
-    const { disabled, handleSubmit, ...rest } = props;
+    const { disabled, ...rest } = props;
     const { isSubmitting } = useFormikContext();
     const { cancel, apply, icons } = buttons;
     return (
@@ -414,27 +417,40 @@ export function GForm(props: GFormProps) {
         console.log('valoressssss', values);
         // const headers = await getToken();
         if (id) {
-          axios.put(endpoint, values, {}).then((response) => {
-            setSubmitting(false);
-            load?.();
-            showNotification(notificationStack, {
-              title: 'Respuesta',
-              subTitle: 'Servicio',
-              type: 'info',
-              content: 'response.data',
-            });
-          });
+          // axios.put(endpoint, values, {}).then((response) => {
+          //   setSubmitting(false);
+          //   load?.();
+          //   showNotification(notificationStack, {
+          //     title: 'Respuesta',
+          //     subTitle: 'Servicio',
+          //     type: 'info',
+          //     content: 'response.data',
+          //   });
+          // });
+          navigate('/profile');
         } else {
-          axios.post(endpoint, values, {}).then((response) => {
-            setSubmitting(false);
-            load?.();
-            showNotification(notificationStack, {
-              title: 'Respuesta',
-              subTitle: 'Servicio',
-              type: 'info',
-              content: 'response.data',
-            });
-          });
+          // axios.post(endpoint, values, {}).then((response) => {
+          //   setSubmitting(false);
+          //   load?.();
+          //   showNotification(notificationStack, {
+          //     title: 'Respuesta',
+          //     subTitle: 'Servicio',
+          //     type: 'info',
+          //     content: 'response.data',
+          //   });
+          // });
+          setTimeout(
+            () =>
+              showNotification(notificationStack, {
+                title: 'Respuesta',
+                subTitle: 'Servicio',
+                type: 'info',
+                content: 'response.data',
+              }),
+            5000,
+          );
+
+          navigate('/profile');
 
           resetForm();
         }

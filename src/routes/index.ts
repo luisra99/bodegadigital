@@ -21,7 +21,7 @@ const routes: Routes = {
   [Pages.Notification]: {
     component: asyncComponentLoader(() => import('@/pages/Notifications')),
     path: '/notifications',
-    title: '',
+    title: 'Notificación',
   },
   [Pages.Perfil]: {
     component: asyncComponentLoader(() => import('@/pages/Profile')),

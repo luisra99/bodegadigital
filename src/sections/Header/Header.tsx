@@ -1,14 +1,10 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import CloseIcon from '@mui/icons-material/Close';
 import ThemeIcon from '@mui/icons-material/InvertColors';
 import LoginIcon from '@mui/icons-material/Login';
 import MenuIcon from '@mui/icons-material/Menu';
 import Notifications from '@mui/icons-material/Notifications';
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
 import AppBar from '@mui/material/AppBar';
 import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
@@ -20,7 +16,6 @@ import Tooltip from '@mui/material/Tooltip';
 
 import { useAuthContext } from '@asgardeo/auth-react';
 
-import { repository, title } from '@/config';
 import { FlexBox } from '@/shared/components/styled';
 import useHotKeysDialog from '@/store/hotkeys';
 import useNotifications from '@/store/notifications';
@@ -39,8 +34,8 @@ function Header() {
   const { state, signIn, signOut, getBasicUserInfo } = useAuthContext();
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar color="transparent" elevation={1} position="static">
+    <Box sx={{ flexGrow: 1 }} position="sticky">
+      <AppBar color="transparent" elevation={1} position="sticky">
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           <FlexBox sx={{ alignItems: 'center' }}>
             <IconButton
