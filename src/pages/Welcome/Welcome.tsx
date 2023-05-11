@@ -1,19 +1,20 @@
-import { useState, Fragment } from 'react';
+import { useState } from 'react';
 import { lazy, Suspense } from 'react';
 
 import { Button, Typography, Box } from '@mui/material';
 
 import Loading from '@/shared/components/Loading';
+import Meta from '@/shared/components/Meta';
 
 function Welcome() {
   //Consultar si la sesion esta configurada
-  const [sesionIsConfig, setConfig] = useState(true);
-
+  const [sessionIsConfig, setConfig] = useState(true);
   const MyLazyComponent = lazy(() => import('@/pages/SignUp/SignUp'));
 
   return (
     <>
-      {sesionIsConfig ? (
+      <Meta title="Inicio" />
+      {sessionIsConfig ? (
         <Box style={{ textAlign: 'center' }}>
           <Typography
             p={3}
