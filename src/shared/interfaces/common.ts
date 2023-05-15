@@ -31,6 +31,9 @@ export interface Person {
   primer_apellido: string;
   segundo_apellido: string;
   ci: string;
+  edad: number;
+  fecha_n: string;
+  sex: string;
 }
 
 export interface InfoNucleo {

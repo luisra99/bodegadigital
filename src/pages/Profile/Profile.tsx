@@ -89,7 +89,9 @@ function Profile() {
                         [
                           { header: 'Carnet', name: 'ci', type: 'text' },
                           { header: 'Nombre', name: 'nombre', type: 'text' },
-                          { header: 'Apellido', name: 'primer_apellido', type: 'text' },
+                          { header: 'Edad', name: 'edad', type: 'text' },
+                          { header: 'Sexo', name: 'sex', type: 'text' },
+                          { header: 'Nacimiento', name: 'fecha_n', type: 'text' },
                         ],
 
                         true,
