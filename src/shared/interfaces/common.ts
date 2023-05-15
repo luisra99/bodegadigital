@@ -10,10 +10,12 @@ export interface CustomNotification {
   title: string;
   subTitle: string;
   content: string;
+  fecha: Date;
   price?: number;
   secondarySubTitle?: string;
   secondaryContent?: string;
   advice?: string;
+  hora?: string;
 }
 export interface UserProfile extends Person {
   foto?: string;

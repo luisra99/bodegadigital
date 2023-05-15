@@ -1,55 +1,24 @@
 import { CustomNotification } from '@/shared/interfaces/common';
 
+import { notifications_seed } from '../../seed';
+
 import axios from 'axios';
 
-//Obtener datos del usuario para hacer la peticion
+const notification_api = import.meta.env.VITE_BODEGA_NOTIFICATIONS;
+
+//Obtener datos del usuario para hacer la petición
 export async function GetNotifications(params?: any): Promise<any> {
-  const office = await GetOfficeNotifications();
-  const store = await GetStoreNotifications();
-  const nuke = await GetNukeNotifications();
-  return { office, store, nuke };
-}
-function GetOfficeNotifications(params?: any): CustomNotification[] {
-  return [
-    {
-      title: "Modulo en la TRD 'Los Combatientes'",
-      subTitle: 'Productos',
-      content: 'Pan, Leche, Aceite, Azucar,Detergente, Jabon',
-      secondarySubTitle: 'Distribucion',
-      secondaryContent: 'Por CDR (actual 4)',
-      price: 80.0,
-    },
-    {
-      title: "Modulo en la TRD 'Los Combatientes'",
-      subTitle: 'Productos',
-      content: 'Pan, Leche, Aceite, Azucar,Detergente, Jabon',
-      secondarySubTitle: 'Distribucion',
-      secondaryContent: 'Por CDR (actual 4)',
-      price: 80.0,
-    },
-  ];
-}
-function GetStoreNotifications(params?: any): CustomNotification[] {
-  return [
-    {
-      title: "Modulo en la TRD 'Los Combatientes'",
-      subTitle: 'Productos',
-      content: 'Pan, Leche, Aceite, Azucar,Detergente, Jabon',
-      secondarySubTitle: 'Distribucion',
-      secondaryContent: 'Por CDR (actual 4)',
-      price: 80.0,
-    },
-  ];
-}
-function GetNukeNotifications(params?: any): CustomNotification[] {
-  return [
-    {
-      title: "Modulo en la TRD 'Los Combatientes'",
-      subTitle: 'Productos',
-      content: 'Pan, Leche, Aceite, Azucar,Detergente, Jabon',
-      secondarySubTitle: 'Distribucion',
-      secondaryContent: 'Por CDR (actual 4)',
-      price: 80.0,
-    },
-  ];
+  try {
+    // const { username } = params;
+    // Real Service
+    // const response = (await axios.get(`${api}${notification_api}`));
+    // const notifications = response.data
+    //SeedData
+    const notifications = notifications_seed;
+
+    return notifications;
+  } catch (error) {
+    console.error('Error consuming API', error);
+    return {};
+  }
 }
