@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
 import { ControlType } from '@/enums/form-enums';
+import { SetProfileConfiguration } from '@/services/user/user.services';
 import { GForm } from '@/shared/components/Generic/GForm/GForm';
 import { FullSizeCenteredFlexBox } from '@/shared/components/styled';
 import useNotifications from '@/store/notifications';
@@ -138,7 +139,7 @@ export default function SignUp() {
                 },
               },
             ]}
-            endpoint="bodegaVirtual/endpoint"
+            post_service={SetProfileConfiguration}
             notificationStack={notificationsActions}
             redirect="/profile"
           />

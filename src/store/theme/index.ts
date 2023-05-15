@@ -21,7 +21,16 @@ function useTheme(): [Themes, Actions] {
   const [themeMode, setThemeMode] = useRecoilState(themeModeState);
 
   function toggle() {
-    setThemeMode((mode: Themes) => (mode === Themes.DARK ? Themes.LIGHT : Themes.DARK));
+    setThemeMode((mode: Themes) => {
+      const themeMeta = document.querySelector('meta[name="theme-color"]');
+      if (mode === Themes.DARK) {
+        themeMeta && themeMeta.setAttribute('content', '#FAFAFA');
+        return Themes.LIGHT;
+      } else {
+        themeMeta && themeMeta.setAttribute('content', '#111111');
+        return Themes.DARK;
+      }
+    });
   }
 
   return [themeMode, { toggle }];

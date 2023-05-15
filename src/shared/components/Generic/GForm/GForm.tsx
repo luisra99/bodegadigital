@@ -52,12 +52,14 @@ export function GForm(props: GFormProps) {
   const {
     controls,
     id,
-    endpoint,
+    post_service,
+    put_service,
     handleClose,
     load,
     buttons = { apply: 'Aplicar', icons: true },
     notificationStack,
     redirect,
+    serviceParams,
   } = props;
   const navigate = useNavigate();
   const formikRef = useRef<FormikProps<any>>(null);
@@ -413,47 +415,46 @@ export function GForm(props: GFormProps) {
       innerRef={formikRef}
       validationSchema={validationSchema}
       validateOnChange
-      onSubmit={(values, { setSubmitting, resetForm }) => {
-        const { email, ci, tomo, folio, phone } = values || {};
-        console.log('valoressssss', values);
-        // const headers = await getToken();
+      onSubmit={async (values, { setSubmitting, resetForm }) => {
+        console.table(values);
         if (id) {
-          // axios.put(endpoint, values, {}).then((response) => {
-          //   setSubmitting(false);
-          //   load?.();
-          //   showNotification(notificationStack, {
-          //     title: 'Respuesta',
-          //     subTitle: 'Servicio',
-          //     type: 'info',
-          //     content: 'response.data',
-          //   });
-          // });
-          navigate('/profile');
-        } else {
-          // axios.post(endpoint, values, {}).then((response) => {
-          //   setSubmitting(false);
-          //   load?.();
-          //   showNotification(notificationStack, {
-          //     title: 'Respuesta',
-          //     subTitle: 'Servicio',
-          //     type: 'info',
-          //     content: 'response.data',
-          //   });
-          // });
-          setTimeout(
-            () =>
+          await put_service?.({ values, id, serviceParams }).then(
+            (response: { data: { error?: string }; status: number }) => {
+              setSubmitting(false);
+              load?.();
               showNotification(notificationStack, {
-                title: 'Respuesta',
-                subTitle: 'Servicio',
-                type: 'info',
-                content: `${email} ${ci} ${tomo} ${folio} ${phone}`,
-              }),
-            5000,
+                title: 'Operación completada',
+                subTitle: 'Estado',
+                type: response.status == 200 ? 'success' : 'info',
+                content:
+                  response.status == 200
+                    ? 'Operación realizada correctamente'
+                    : 'Ha ocurrido un error realizando esta operación',
+                secondarySubTitle: response.data.error ? 'Detalles' : '',
+                secondaryContent: response.data.error ? response.data.error : '',
+              });
+              response.status == 200 && redirect && navigate(redirect);
+            },
           );
-
-          navigate('/profile');
-
-          resetForm();
+        } else {
+          await post_service({ values, serviceParams }).then(
+            (response: { data: { error?: string }; status: number }) => {
+              setSubmitting(false);
+              load?.();
+              showNotification(notificationStack, {
+                title: 'Operación completada',
+                subTitle: 'Estado',
+                type: response.status == 200 ? 'success' : 'info',
+                content:
+                  response.status == 200
+                    ? 'Operación realizada correctamente'
+                    : 'Ha ocurrido un error realizando esta operación',
+                secondarySubTitle: response.data.error ? 'Detalles' : '',
+                secondaryContent: response.data.error ? response.data.error : '',
+              });
+              if (response.status == 200) redirect ? navigate(redirect) : resetForm();
+            },
+          );
         }
       }}
     >

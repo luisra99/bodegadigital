@@ -72,10 +72,12 @@ export interface ResponsiveValues {
 export interface GFormProps {
   controls: GFormControl[];
   id?: string | number;
-  endpoint: string;
+  post_service: (params: any) => any;
+  put_service?: (params: any) => any;
   handleClose?: () => void;
   load?: () => void;
   buttons: GFormButtons;
   notificationStack: Actions;
   redirect?: string;
+  serviceParams?: Record<string, any>;
 }

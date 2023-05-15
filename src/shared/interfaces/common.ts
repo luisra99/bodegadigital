@@ -42,6 +42,7 @@ export interface InfoNucleo {
   qr?: string;
 }
 export interface ProfileContent {
-  profile: UserProfile;
+  isConfig?: boolean;
+  profile?: UserProfile;
   nucleo?: InfoNucleo;
 }

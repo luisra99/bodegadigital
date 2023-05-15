@@ -1,4 +1,6 @@
-import { InfoNucleo, ProfileContent, UserProfile } from '@/shared/interfaces/common';
+import { ProfileContent } from '@/shared/interfaces/common';
+
+import { isConfig_seed, profile_seed, infoNucleo_seed } from '../../seed';
 
 import axios from 'axios';
 
@@ -6,15 +8,36 @@ const api = import.meta.env.VITE_BODEGA_ENDPOINT;
 const claim_api = import.meta.env.VITE_BODEGA_CLAIM;
 const profile_api = import.meta.env.VITE_BODEGA_PROFILE;
 
-export function SetProfileConfiguration(params: any) {
-  return;
+export async function SetProfileConfiguration(params: any) {
+  try {
+    const { values } = params;
+    const response = await axios.post(`${api}${profile_api}`, values);
+
+    return response;
+  } catch (error) {
+    return {
+      status: 500,
+      error: error,
+    };
+  }
 }
-export function GetProfileConfiguration(params?: any): ProfileContent {
-  //consumir servicio
-  // axios.get(api + profile_api,userId).then((result: any) => {
-  //   return result;
-  // });
-  return { profile: profile, nucleo: infoNucleo };
+export async function GetProfileConfiguration(params?: any): Promise<ProfileContent> {
+  try {
+    const { username } = params;
+    // Real Service
+    // const response = (await axios.get(`${api}${profile_api}`));
+    // const { isConfig, profile, nucleo } = response.data
+    //SeedData
+    const { isConfig, profile, nucleo } = {
+      isConfig: isConfig_seed,
+      profile: profile_seed,
+      nucleo: infoNucleo_seed,
+    };
+    return { isConfig, profile, nucleo };
+  } catch (error) {
+    console.error('Error consuming API', error);
+    return {};
+  }
 }
 export function UpdateProfileConfiguration(params: any) {
   return;
@@ -28,52 +51,3 @@ export function ReclaimRegistration(setState: (value: any) => void, ci: string) 
   // });
   setTimeout(() => setState(true), 5000);
 }
-//SeedData
-const profile: UserProfile = {
-  foto: '/public/2022_08_23_21_19_IMG_8946.JPG',
-  nombre: 'Luis Raul',
-  primer_apellido: 'Alfonso',
-  segundo_apellido: 'Caballero',
-  direccion: 'Calle 35 entre 5 y 7 #507A',
-  ci: '99080100702',
-  tomo: '21',
-  folio: '112',
-  email: 'luisraul.alfonsoc@gmail.com',
-  celular: '+53 55432748',
-  jefe_nucleo: true,
-  preveedor: true,
-  persona_id: 'asd',
-};
-const infoNucleo: InfoNucleo = {
-  oficina: '0012',
-  bodega: '005',
-  nucleo: '12',
-  integrantes_count: 4,
-  integrantes: [
-    {
-      ci: `99080100702`,
-      nombre: 'Luis Raul',
-      primer_apellido: 'Alfonso',
-      segundo_apellido: 'Caballero',
-    },
-    {
-      ci: `71051300702`,
-      nombre: 'Raul',
-      primer_apellido: 'Alfonso',
-      segundo_apellido: 'Caballero',
-    },
-    {
-      ci: `70101000702`,
-      nombre: 'Dayli',
-      primer_apellido: 'Caballero',
-      segundo_apellido: 'Caballero',
-    },
-    {
-      ci: `03062700702`,
-      nombre: 'Diego',
-      primer_apellido: 'Alfonso',
-      segundo_apellido: 'Caballero',
-    },
-  ],
-  qr: 'as',
-};
