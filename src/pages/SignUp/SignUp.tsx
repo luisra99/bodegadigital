@@ -141,6 +141,7 @@ export default function SignUp() {
             ]}
             post_service={SetProfileConfiguration}
             notificationStack={notificationsActions}
+            //TODO:Enumerador de rutas
             redirect="/profile"
           />
         </Box>
