@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Meta from '@/shared/components/Meta';
 import { FullSizeCenteredFlexBox } from '@/shared/components/styled';
 
-function Page4() {
+function Page404() {
   return (
     <>
       <Meta title="page 4" />
@@ -27,4 +27,4 @@ function Page4() {
   );
 }
 
-export default Page4;
+export default Page404;

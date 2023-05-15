@@ -40,7 +40,7 @@ function a11yProps(index: number) {
     'aria-controls': `simple-tabpanel-${index}`,
   };
 }
-function ProductosPage() {
+function VentaRegulada() {
   const [value, setValue] = useState(0);
   const [content, setContent] = useState<any[]>([]);
   const porComprarColmuns: Column[] = [
@@ -253,4 +253,4 @@ function ProductosPage() {
   );
 }
 
-export default ProductosPage;
+export default VentaRegulada;

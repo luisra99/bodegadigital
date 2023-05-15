@@ -5,8 +5,9 @@ import type { SvgIconProps } from '@mui/material/SvgIcon';
 
 enum Pages {
   Welcome,
-  Productos,
+  VentaRegulada,
   MisNucleos,
+  Productos,
   Aplicación,
   Estilo,
   NotFound,

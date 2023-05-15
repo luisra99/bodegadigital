@@ -14,10 +14,10 @@ const routes: Routes = {
     title: 'Inicio',
     icon: HomeIcon,
   },
-  [Pages.Productos]: {
-    component: asyncComponentLoader(() => import('@/pages/ProductosPage')),
-    path: '/productos',
-    title: 'Productos',
+  [Pages.VentaRegulada]: {
+    component: asyncComponentLoader(() => import('@/pages/VentaRegulada')),
+    path: '/venta-regulada',
+    title: 'Venta Regulada',
     icon: ShoppingCartIcon,
   },
   [Pages.MisNucleos]: {
