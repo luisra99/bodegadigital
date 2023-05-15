@@ -23,10 +23,10 @@ export default function Notifications() {
   }, []);
   const today = new Date();
   const validNotifications = notifications.filter(({ fecha }) => {
-    return fecha >= today;
+    return fecha ? fecha >= today : false;
   });
   const pastNotifications = notifications.filter(({ fecha }) => {
-    return fecha < today;
+    return fecha ? fecha < today : false;
   });
   console.log(notifications);
   return (
