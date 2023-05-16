@@ -83,20 +83,19 @@ function Profile() {
                       Integrantes: {profileContent.nucleo?.integrantes_count}
                     </Typography>
                     <GTableContainer>
-                      {GTable(
-                        profileContent?.nucleo?.integrantes,
-                        'No se pudieron obtener los integrantes del nucleo',
-                        [
+                      <GTable
+                        data={profileContent?.nucleo?.integrantes}
+                        messageForEmpty="No se pudieron obtener los integrantes del nucleo"
+                        columns={[
                           { header: 'Carnet', name: 'ci', type: 'text' },
                           { header: 'Nombre', name: 'nombre', type: 'text' },
                           { header: 'Edad', name: 'edad', type: 'text' },
                           { header: 'Sexo', name: 'sex', type: 'text' },
                           { header: 'Nacimiento', name: 'fecha_n', type: 'text' },
-                        ],
-
-                        true,
-                        true,
-                      )}
+                        ]}
+                        fullWith={true}
+                        readOnly={true}
+                      />
                     </GTableContainer>
                   </Box>
                 </div>
