@@ -36,14 +36,14 @@ export default function Notifications() {
         { name: 'Pasadas', badge: pastNotifications.length },
       ]}
     >
-      <List sx={{ width: '100%', marginTop: '-24px' }}>
+      <List sx={{ width: '100%', marginTop: '-14px' }}>
         <>
           {validNotifications.map((notice: CustomNotification, index: number) => {
             return <GNotificationItem key={index} {...notice} />;
           })}
         </>
       </List>
-      <List sx={{ width: '100%', marginTop: '-24px' }}>
+      <List sx={{ width: '100%', marginTop: '-14px' }}>
         <>
           {pastNotifications.map((notice: CustomNotification, index: number) => {
             return <GNotificationItem key={index} {...notice} />;

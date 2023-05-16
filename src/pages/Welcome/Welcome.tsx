@@ -18,7 +18,7 @@ function Welcome() {
   const [profileConfig, setConfig] = useState<boolean | undefined>(undefined);
   // TODO: Consumir con usuario del login y usar el estado de la sesión para manejar la vista
   const { state, signIn } = useAuthContext();
-  const [session, setSession] = useState(true);
+  const [session, setSession] = useState(false);
   const [, notificationsActions] = useNotifications();
   const MyLazyComponent = lazy(() => import('@/pages/SignUp/SignUp'));
   const login = () => {

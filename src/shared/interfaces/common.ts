@@ -51,3 +51,11 @@ export interface ProfileContent {
   profile?: UserProfile;
   nucleo?: InfoNucleo;
 }
+export interface GTableProps {
+  data: any;
+  messageForEmpty: string;
+  columns: Column[];
+  readOnly: boolean;
+  fullWith?: boolean;
+  CustomHeader?: JSX.Element;
+}

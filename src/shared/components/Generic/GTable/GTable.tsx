@@ -11,19 +11,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
-import { Column } from '@interfaces/common';
+import { Column, GTableProps } from '@interfaces/common';
 
 import './GTable.sass';
 
-export default function GTable(
-  data: any,
-  messageForEmpty: string,
-  columns: Column[],
-  readOnly: boolean,
-  fullWith = false,
-  filter?: Filter,
-) {
-  const { prop, operator, value } = filter || {};
+export default function GTable(props: GTableProps) {
+  const { data, messageForEmpty, columns, readOnly, fullWith, CustomHeader } = props;
   const columnsCount = columns?.length;
   const hiddenCellsCount = columns?.filter((column: Column) => !column.name).length;
   const visibleColumnsCount = columnsCount - hiddenCellsCount;
@@ -73,6 +66,8 @@ export default function GTable(
       minWidth={'275px'}
     >
       <TableContainer component={Paper}>
+        {CustomHeader && CustomHeader}
+
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
