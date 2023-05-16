@@ -28,7 +28,7 @@ export default function GTable(props: GTableProps) {
     sm: { matrix: [4, 6, 10, 12, 12, 12, 12], colsToShow: 3 },
     md: { matrix: [3, 4, 6, 6, 10, 11, 12], colsToShow: 5 },
     lg: { matrix: [2, 3, 4, 4, 9, 10, 11], colsToShow: 7 },
-    xl: { matrix: [1, 2, 3, 4, 9, 10, 11], colsToShow: 8 },
+    xl: { matrix: [2, 3, 3, 4, 9, 10, 11], colsToShow: 8 },
   };
   const responsiveValue = (breakPoint: keyof ResponsiveMatrix): ResponsiveValue => {
     return {
