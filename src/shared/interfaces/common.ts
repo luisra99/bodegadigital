@@ -25,7 +25,7 @@ export interface UserProfile extends Person {
   email: string;
   celular: string;
   jefe_nucleo?: boolean;
-  preveedor?: boolean;
+  proveedor?: boolean;
   persona_id: string;
 }
 export interface Person {

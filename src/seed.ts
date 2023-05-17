@@ -13,7 +13,7 @@ export const profile_seed: UserProfile = {
   email: 'luisraul.alfonsoc@gmail.com',
   celular: '+53 55432748',
   jefe_nucleo: true,
-  preveedor: true,
+  proveedor: true,
   persona_id: 'asd',
   edad: 21,
   fecha_n: '1/08/1999',

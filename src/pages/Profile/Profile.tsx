@@ -108,7 +108,8 @@ function Profile() {
                     variant={'contained'}
                     disabled={!requestButton}
                     onClick={() =>
-                      ReclaimRegistration(activeButton, profileContent.profile!.persona_id)
+                      profileContent.profile &&
+                      ReclaimRegistration(activeButton, profileContent.profile.persona_id)
                     }
                   >
                     Solicitar registro
