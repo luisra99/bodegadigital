@@ -57,7 +57,7 @@ function Welcome() {
       {!session ? (
         <Box style={{ textAlign: 'center' }}>
           <Grid container>
-            <Grid item xs={none} sm={none} md={4} lg={4} xl={4} sx={{backgroundColor:'red'}}>
+            <Grid item md={4} lg={4} xl={4} sx={{backgroundColor:'red',display: { xs: 'none', md: 'block' } }}>
               <Typography p={3} variant="h4" style={{ textAlign: 'center' }}>
            1
           </Typography>
@@ -67,7 +67,7 @@ function Welcome() {
             2
           </Typography>
             </Grid>
-            <Grid item xs={none} sm={none} md={4} lg={4} xl={4} sx={{backgroundColor:'red'}}>
+            <Grid item  md={4} lg={4} xl={4} sx={{backgroundColor:'red',display: { xs: 'none', md: 'block' } }}>
              <Typography p={3} variant="h4" style={{ textAlign: 'center' }}>
             3
           </Typography>
