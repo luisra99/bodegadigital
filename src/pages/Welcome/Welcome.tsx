@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { lazy, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Button, Typography, Box } from '@mui/material';
+import { Button, Typography, Box, Grid } from '@mui/material';
 
 import { useAuthContext } from '@asgardeo/auth-react';
 
@@ -56,6 +56,18 @@ function Welcome() {
       <Meta title="Inicio" />
       {!session ? (
         <Box style={{ textAlign: 'center' }}>
+          <Grid>
+            <Grid item xs={0} sm={0} md={4} lg={4} xl={4} sx={{backgroundColor:'red'}}>
+              
+            </Grid>
+            <Grid item xs={12} sm={12} md={4} lg={4} xl={4} sx={{backgroundColor:'blue'}}>
+              
+            </Grid>
+            <Grid item xs={0} sm={0} md={4} lg={4} xl={4} sx={{backgroundColor:'red'}}>
+              
+            </Grid>
+          </Grid>
+
           <Typography p={3} variant="h4" style={{ textAlign: 'center' }}>
             Bienvenido al sistema de bodega virtual
           </Typography>
