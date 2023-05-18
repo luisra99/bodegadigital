@@ -63,9 +63,7 @@ function Welcome() {
           </Typography>
             </Grid>
             <Grid item xs={12} sm={12} md={4} lg={4} xl={4} sx={{backgroundColor:'blue'}}>
-              <Typography p={3} variant="h4" style={{ textAlign: 'center' }}>
-            2
-          </Typography>
+              <img src="https://anjagoder.com/wp-content/uploads/2018/05/Cuba-Bodeg.jpg" alt="bodega" />
             </Grid>
             <Grid item  md={4} lg={4} xl={4} sx={{backgroundColor:'red',display: { xs: 'none', md: 'block' } }}>
              <Typography p={3} variant="h4" style={{ textAlign: 'center' }}>
