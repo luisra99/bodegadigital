@@ -56,7 +56,7 @@ function Welcome() {
       <Meta title="Inicio" />
       {!session ? (
         <Box style={{ textAlign: 'center' }}>
-          <Grid>
+          <Grid container>
             <Grid item xs={0} sm={0} md={4} lg={4} xl={4} sx={{backgroundColor:'red'}}>
               <Typography p={3} variant="h4" style={{ textAlign: 'center' }}>
            1
