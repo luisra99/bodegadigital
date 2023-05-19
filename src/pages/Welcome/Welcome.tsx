@@ -12,6 +12,8 @@ import Meta from '@/shared/components/Meta';
 import useNotifications from '@/store/notifications';
 import { showNotification } from '@/utils/notification/notification';
 
+import './Welcome.sass';
+
 function Welcome() {
   //Consultar si la sesion esta configurada
   const navigate = useNavigate();
