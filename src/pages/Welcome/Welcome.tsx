@@ -59,46 +59,9 @@ function Welcome() {
       {!session ? (
         <Box style={{ textAlign: 'center' }}>
           <Grid container>
-            <Grid
-              item
-              md={4}
-              lg={4}
-              xl={4}
-              sx={{ backgroundColor: 'red', display: { xs: 'none', md: 'block' } }}
-              className="item item--first"
-            >
+            <Grid item className="item item--first">
               <img
                 src="https://image.jimcdn.com/app/cms/image/transf/dimension=2140x10000:format=jpg/path/s79b46c029f74af8a/image/i8ef3d6ce27214cc4/version/1600381919/image.jpg"
-                alt="bodega"
-                style={{ height: '100%', width: '100%' }}
-              />
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              sm={12}
-              md={4}
-              lg={4}
-              xl={4}
-              sx={{ backgroundColor: 'blue' }}
-              className="item item--first"
-            >
-              <img
-                src="https://anjagoder.com/wp-content/uploads/2018/05/Cuba-Bodeg.jpg"
-                alt="bodega"
-                style={{ height: '100%', width: '100%' }}
-              />
-            </Grid>
-            <Grid
-              item
-              md={4}
-              lg={4}
-              xl={4}
-              sx={{ backgroundColor: 'red', display: { xs: 'none', md: 'block' } }}
-              className="item item--first"
-            >
-              <img
-                src="https://www.webconsultas.com/sites/default/files/styles/wch_image_schema/public/articulos/tipos-leche.jpg"
                 alt="bodega"
                 style={{ height: '100%', width: '100%' }}
               />
