@@ -145,6 +145,7 @@ function Welcome() {
                 color={'whitesmoke'}
               >
                 Acercamiento digital a su bodega
+                <BusinessIcon />
                 <StoreMallDirectoryIcon />
               </Typography>
             </Grid>
