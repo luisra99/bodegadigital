@@ -95,18 +95,8 @@ function Welcome() {
           </Typography>
           <Grid container>
             <Grid item>
-              <Box width={50} height={50} borderRadius={'50%'} sx={{ backgroundColor: 'red' }}>
-                <Typography
-                  p={3}
-                  ml={3}
-                  pb={0}
-                  variant="h4"
-                  style={{ textAlign: 'left', textShadow: '1px 1px #3c3c3c' }}
-                  fontWeight={900}
-                  color={'whitesmoke'}
-                >
-                  Datos de su núcleo <FeedIcon />
-                </Typography>
+              <Box width={100} height={100} borderRadius={'50%'} sx={{ backgroundColor: 'red' }}>
+                <FeedIcon sx={{ width: '90px', height: '90px' }} />
               </Box>
             </Grid>
             <Grid item>
