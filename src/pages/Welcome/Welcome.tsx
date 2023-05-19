@@ -95,17 +95,19 @@ function Welcome() {
           </Typography>
           <Grid container>
             <Grid item>
-              <Typography
-                p={3}
-                ml={3}
-                pb={0}
-                variant="h4"
-                style={{ textAlign: 'left', textShadow: '1px 1px #3c3c3c' }}
-                fontWeight={900}
-                color={'whitesmoke'}
-              >
-                Datos de su núcleo <FeedIcon />
-              </Typography>
+              <Box width={50} height={50} borderRadius={'50%'} sx={{ backgroundColor: 'red' }}>
+                <Typography
+                  p={3}
+                  ml={3}
+                  pb={0}
+                  variant="h4"
+                  style={{ textAlign: 'left', textShadow: '1px 1px #3c3c3c' }}
+                  fontWeight={900}
+                  color={'whitesmoke'}
+                >
+                  Datos de su núcleo <FeedIcon />
+                </Typography>
+              </Box>
             </Grid>
             <Grid item>
               <Typography
@@ -132,6 +134,7 @@ function Welcome() {
                 color={'whitesmoke'}
               >
                 Informaciones de la oficina de comercio
+                <BusinessIcon />
               </Typography>
             </Grid>
             <Grid item>
@@ -145,7 +148,6 @@ function Welcome() {
                 color={'whitesmoke'}
               >
                 Acercamiento digital a su bodega
-                <BusinessIcon />
                 <StoreMallDirectoryIcon />
               </Typography>
             </Grid>
