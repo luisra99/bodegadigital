@@ -68,7 +68,13 @@ function Welcome() {
             </Grid>
           </Grid>
 
-          <Typography p={3} variant="h4" style={{ textAlign: 'center' }}>
+          <Typography
+            p={3}
+            variant="h4"
+            style={{ textAlign: 'center' }}
+            fontWeight={900}
+            color={'whitesmoke'}
+          >
             Bienvenido al sistema de bodega virtual
           </Typography>
           <Typography p={2} variant="h6" style={{ textAlign: 'center' }}>
