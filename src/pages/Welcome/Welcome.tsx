@@ -89,7 +89,7 @@ function Welcome() {
             Este sistema le permitirá un mejor acceso a las informaciones del acontecer gastronómico
             de nuestra sociedad
           </Typography>
-          <Grid container sx={{ position: 'fixed', zIndex: -1 }} className="welcome-pic">
+          <Grid container sx={{ position: 'fixed', zIndex: -1 }}>
             <Grid item>
               <Typography
                 p={3}
