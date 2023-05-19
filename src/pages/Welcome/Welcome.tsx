@@ -70,6 +70,7 @@ function Welcome() {
           <Typography
             p={3}
             ml={3}
+            pb={0}
             variant="h4"
             style={{ textAlign: 'left', textShadow: '1px 1px #3c3c3c' }}
             fontWeight={900}
@@ -78,7 +79,7 @@ function Welcome() {
             Bienvenido al sistema de bodega virtual
           </Typography>
           <Typography
-            px={2}
+            px={3}
             pb={2}
             ml={3}
             variant="h6"
