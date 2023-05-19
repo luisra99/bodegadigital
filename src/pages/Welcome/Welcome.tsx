@@ -2,6 +2,10 @@ import { useState } from 'react';
 import { lazy, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import BusinessIcon from '@mui/icons-material/Business';
+import FeedIcon from '@mui/icons-material/Feed';
+import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
+import StoreMallDirectoryIcon from '@mui/icons-material/StoreMallDirectory';
 import { Button, Typography, Box, Grid } from '@mui/material';
 
 import { useAuthContext } from '@asgardeo/auth-react';
@@ -89,7 +93,7 @@ function Welcome() {
             Este sistema le permitirá un mejor acceso a las informaciones del acontecer gastronómico
             de nuestra sociedad
           </Typography>
-          <Grid container >
+          <Grid container>
             <Grid item>
               <Typography
                 p={3}
@@ -100,7 +104,7 @@ function Welcome() {
                 fontWeight={900}
                 color={'whitesmoke'}
               >
-                Datos de su núcleo
+                Datos de su núcleo <FeedIcon />
               </Typography>
             </Grid>
             <Grid item>
@@ -114,6 +118,7 @@ function Welcome() {
                 color={'whitesmoke'}
               >
                 Avisos de productos en comercios cercanos
+                <ProductionQuantityLimitsIcon />
               </Typography>
             </Grid>
             <Grid item>
@@ -140,6 +145,7 @@ function Welcome() {
                 color={'whitesmoke'}
               >
                 Acercamiento digital a su bodega
+                <StoreMallDirectoryIcon />
               </Typography>
             </Grid>
           </Grid>
