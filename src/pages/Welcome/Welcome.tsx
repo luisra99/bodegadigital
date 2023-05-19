@@ -69,6 +69,7 @@ function Welcome() {
 
           <Typography
             p={3}
+            ml={3}
             variant="h4"
             style={{ textAlign: 'center', textShadow: '1px 1px #3c3c3c' }}
             fontWeight={900}
@@ -78,6 +79,7 @@ function Welcome() {
           </Typography>
           <Typography
             p={2}
+            ml={3}
             variant="h6"
             style={{ textAlign: 'center', textShadow: '1px 1px #3c3c3c' }}
           >
