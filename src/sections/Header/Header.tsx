@@ -34,139 +34,131 @@ function Header() {
   const { state, signIn, signOut, getBasicUserInfo } = useAuthContext();
 
   return (
-    <Box sx={{ flexGrow: 1 }} position="sticky">
-      <AppBar color="transparent" elevation={1} position="sticky">
-        <Toolbar sx={{ justifyContent: 'space-between' }}>
-          <FlexBox sx={{ alignItems: 'center' }}>
-            <IconButton
-              onClick={sidebarActions.toggle}
-              size="large"
-              edge="start"
-              color="info"
-              aria-label="menu"
-              sx={{ mr: 1, color: '#3f51b5' }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Button
-              onClick={() =>
-                showNotification(notificationsActions, {
-                  type: 'info',
-                  title: 'Producto nuevo en la TRD "Los Combatientes"',
-                  subTitle: 'Productos',
-                  content: 'Aceite, Pan, Azucar',
-                  secondarySubTitle: 'Distribucion',
-                  secondaryContent: 'Por CDR',
-                  advice: 'Miercoles 16:00h',
-                  price: 250.0,
-                })
-              }
-              color="info"
-              sx={{ color: '#3f51b5', display: { xs: 'none', md: 'block' } }}
-            >
-              Probar Aviso
-            </Button>
-          </FlexBox>
+    <AppBar color="transparent" elevation={1} position="sticky">
+      <Toolbar sx={{ justifyContent: 'space-between' }}>
+        <FlexBox sx={{ alignItems: 'center' }}>
+          <IconButton
+            onClick={sidebarActions.toggle}
+            size="large"
+            edge="start"
+            color="info"
+            aria-label="menu"
+            sx={{ mr: 1, color: '#3f51b5' }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Button
+            onClick={() =>
+              showNotification(notificationsActions, {
+                type: 'info',
+                title: 'Producto nuevo en la TRD "Los Combatientes"',
+                subTitle: 'Productos',
+                content: 'Aceite, Pan, Azucar',
+                secondarySubTitle: 'Distribucion',
+                secondaryContent: 'Por CDR',
+                advice: 'Miercoles 16:00h',
+                price: 250.0,
+              })
+            }
+            color="info"
+            sx={{ color: '#3f51b5', display: { xs: 'none', md: 'block' } }}
+          >
+            Probar Aviso
+          </Button>
+        </FlexBox>
+        <FlexBox>
           <FlexBox>
-            <FlexBox>
-              <Tooltip title="Hot keys" arrow sx={{ display: { xs: 'none', md: 'block' } }}>
-                <HotKeysButton
-                  size="small"
-                  variant="outlined"
-                  aria-label="open hotkeys dialog"
-                  onClick={hotKeysDialogActions.open}
-                >
-                  alt + /
-                </HotKeysButton>
-              </Tooltip>
-            </FlexBox>
-
-            <Tooltip title="Cambiar tema" arrow sx={{ color: '#3f51b5' }}>
-              <IconButton color="info" edge="end" size="large" onClick={themeActions.toggle}>
-                <ThemeIcon />
-              </IconButton>
+            <Tooltip title="Hot keys" arrow sx={{ display: { xs: 'none', md: 'block' } }}>
+              <HotKeysButton
+                size="small"
+                variant="outlined"
+                aria-label="open hotkeys dialog"
+                onClick={hotKeysDialogActions.open}
+              >
+                alt + /
+              </HotKeysButton>
             </Tooltip>
-            <Divider
-              orientation="vertical"
-              flexItem
-              sx={{ margin: '0px', paddingLeft: '10px', paddingRight: '10px' }}
-            />
-            {state.isAuthenticated ? (
-              <>
-                <Tooltip title="Notificaciones" arrow sx={{ color: '#3f51b5' }}>
-                  <IconButton
-                    color="info"
-                    edge="end"
-                    size="large"
-                    component={Link}
-                    to={'/notifications'}
-                  >
-                    <Badge badgeContent={4} max={99} color="error">
-                      <Notifications />
-                    </Badge>
-                  </IconButton>
-                </Tooltip>
-                <Divider
-                  orientation="vertical"
-                  flexItem
-                  sx={{ margin: '0px', paddingLeft: '10px', paddingRight: '10px' }}
-                />
-                <Tooltip title="Opciones de usuario" arrow sx={{ color: '#3f51b5' }}>
-                  {/* <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}> */}
-                  <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
-                    <AccountCircleIcon />
-                  </IconButton>
-                </Tooltip>
-              </>
-            ) : (
-              <Tooltip title="Iniciar sesion" arrow sx={{ color: '#3f51b5' }}>
+          </FlexBox>
+
+          <Tooltip title="Cambiar tema" arrow sx={{ color: '#3f51b5' }}>
+            <IconButton color="info" edge="end" size="large" onClick={themeActions.toggle}>
+              <ThemeIcon />
+            </IconButton>
+          </Tooltip>
+          <Divider
+            orientation="vertical"
+            flexItem
+            sx={{ margin: '0px', paddingLeft: '10px', paddingRight: '10px' }}
+          />
+          {state.isAuthenticated ? (
+            <>
+              <Tooltip title="Notificaciones" arrow sx={{ color: '#3f51b5' }}>
                 <IconButton
                   color="info"
                   edge="end"
                   size="large"
-                  onClick={() => {
-                    signIn().then(({ username }) => {
-                      //Consultar datos del perfil
-                      console.log(username);
-                    });
-                  }}
+                  component={Link}
+                  to={'/notifications'}
                 >
-                  <LoginIcon />
+                  <Badge badgeContent={4} max={99} color="error">
+                    <Notifications />
+                  </Badge>
                 </IconButton>
               </Tooltip>
-            )}
-            <Divider
-              orientation="vertical"
-              flexItem
-              sx={{ margin: '0px', paddingLeft: '10px', paddingRight: '10px' }}
-            />
-            <Tooltip title="Opciones de usuario" arrow sx={{ color: '#3f51b5' }}>
-              <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
-                <AccountCircleIcon />
-              </IconButton>
-            </Tooltip>
-            <Divider
-              orientation="vertical"
-              flexItem
-              sx={{ margin: '0px', paddingLeft: '10px', paddingRight: '10px' }}
-            />
-            <Tooltip title="Notificaciones" arrow sx={{ color: '#3f51b5' }}>
+              <Divider
+                orientation="vertical"
+                flexItem
+                sx={{ margin: '0px', paddingLeft: '10px', paddingRight: '10px' }}
+              />
+              <Tooltip title="Opciones de usuario" arrow sx={{ color: '#3f51b5' }}>
+                {/* <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}> */}
+                <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
+                  <AccountCircleIcon />
+                </IconButton>
+              </Tooltip>
+            </>
+          ) : (
+            <Tooltip title="Iniciar sesion" arrow sx={{ color: '#3f51b5' }}>
               <IconButton
                 color="info"
                 edge="end"
                 size="large"
-                component={Link}
-                to={'/notifications'}
+                onClick={() => {
+                  signIn().then(({ username }) => {
+                    //Consultar datos del perfil
+                    console.log(username);
+                  });
+                }}
               >
-                <Badge badgeContent={4} max={99} color="error">
-                  <Notifications />
-                </Badge>
+                <LoginIcon />
               </IconButton>
             </Tooltip>
-          </FlexBox>
-        </Toolbar>
-      </AppBar>
-    </Box>
+          )}
+          <Divider
+            orientation="vertical"
+            flexItem
+            sx={{ margin: '0px', paddingLeft: '10px', paddingRight: '10px' }}
+          />
+          <Tooltip title="Opciones de usuario" arrow sx={{ color: '#3f51b5' }}>
+            <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
+              <AccountCircleIcon />
+            </IconButton>
+          </Tooltip>
+          <Divider
+            orientation="vertical"
+            flexItem
+            sx={{ margin: '0px', paddingLeft: '10px', paddingRight: '10px' }}
+          />
+          <Tooltip title="Notificaciones" arrow sx={{ color: '#3f51b5' }}>
+            <IconButton color="info" edge="end" size="large" component={Link} to={'/notifications'}>
+              <Badge badgeContent={4} max={99} color="error">
+                <Notifications />
+              </Badge>
+            </IconButton>
+          </Tooltip>
+        </FlexBox>
+      </Toolbar>
+    </AppBar>
   );
 }
 
