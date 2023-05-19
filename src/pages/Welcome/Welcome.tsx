@@ -78,10 +78,12 @@ function Welcome() {
             Bienvenido al sistema de bodega virtual
           </Typography>
           <Typography
-            p={2}
+            px={2}
+            pb={2}
             ml={3}
             variant="h6"
             style={{ textAlign: 'left', textShadow: '1px 1px #3c3c3c' }}
+            color={'whitesmoke'}
           >
             Este sistema le permitirá un mejor acceso a las informaciones del acontecer gastronómico
             de nuestra sociedad
