@@ -58,7 +58,7 @@ function Welcome() {
       <Meta title="Inicio" />
       {!session ? (
         <Box style={{ textAlign: 'center' }}>
-          <Grid container sx={{ position: 'absolute', zIndex: -1 }} className="welcome-pic">
+          <Grid container sx={{ position: 'fixed', zIndex: -1 }} className="welcome-pic">
             <Grid item className="item item--first" alignContent={'center'} display={'flex'}>
               <img
                 src="https://image.jimcdn.com/app/cms/image/transf/dimension=2140x10000:format=jpg/path/s79b46c029f74af8a/image/i8ef3d6ce27214cc4/version/1600381919/image.jpg"
