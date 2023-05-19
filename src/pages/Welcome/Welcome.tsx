@@ -89,6 +89,60 @@ function Welcome() {
             Este sistema le permitirá un mejor acceso a las informaciones del acontecer gastronómico
             de nuestra sociedad
           </Typography>
+          <Grid container sx={{ position: 'fixed', zIndex: -1 }} className="welcome-pic">
+            <Grid item>
+              <Typography
+                p={3}
+                ml={3}
+                pb={0}
+                variant="h4"
+                style={{ textAlign: 'left', textShadow: '1px 1px #3c3c3c' }}
+                fontWeight={900}
+                color={'whitesmoke'}
+              >
+                Datos de su núcleo
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography
+                p={3}
+                ml={3}
+                pb={0}
+                variant="h4"
+                style={{ textAlign: 'left', textShadow: '1px 1px #3c3c3c' }}
+                fontWeight={900}
+                color={'whitesmoke'}
+              >
+                Avisos de productos en comercios cercanos
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography
+                p={3}
+                ml={3}
+                pb={0}
+                variant="h4"
+                style={{ textAlign: 'left', textShadow: '1px 1px #3c3c3c' }}
+                fontWeight={900}
+                color={'whitesmoke'}
+              >
+                Informaciones de la oficina de comercio
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography
+                p={3}
+                ml={3}
+                pb={0}
+                variant="h4"
+                style={{ textAlign: 'left', textShadow: '1px 1px #3c3c3c' }}
+                fontWeight={900}
+                color={'whitesmoke'}
+              >
+                Acercamiento digital a su bodega
+              </Typography>
+            </Grid>
+          </Grid>
           <Button variant={'contained'} onClick={login}>
             Comenzar
           </Button>
