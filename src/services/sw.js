@@ -5,3 +5,9 @@ import { CacheFirst } from 'workbox-strategies';
 precacheAndRoute(self.__WB_MANIFEST);
 
 registerRoute(({ url }) => url.origin === 'https://example.com', new CacheFirst());
+
+self.addEventListener('fetch', (ev)={
+
+ ev.respondWith(CacheFirst(ev))
+});
+
