@@ -36,7 +36,7 @@ export async function GetProfileConfiguration(params?: any): Promise<ProfileCont
     return { isConfig, profile, nucleo };
   } catch (error) {
     console.error('Error consuming API', error);
-    return {};
+    console.alert('algo');
   }
 }
 export function UpdateProfileConfiguration(params: any) {
