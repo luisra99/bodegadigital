@@ -93,7 +93,7 @@ function Welcome() {
             Este sistema le permitirá un mejor acceso a las informaciones del acontecer gastronómico
             de nuestra sociedad
           </Typography>
-          <Grid container>
+          {/* <Grid container>
             <Grid item>
               <Box width={80} height={80} borderRadius={'50%'} sx={{ backgroundColor: 'red', display: 'flex',
 alignItems: 'center',
@@ -154,7 +154,7 @@ justifyContent: 'center' }}>
                 <StoreMallDirectoryIcon />
               </Typography>
             </Grid>
-          </Grid>
+          </Grid> */}
           <Button variant={'contained'} onClick={login}>
             Comenzar
           </Button>
