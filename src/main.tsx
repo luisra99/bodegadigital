@@ -7,7 +7,10 @@ import welcome from '@/utils/welcome';
 // These are the two main chunks that are used to render the core structure of the app
 // Importing them with Promise.all (by using HTTP/2 multiplexing) we can load them in parallel
 // and achieve the best possible performance
-
+document.addEventListener('DOMContentLoaded',()=>{
+  if('serviceWorker' in navigator)
+  navigator.serviceWorker.register('./service/sw.js')
+})
 Promise.all([import('@/Root'), import('@/App')]).then(([{ default: render }, { default: App }]) => {
   render(App);
 });
