@@ -11,7 +11,7 @@ const profile_api = import.meta.env.VITE_BODEGA_PROFILE;
 export async function SetProfileConfiguration(params: any) {
   try {
     const { values } = params;
-    const response = await axios.post(`${api}${profile_api}`, values);
+    const response = await axios.post(`http://localhost:3000/profile`, values);
 
     return response;
   } catch (error) {
