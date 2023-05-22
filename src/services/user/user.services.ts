@@ -25,7 +25,7 @@ export async function GetProfileConfiguration(params?: any): Promise<ProfileCont
   try {
     const { username } = params;
     // Real Service
-    // const response = (await axios.get(`${api}${profile_api}`));
+    const response = (await axios.get(`${api}${profile_api}`));
     // const { isConfig, profile, nucleo } = response.data
     //SeedData
     const { isConfig, profile, nucleo } = {
