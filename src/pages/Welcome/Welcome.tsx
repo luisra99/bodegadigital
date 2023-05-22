@@ -95,8 +95,8 @@ function Welcome() {
           </Typography>
           <Grid container>
             <Grid item>
-              <Box width={80} height={80} borderRadius={'50%'} sx={{ backgroundColor: 'red', display: 'flex'
-alignItems: 'center'
+              <Box width={80} height={80} borderRadius={'50%'} sx={{ backgroundColor: 'red', display: 'flex',
+alignItems: 'center',
 justifyContent: 'center' }}>
                 <FeedIcon sx={{ width: '60px', height: '60px' }} />
               </Box>
