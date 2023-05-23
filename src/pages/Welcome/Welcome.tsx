@@ -31,7 +31,8 @@ function Welcome() {
     try {
       signIn().then(async ({ username }) => {
         try {
-          const { isConfig } = await GetProfileConfiguration({ username: username });
+          const response = await GetProfileConfiguration({ username: username });
+          const isConfig = response?.isConfig ?? false;
           isConfig && navigate('/profile');
           setConfig(isConfig);
         } catch (error: any) {
