@@ -1,12 +1,12 @@
-import { ProfileContent } from '@/shared/interfaces/common';
+// import { ProfileContent } from '@/shared/interfaces/common';
 
-import { isConfig_seed, profile_seed, infoNucleo_seed } from '../../seed';
+// import { isConfig_seed, profile_seed, infoNucleo_seed } from '../../seed';
 
 import axios from 'axios';
 
-const api = import.meta.env.VITE_BODEGA_ENDPOINT;
-const claim_api = import.meta.env.VITE_BODEGA_CLAIM;
-const profile_api = import.meta.env.VITE_BODEGA_PROFILE;
+// const api = import.meta.env.VITE_BODEGA_ENDPOINT;
+// const claim_api = import.meta.env.VITE_BODEGA_CLAIM;
+// const profile_api = import.meta.env.VITE_BODEGA_PROFILE;
 
 export async function SetProfileConfiguration(params: any) {
   try {
@@ -21,9 +21,9 @@ export async function SetProfileConfiguration(params: any) {
     };
   }
 }
-export async function GetProfileConfiguration(params?: any): Promise<ProfileContent> {
+export async function GetProfileConfiguration(params?: any) {
   try {
-    const { username } = params;
+    // const { username } = params;
     // Real Service
     const response = (await axios.get(`http://localhost:3000/profile`));
     const { isConfig, profile, nucleo } = response.data
@@ -36,7 +36,6 @@ export async function GetProfileConfiguration(params?: any): Promise<ProfileCont
     return { isConfig, profile, nucleo };
   } catch (error) {
     console.error('Error consuming API', error);
-    console.alert('algo');
   }
 }
 export function UpdateProfileConfiguration(params: any) {
