@@ -14,7 +14,7 @@ import { ProfileContent } from '@/shared/interfaces/common';
 import './Profile.sass';
 
 function Profile() {
-  const [profileContent, setProfileContent] = useState<ProfileContent>({});
+  const [profileContent, setProfileContent] = useState<any>({});
   const [requestButton, activeButton] = useState<boolean>(true);
   const { state, signOut } = useAuthContext();
   useEffect(() => {
