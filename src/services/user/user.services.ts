@@ -27,12 +27,6 @@ export async function GetProfileConfiguration(params?: any) {
     // Real Service
     const response = (await axios.get(`http://localhost:3000/profile`));
     const { isConfig, profile, nucleo } = response.data
-    //SeedData
-    // const { isConfig, profile, nucleo } = {
-    //   isConfig: isConfig_seed,
-    //   profile: profile_seed,
-    //   nucleo: infoNucleo_seed,
-    // };
     return { isConfig, profile, nucleo };
   } catch (error) {
     console.error('Error consuming API', error);
