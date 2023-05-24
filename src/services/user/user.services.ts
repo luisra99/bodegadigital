@@ -25,8 +25,8 @@ export async function GetProfileConfiguration(params?: any) {
   try {
     const { username } = params;
     // Real Service
-    const response = (await axios.get(`http://localhost:3000/profile`));
-    const { isConfig, profile, nucleo } = response.data
+    const response = await axios.get(`http://localhost:3000/profile`);
+    const { isConfig, profile, nucleo } = response.data;
     //SeedData
     // const { isConfig, profile, nucleo } = {
     //   isConfig: isConfig_seed,
@@ -36,8 +36,9 @@ export async function GetProfileConfiguration(params?: any) {
     return { isConfig, profile, nucleo };
   } catch (error) {
     console.error('Error consuming API', error);
-
-}}
+    return {};
+  }
+}
 export function ReclaimRegistration(setState: (value: any) => void, ci: string) {
   setState(false);
   console.log(ci);
