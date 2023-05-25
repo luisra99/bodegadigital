@@ -77,7 +77,7 @@ function Welcome() {
             ml={3}
             pb={0}
             variant="h4"
-            style={{ textAlign: 'left', textShadow: '1px 1px #3c3c3c' }}
+            style={{ textAlign: 'left', textShadow: '1px 1px 5px #3c3c3c' }}
             fontWeight={900}
             color={'whitesmoke'}
           >
@@ -88,7 +88,7 @@ function Welcome() {
             pb={2}
             ml={3}
             variant="h6"
-            style={{ textAlign: 'left', textShadow: '1px 1px #3c3c3c' }}
+            style={{ textAlign: 'left', textShadow: '1px 1px 5px #3c3c3c' }}
             color={'whitesmoke'}
           >
             Este sistema le permitirá un mejor acceso a las informaciones del acontecer gastronómico
