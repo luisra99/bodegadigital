@@ -10,6 +10,7 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
+      registerType: "autoUpdate" ,
       manifest,
       includeAssets: ['favicon.svg', 'favicon.ico', 'robots.txt', 'apple-touch-icon.png', 'sw.js'],
       // switch to "true" to enable sw on development
@@ -17,6 +18,7 @@ export default defineConfig({
         enabled: false,
       },
       workbox: {
+        importScripts:['sw.js'],
         globPatterns: ['**/*.{js,css,html}', '**/*.{svg,png,jpg,gif}'],
       },
     }),

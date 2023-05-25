@@ -2,9 +2,9 @@ import isMobile from '@/utils/is-mobile';
 
 import type { Notifications } from './types';
 
-const title = 'Bodega Virtual';
+const title = 'Bodega Digital';
 
-const email = 'soportebodegavirtual@xetid.cu';
+const email = 'soportebodegadigital@xetid.cu';
 
 const repository = 'https://xetid.cu';
 

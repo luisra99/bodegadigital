@@ -1,7 +1,7 @@
 {
-  "name": "Bodega Virtual",
+  "name": "Bodega Digital",
   "short_name": "BV",
-  "description": "Mi bodega",
+  "description": "BD",
   "icons": [
     {
       "src": "pwa-192x192.png",

@@ -28,7 +28,7 @@ export default function SignUp() {
 
           <h3 style={{ margin: '10px', textAlign: 'center' }}>Ya casi comenzamos..</h3>
           <h4 style={{ margin: '10px', textAlign: 'center' }}>
-            Complete los siguientes campos para comenzar a disfrutar del servicio de bodega virtual
+            Complete los siguientes campos para comenzar a disfrutar del servicio de bodega digital
           </h4>
 
           <GForm
@@ -141,7 +141,7 @@ export default function SignUp() {
             ]}
             post_service={SetProfileConfiguration}
             notificationStack={notificationsActions}
-            //TODO:Enumerador de rutas
+            //TODO:Enumerados de rutas
             redirect="/profile"
           />
         </Box>

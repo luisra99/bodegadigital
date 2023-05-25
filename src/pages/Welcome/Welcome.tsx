@@ -19,7 +19,7 @@ import { showNotification } from '@/utils/notification/notification';
 import './Welcome.sass';
 
 function Welcome() {
-  //Consultar si la sesion esta configurada
+  //Consultar si la sesión esta configurada
   const navigate = useNavigate();
   const [profileConfig, setConfig] = useState<boolean | undefined>(undefined);
   // TODO: Consumir con usuario del login y usar el estado de la sesión para manejar la vista
@@ -81,7 +81,7 @@ function Welcome() {
             fontWeight={900}
             color={'whitesmoke'}
           >
-            Bienvenido al sistema de bodega virtual
+            Bienvenido al sistema de bodega digital
           </Typography>
           <Typography
             px={3}
