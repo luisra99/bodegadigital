@@ -2,9 +2,10 @@ import react from '@vitejs/plugin-react';
 import * as path from 'path';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
-import { rollup, InputOptions, OutputOptions } from 'rollup'
-import rollupPluginTypescript from 'rollup-plugin-typescript'
-import { nodeResolve } from '@rollup/plugin-node-resolve'
+
+// import { rollup, InputOptions, OutputOptions } from 'rollup'
+// import rollupPluginTypescript from 'rollup-plugin-typescript'
+// import { nodeResolve } from '@rollup/plugin-node-resolve'
 import manifest from './manifest.json';
 
 // https://vitejs.dev/config/
@@ -30,7 +31,7 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: "autoUpdate" ,
+      registerType: 'autoUpdate',
       manifest,
       includeAssets: ['favicon.svg', 'favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
       // switch to "true" to enable sw on development
@@ -51,5 +52,3 @@ export default defineConfig({
   },
   envPrefix: 'VITE_',
 });
-
-
