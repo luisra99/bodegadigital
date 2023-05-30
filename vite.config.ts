@@ -5,7 +5,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 import { rollup, InputOptions, OutputOptions } from 'rollup'
 import rollupPluginTypescript from 'rollup-plugin-typescript'
-// import { nodeResolve } from '@rollup/plugin-node-resolve'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
 import manifest from './manifest.json';
 
 // https://vitejs.dev/config/
