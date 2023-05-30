@@ -34,8 +34,8 @@ function Header() {
   const { state, signIn, signOut, getBasicUserInfo } = useAuthContext();
 
   return (
-    <AppBar color="default" elevation={1} position="sticky">
-      <Toolbar sx={{ justifyContent: 'space-between' }}>
+    <AppBar color="default" elevation={1} position="fixed">
+      <Toolbar sx={{ justifyContent: 'space-between', minHeight: '50px' }}>
         <FlexBox sx={{ alignItems: 'center' }}>
           <IconButton
             onClick={sidebarActions.toggle}
