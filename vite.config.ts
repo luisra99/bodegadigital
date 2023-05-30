@@ -40,7 +40,7 @@ export default defineConfig({
       },
       workbox: {
         // importScripts:['sw.js'],
-        globPatterns: ['**/*.{js,css,html}', '**/*.{svg,png,jpg,gif}'],
+        globPatterns: ['**/*.{js,css,html}', '**/*.{svg,png,jpg,gif}', '**/sw-custom.js'],
       },
     }),
     CompileTsServiceWorker()
