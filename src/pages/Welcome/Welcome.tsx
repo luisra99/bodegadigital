@@ -64,11 +64,14 @@ function Welcome() {
       {!session ? (
         <Box style={{ textAlign: 'center' }}>
           <Grid container sx={{ position: 'fixed', zIndex: -1 }} className="welcome-pic">
-            <Grid item className="item item--first" alignContent={'center'} display={'flex'} sx={{width:'100%'}}>
-              <img
-                src="/public/image_c.jpg"
-                alt="bodega"
-              />
+            <Grid
+              item
+              className="item item--first"
+              alignContent={'center'}
+              display={'flex'}
+              sx={{ width: '100%' }}
+            >
+              <img src="src/images/image_c.jpg" alt="bodega" />
             </Grid>
           </Grid>
 

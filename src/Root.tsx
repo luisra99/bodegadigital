@@ -3,7 +3,8 @@ import { createRoot } from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import { RecoilRoot } from 'recoil';
 
-import { AuthProvider, useAuthContext } from '@asgardeo/auth-react';
+import { AuthProvider,  } from '@asgardeo/auth-react';
+      
 
 import ThemeProvider from '@/theme/Provider';
 
