@@ -15,7 +15,7 @@ import Loading from '@/shared/components/Loading';
 import Meta from '@/shared/components/Meta';
 import useNotifications from '@/store/notifications';
 import { showNotification } from '@/utils/notification/notification';
-
+import background from 'public/image_c.jpg';
 import './Welcome.sass';
 
 function Welcome() {
@@ -71,7 +71,7 @@ function Welcome() {
               display={'flex'}
               sx={{ width: '100%' }}
             >
-              <img src="src/images/image_c.jpg" alt="bodega" />
+              <img src={background} alt="bodega" />
             </Grid>
           </Grid>
 
