@@ -35,7 +35,7 @@ function Header() {
 
   return (
     <AppBar color="default" elevation={1} position="fixed">
-      <Toolbar sx={{ justifyContent: 'space-between', minHeight: '50px' }}>
+      <Toolbar sx={{ justifyContent: 'space-between', minHeight: '64px' }}>
         <FlexBox sx={{ alignItems: 'center' }}>
           <IconButton
             onClick={sidebarActions.toggle}

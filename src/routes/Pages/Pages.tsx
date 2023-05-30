@@ -13,7 +13,7 @@ function Pages() {
   const [session, setSession] = useState(true);
   const NotFound = lazy(() => import('@/pages/NotFound'));
   return (
-    <Box sx={{ height: (theme) => getPageHeight(theme), marginTop: '50px' }}>
+    <Box sx={{ height: (theme) => getPageHeight(theme), marginTop: '64px' }}>
       <Routes>
         <Route
           path="/"
