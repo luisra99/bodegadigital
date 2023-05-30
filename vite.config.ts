@@ -1,31 +1,21 @@
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 import react from '@vitejs/plugin-react';
+import * as fs from 'fs';
 import * as path from 'path';
+import { rollup, InputOptions, OutputOptions } from 'rollup';
+import rollupPluginTypescript from 'rollup-plugin-typescript';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
+import { GenerateSWOptions } from 'workbox-build';
 
-import { rollup, InputOptions, OutputOptions } from 'rollup'
-import rollupPluginTypescript from 'rollup-plugin-typescript'
-import { nodeResolve } from '@rollup/plugin-node-resolve'
 import manifest from './manifest.json';
 
 // https://vitejs.dev/config/
-
-const CompileTsServiceWorker = () => ({
-  name: 'compile-typescript-service-worker',
-  async writeBundle(_options, _outputBundle) {
-    const inputOptions: InputOptions = {
-      input: 'src/sw-custom.ts',
-      plugins: [rollupPluginTypescript(), nodeResolve()],
-    }
-    const outputOptions: OutputOptions = {
-      file: 'dist/sw-custom.js',
-      format: 'es',
-    }
-    const bundle = await rollup(inputOptions)
-    await bundle.write(outputOptions)
-    await bundle.close()
-  }
-})
+const generateSWOptions: GenerateSWOptions = {
+  importScripts: ['./src/custom-service-worker.js'],
+  globPatterns: ['**/*.{js,css,html}', '**/*.{svg,png,jpg,gif}'],
+  swDest: 'sw.js',
+};
 
 export default defineConfig({
   plugins: [
@@ -38,13 +28,8 @@ export default defineConfig({
       devOptions: {
         enabled: true,
       },
-      workbox: {
-        // importScripts:['sw.js'],
-        importScripts: ['./sw-functional.js'],
-        globPatterns: ['**/*.{js,css,html}','**/node_modules/**/*', '**/*.{svg,png,jpg,gif}', '**/sw-custom.js'],
-      },
+      workbox: generateSWOptions,
     }),
-    CompileTsServiceWorker()
   ],
   resolve: {
     alias: {
