@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { lazy, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { Button, Typography, Box, Grid } from '@mui/material';
 
 import { useAuthContext } from '@asgardeo/auth-react';
@@ -10,6 +11,7 @@ import Loading from '@/shared/components/Loading';
 import Meta from '@/shared/components/Meta';
 import useNotifications from '@/store/notifications';
 import { showNotification } from '@/utils/notification/notification';
+
 import background from '../../../public/image_c.jpg';
 import './Welcome.sass';
 
@@ -66,7 +68,7 @@ function Welcome() {
               display={'flex'}
               sx={{ width: '100%' }}
             >
-              <img src={background} alt="bodega" />
+              <img src={'/image_c.jpg'} alt="bodega" />
             </Grid>
           </Grid>
 

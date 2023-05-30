@@ -36,29 +36,29 @@ self.addEventListener('activate', function (event) {
 self.addEventListener('install', () => {
   console.log('Custom service worker installed');
 });
-self.addEventListener('push', function (event) {
-  if (event.data) {
-    // Retrieve the message payload sent from the server
-    const message = event.data.text();
+// self.addEventListener('push', function (event) {
+//   if (event.data) {
+//     // Retrieve the message payload sent from the server
+//     const message = event.data.text();
 
-    // Do something with the message, such as display a notification
-    console.log('push');
-  } else {
-    console.log('No payload received');
-  }
-});
+//     // Do something with the message, such as display a notification
+//     console.log('push');
+//   } else {
+//     console.log('No payload received');
+//   }
+// });
 
-self.addEventListener('fetch', function (event) {
-  console.log('un fetch');
-  event.respondWith(
-    caches.match(event.request).then(function (response) {
-      // If the resource was found in the cache, return it
-      if (response) {
-        return response;
-      }
+// self.addEventListener('fetch', function (event) {
+//   console.log('un fetch');
+//   event.respondWith(
+//     caches.match(event.request).then(function (response) {
+//       // If the resource was found in the cache, return it
+//       if (response) {
+//         return response;
+//       }
 
-      // Otherwise fetch the resource from the network
-      return fetch(event.request);
-    }),
-  );
-});
+//       // Otherwise fetch the resource from the network
+//       return fetch(event.request);
+//     }),
+//   );
+// });
