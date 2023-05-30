@@ -2,6 +2,7 @@ import react from '@vitejs/plugin-react';
 import * as path from 'path';
 import { defineConfig } from 'vite';
 import { VitePWA, VitePWAOptions } from 'vite-plugin-pwa';
+
 import manifest from './manifest.json';
 
 const pwaOptions: Partial<VitePWAOptions> = {
@@ -15,7 +16,7 @@ const pwaOptions: Partial<VitePWAOptions> = {
 };
 
 pwaOptions.srcDir = 'src';
-pwaOptions.filename = 'custom-service-worker.tsx';
+pwaOptions.filename = 'custom-service-worker.ts';
 pwaOptions.strategies = 'injectManifest';
 // https://vitejs.dev/config/
 
