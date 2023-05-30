@@ -64,9 +64,9 @@ function Welcome() {
       {!session ? (
         <Box style={{ textAlign: 'center' }}>
           <Grid container sx={{ position: 'fixed', zIndex: -1 }} className="welcome-pic">
-            <Grid item className="item item--first" alignContent={'center'} display={'flex'}>
+            <Grid item className="item item--first" alignContent={'center'} display={'flex'} sx={{width:'100%'}}>
               <img
-                src="https://image.jimcdn.com/app/cms/image/transf/dimension=2140x10000:format=jpg/path/s79b46c029f74af8a/image/i8ef3d6ce27214cc4/version/1600381919/image.jpg"
+                src="/public/image_c.jpg"
                 alt="bodega"
               />
             </Grid>
@@ -94,68 +94,6 @@ function Welcome() {
             Este sistema le permitirá un mejor acceso a las informaciones del acontecer gastronómico
             de nuestra sociedad
           </Typography>
-          {/* <Grid container>
-            <Grid item>
-              <Box width={80} height={80} borderRadius={'50%'} sx={{ backgroundColor: 'red', display: 'flex',
-alignItems: 'center',
-justifyContent: 'center' }}>
-                <FeedIcon sx={{ width: '60px', height: '60px' }} />
-              </Box>
-              <Typography
-                p={3}
-                ml={3}
-                pb={0}
-                variant="h6"
-                style={{ textAlign: 'left', textShadow: '1px 1px #3c3c3c' }}
-                fontWeight={900}
-                color={'whitesmoke'}
-              >
-                Información del núcleo
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography
-                p={3}
-                ml={3}
-                pb={0}
-                variant="h4"
-                style={{ textAlign: 'left', textShadow: '1px 1px #3c3c3c' }}
-                fontWeight={900}
-                color={'whitesmoke'}
-              >
-                Avisos de productos en comercios cercanos
-                <ProductionQuantityLimitsIcon />
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography
-                p={3}
-                ml={3}
-                pb={0}
-                variant="h4"
-                style={{ textAlign: 'left', textShadow: '1px 1px #3c3c3c' }}
-                fontWeight={900}
-                color={'whitesmoke'}
-              >
-                Informaciones de la oficina de comercio
-                <BusinessIcon />
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography
-                p={3}
-                ml={3}
-                pb={0}
-                variant="h4"
-                style={{ textAlign: 'left', textShadow: '1px 1px #3c3c3c' }}
-                fontWeight={900}
-                color={'whitesmoke'}
-              >
-                Acercamiento digital a su bodega
-                <StoreMallDirectoryIcon />
-              </Typography>
-            </Grid>
-          </Grid> */}
           <Button variant={'contained'} onClick={login}>
             Comenzar
           </Button>
