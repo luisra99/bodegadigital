@@ -15,7 +15,7 @@ precacheAndRoute(self.__WB_MANIFEST);
 cleanupOutdatedCaches();
 
 // to allow work offline
-registerRoute(new NavigationRoute(createHandlerBoundToURL('index.html'), { allowlist }));
+registerRoute(new NavigationRoute(createHandlerBoundToURL('index.html')));
 
 self.skipWaiting();
 clientsClaim();
