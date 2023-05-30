@@ -1,11 +1,6 @@
 import { useState } from 'react';
 import { lazy, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-import BusinessIcon from '@mui/icons-material/Business';
-import FeedIcon from '@mui/icons-material/Feed';
-import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
-import StoreMallDirectoryIcon from '@mui/icons-material/StoreMallDirectory';
 import { Button, Typography, Box, Grid } from '@mui/material';
 
 import { useAuthContext } from '@asgardeo/auth-react';
