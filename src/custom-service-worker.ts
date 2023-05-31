@@ -1,9 +1,5 @@
-/// <reference no-default-lib="true"/>
-/// <reference lib="esnext" />
-/// <reference lib="webworker" />
-const sw = self as unknown as ServiceWorkerGlobalScope & typeof globalThis;
-
 import ClassNameGenerator from '@mui/utils/ClassNameGenerator/ClassNameGenerator';
+
 import { clientsClaim } from 'workbox-core';
 import {
   cleanupOutdatedCaches,
@@ -11,6 +7,11 @@ import {
   precacheAndRoute,
 } from 'workbox-precaching';
 import { NavigationRoute, registerRoute } from 'workbox-routing';
+
+/// <reference no-default-lib="true"/>
+/// <reference lib="esnext" />
+/// <reference lib="webworker" />
+const sw = self as unknown as ServiceWorkerGlobalScope & typeof globalThis;
 
 declare let self: ServiceWorkerGlobalScope;
 
@@ -23,23 +24,23 @@ cleanupOutdatedCaches();
 self.skipWaiting();
 clientsClaim();
 
-self.addEventListener('install', function (event:any) {
+self.addEventListener('install', function (event: any) {
   event.waitUntil(
-    caches.open('my-cache').then(function(cache) {
+    caches.open('my-cache').then(function (cache) {
       return cache.addAll([
         '/', // Add the root path
         // Add more paths as needed
       ]);
-    })
+    }),
   );
   console.log('Custom service worker installed');
 });
 
-self.addEventListener('activate', function (event:any) {
+self.addEventListener('activate', function (event: any) {
   console.log('Custom service worker activated');
 });
 
-self.addEventListener('push', function (event:any) {
+self.addEventListener('push', function (event: any) {
   if (event.data) {
     // Retrieve the message payload sent from the server
     const message = event.data.text();
@@ -51,7 +52,7 @@ self.addEventListener('push', function (event:any) {
   }
 });
 
-self.addEventListener('fetch', function (event:any) {
+self.addEventListener('fetch', function (event: any) {
   console.log('un fetch');
   event.respondWith(
     caches.match(event.request).then(function (response) {
