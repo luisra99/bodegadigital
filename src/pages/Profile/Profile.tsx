@@ -14,19 +14,21 @@ import { ProfileContent } from '@/shared/interfaces/common';
 import './Profile.sass';
 
 function Profile() {
-  const [profileContent, setProfileContent] = useState<any>({});
+  const [profileContent, setProfileContent] = useState<any>({ profile: {} });
   const [requestButton, activeButton] = useState<boolean>(true);
   const { state, signOut } = useAuthContext();
   useEffect(() => {
-    GetProfileConfiguration({ username: 'luis' }).then((result) => setProfileContent(result));
+    GetProfileConfiguration({ username: 'luis' }).then(
+      (result) => result && setProfileContent(result),
+    );
   }, []);
 
   return (
     <>
       <Meta title="Perfil" />
       <Grid container spacing={2} justifyContent="space-around" mt={2}>
-        {Object.keys(profileContent).length === 0 ? (
-          <Typography variant="h4">No se pudo obtener la información del perfil</Typography>
+        {profileContent.profile && Object.keys(profileContent.profile).length < 1 ? (
+          <Typography variant="h4">No se pudo obtener la información del perfil </Typography>
         ) : (
           <>
             <Grid item xs={12} sm={12} md={6} lg={5} xl={4}>
@@ -45,7 +47,7 @@ function Profile() {
                   />
                 </Badge>
                 <Typography sx={{ marginX: '10px' }} variant="h5">
-                  {`${profileContent.profile?.nombre} ${profileContent.profile?.primer_apellido} ${profileContent.profile?.segundo_apellido}`}
+                  {` ${profileContent.profile?.nombre} ${profileContent.profile?.primer_apellido} ${profileContent.profile?.segundo_apellido}`}
                 </Typography>
                 <Typography variant="subtitle1">CI: {profileContent.profile?.ci}</Typography>
                 <Typography variant="h6">Información Asociada</Typography>

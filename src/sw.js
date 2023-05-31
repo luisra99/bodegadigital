@@ -1,27 +1,36 @@
-const CACHE_NAME = 'my-cache-v2';
+import { registerRoute } from 'workbox-routing';
+import { StaleWhileRevalidate,CacheFirst } from 'workbox-strategies';
+const version=1;
+const CACHE_NAME = `my-cache-v${version}`;
+
 self.__WB_MANIFEST;
-self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    (async function () {
-      console.log('La url es ', event.request.url);
-      const cachedResponse = await caches.match(event.request);
-      if (cachedResponse) {
-        let url= event.request.url.
-        if(url.contain)
-        console.table(cachedResponse)
-        return cachedResponse;
-      }
-      try {
-        const fetchResponse = await fetch(event.request);
-        const cache = await caches.open(CACHE_NAME);
-        cache.put(event.request, fetchResponse.clone());
-        return fetchResponse;
-      } catch (err) {
-        console.error(err);
-        return new Response('<h1>Oops! Something went wrong.</h1>', {
-          headers: { 'Content-Type': 'text/html' },
-        });
-      }
-    })(),
-  );
-});
+// self.addEventListener('fetch', (event) => {
+//   const url = new URL(event.request.url);
+//   event.respondWith(
+//     (async function () {
+//       const cachedResponse = await caches.match(url.pathname);
+//       if (cachedResponse) {
+//         console.log('La url es ', url.pathname);
+//         const cachestr = cachedResponse;
+//         console.table(cachedResponse.bodyUsed);
+//         return cachedResponse;
+//       }
+//       try {
+//         const fetchResponse = await fetch(event.request);
+//         const cache = await caches.open(CACHE_NAME);
+//         cache.put(event.request, fetchResponse.clone());
+//         return fetchResponse;
+//       } catch (err) {
+//         console.error('Error en el service worker');
+//         console.error(err);
+//         return new Response(null, { status: 404 });
+//       }
+//     })(),
+//   );
+// });
+registerRoute(
+  ({ url }) => url.origin === 'http://localhost:3000',
+  new CacheFirst({
+    cacheName: 'fetch-responses',
+  })
+);
