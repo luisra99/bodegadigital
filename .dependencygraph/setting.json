@@ -1,0 +1,17 @@
+{
+  "alias": {
+    "@/*": "src\\*",
+    "@interfaces/*": "src\\shared\\interfaces\\*",
+    "@services/*": "src\\shared\\service\\*",
+    "@components/*": "src\\shared\\components\\*"
+  },
+  "resolveExtensions": [
+    ".js",
+    ".jsx",
+    ".ts",
+    ".tsx",
+    ".vue",
+    ".scss",
+    ".less"
+  ]
+}
