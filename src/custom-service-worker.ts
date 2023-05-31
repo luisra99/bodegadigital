@@ -1,3 +1,6 @@
+/// <reference no-default-lib="true"/>
+/// <reference lib="esnext" />
+/// <reference lib="webworker" />
 import ClassNameGenerator from '@mui/utils/ClassNameGenerator/ClassNameGenerator';
 
 import { clientsClaim } from 'workbox-core';
@@ -7,11 +10,6 @@ import {
   precacheAndRoute,
 } from 'workbox-precaching';
 import { NavigationRoute, registerRoute } from 'workbox-routing';
-
-/// <reference no-default-lib="true"/>
-/// <reference lib="esnext" />
-/// <reference lib="webworker" />
-const sw = self as unknown as ServiceWorkerGlobalScope & typeof globalThis;
 
 declare let self: ServiceWorkerGlobalScope;
 
