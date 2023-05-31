@@ -18,15 +18,15 @@ cleanupOutdatedCaches();
 self.skipWaiting();
 clientsClaim();
 
-self.addEventListener('install', function (event) {
+self.addEventListener('install', function (event:any) {
   console.log('Custom service worker installed');
 });
 
-self.addEventListener('activate', function (event) {
+self.addEventListener('activate', function (event:any) {
   console.log('Custom service worker activated');
 });
 
-self.addEventListener('push', function (event) {
+self.addEventListener('push', function (event:any) {
   if (event.data) {
     // Retrieve the message payload sent from the server
     const message = event.data.text();
@@ -38,7 +38,7 @@ self.addEventListener('push', function (event) {
   }
 });
 
-self.addEventListener('fetch', function (event) {
+self.addEventListener('fetch', function (event:any) {
   console.log('un fetch');
   event.respondWith(
     caches.match(event.request).then(function (response) {
