@@ -1,11 +1,11 @@
 import react from '@vitejs/plugin-react';
 import * as path from 'path';
 import { defineConfig } from 'vite';
-import { VitePWA, VitePWAOptions } from 'vite-plugin-pwa';
+import { VitePWA,ResolvedVitePWAOptions } from 'vite-plugin-pwa';
 
 import manifest from './manifest.json';
 
-const pwaOptions: Partial<VitePWAOptions> = {
+const pwaOptions: Partial<ResolvedVitePWAOptions> = {
   registerType: 'autoUpdate',
   strategies: 'injectManifest',
   manifest,
@@ -15,8 +15,9 @@ const pwaOptions: Partial<VitePWAOptions> = {
     enabled: true,
   },
   filename: 'sw.js',
+  swSrc:'src/sw.js',
+  swDest:'sw.js'
 };
-// pwaOptions.srcDir = 'src';
 // https://vitejs.dev/config/
 
 export default defineConfig({
