@@ -25,6 +25,10 @@
     }
   },
   "include": ["src"],
-  "exclude": ["node_modules", "**/*.spec.ts", "**/lib.webworker.d.ts"],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts", // Exclude test files
+    "workbox/**/*" // Exclude workbox directory
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
