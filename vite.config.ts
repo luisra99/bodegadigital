@@ -14,8 +14,8 @@ const pwaOptions: Partial<ResolvedVitePWAOptions> = {
   devOptions: {
     enabled: true,
   },
-  swSrc:'public/sw.js',
-  swDest:'dist/sw.js'
+  swSrc:'public',
+  swDest:'dist'
 };
 // https://vitejs.dev/config/
 
