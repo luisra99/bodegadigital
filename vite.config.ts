@@ -13,11 +13,10 @@ const pwaOptions: Partial<VitePWAOptions> = {
   // switch to "true" to enable sw on development
   devOptions: {
     enabled: true,
-    type: 'module',
   },
   filename: 'sw.js',
 };
-pwaOptions.srcDir = 'src';
+// pwaOptions.srcDir = 'src';
 // https://vitejs.dev/config/
 
 export default defineConfig({
