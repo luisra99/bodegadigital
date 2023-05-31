@@ -262,7 +262,7 @@ export function GForm(props: GFormProps) {
           error={!!touched[name] && !!errors[name]}
           onChange={handleChange}
         >
-          <MenuItem value="-1">{!formSource[name] ? 'Cargando' : 'Escojer'}...</MenuItem>
+          <MenuItem value="-1">{!formSource[name] ? 'Cargando' : 'Escoger'}...</MenuItem>
           {formSource[name]?.length &&
             formSource[name].map((item: any) => {
               return (

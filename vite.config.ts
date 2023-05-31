@@ -15,7 +15,7 @@ const pwaOptions: Partial<VitePWAOptions> = {
     enabled: true,
     type: 'module',
   },
-  filename: 'custom-service-worker.ts',
+  filename: 'sw.js',
 };
 pwaOptions.srcDir = 'src';
 // https://vitejs.dev/config/

@@ -12,7 +12,6 @@ import {
 import { NavigationRoute, registerRoute } from 'workbox-routing';
 
 declare let sw: ServiceWorkerGlobalScope;
-
 // self.__WB_MANIFEST is default injection point
 precacheAndRoute(sw.__WB_MANIFEST);
 
@@ -27,7 +26,6 @@ sw.addEventListener('install', function (event: any) {
     caches.open('my-cache').then(function (cache) {
       return cache.addAll([
         '/', // Add the root path
-        // Add more paths as needed
       ]);
     }),
   );
@@ -51,7 +49,7 @@ sw.addEventListener('push', function (event: any) {
 });
 
 sw.addEventListener('fetch', function (event: any) {
-  console.log('un fetch');
+  console.log('La url es ', event.request.url);
   event.respondWith(
     caches.match(event.request).then(function (response) {
       // If the resource was found in the cache, return it
