@@ -1,5 +1,4 @@
 import ClassNameGenerator from '@mui/utils/ClassNameGenerator/ClassNameGenerator';
-
 import { clientsClaim } from 'workbox-core';
 import {
   cleanupOutdatedCaches,
