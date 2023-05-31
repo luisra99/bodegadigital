@@ -1,3 +1,8 @@
+/// <reference no-default-lib="true"/>
+/// <reference lib="esnext" />
+/// <reference lib="webworker" />
+const sw = self as unknown as ServiceWorkerGlobalScope & typeof globalThis;
+
 import ClassNameGenerator from '@mui/utils/ClassNameGenerator/ClassNameGenerator';
 import { clientsClaim } from 'workbox-core';
 import {
@@ -19,6 +24,14 @@ self.skipWaiting();
 clientsClaim();
 
 self.addEventListener('install', function (event:any) {
+  event.waitUntil(
+    caches.open('my-cache').then(function(cache) {
+      return cache.addAll([
+        '/', // Add the root path
+        // Add more paths as needed
+      ]);
+    })
+  );
   console.log('Custom service worker installed');
 });
 
@@ -46,7 +59,6 @@ self.addEventListener('fetch', function (event:any) {
       if (response) {
         return response;
       }
-
       // Otherwise fetch the resource from the network
       return fetch(event.request);
     }),
