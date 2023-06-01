@@ -20,7 +20,7 @@ function App() {
       <CssBaseline />
       <Notifications />
       <HotKeys />
-      <SW />
+      {/* <SW /> */}
       <BrowserRouter>
         <Header />
         <Sidebar />
