@@ -17,10 +17,6 @@ const pwaOptions: Partial<VitePWAOptions> = {
   devOptions: {
     enabled: true,
   },
-  workbox: {
-    clientsClaim: true,
-    skipWaiting: true,
-  }
 };
 // https://vitejs.dev/config/
 
