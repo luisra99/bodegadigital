@@ -24,6 +24,6 @@
       "@components/*": ["src/shared/components/*"]
     }
   },
-  "include": ["src", "public/sw.js"],
+  "include": ["src", "public/sw.js","public"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
