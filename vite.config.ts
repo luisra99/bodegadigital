@@ -1,17 +1,13 @@
 import react from '@vitejs/plugin-react';
 import * as path from 'path';
 import { defineConfig } from 'vite';
-import { VitePWA,ResolvedVitePWAOptions} from 'vite-plugin-pwa';
+import { VitePWA,VitePWAOptions} from 'vite-plugin-pwa';
 
 import manifest from './manifest.json';
 
-const pwaOptions: Partial<ResolvedVitePWAOptions> = {
-  registerType:'autoUpdate',
-  // injectRegister: 'auto',
+const pwaOptions: Partial<VitePWAOptions> = {
   strategies: 'injectManifest',
-  srcDir: 'src',
-  swDest:'dist',
-  filename: 'sw.js',
+  registerType:'autoUpdate',
   manifest,
   includeAssets: ['favicon.svg', 'favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
   // switch to "true" to enable sw on development

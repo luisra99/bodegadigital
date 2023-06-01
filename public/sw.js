@@ -1,24 +1,16 @@
 import { registerRoute } from 'workbox-routing';
 import { StaleWhileRevalidate, CacheFirst } from 'workbox-strategies';
+import { precacheAndRoute } from 'workbox-precaching'
+import { clientsClaim } from 'workbox-core'
 
 const version = 1;
 const CACHE_NAME = `my-cache-v${version}`;
 
 self.__WB_MANIFEST;
+precacheAndRoute(self.__WB_MANIFEST)
 
-self.addEventListener('install', (event) => {
-  console.log('SW installed')
-  event.waitUntil(self.skipWaiting());
-});
-
-self.addEventListener('activate', (event) => {
-  console.log('SW Activated')
-  event.waitUntil(
-    Promise.all([
-      self.clients.claim(),
-    ]),
-  );
-});
+self.skipWaiting()
+clientsClaim()
 
 // self.addEventListener('fetch', (event) => {
 //   const url = new URL(event.request.url);
