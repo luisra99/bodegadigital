@@ -1,15 +1,16 @@
 import react from '@vitejs/plugin-react';
 import * as path from 'path';
 import { defineConfig } from 'vite';
-import { VitePWA,VitePWAOptions } from 'vite-plugin-pwa';
+import { VitePWA,ResolvedVitePWAOptions} from 'vite-plugin-pwa';
 
 import manifest from './manifest.json';
 
-const pwaOptions: Partial<VitePWAOptions> = {
+const pwaOptions: Partial<ResolvedVitePWAOptions> = {
   registerType:'autoUpdate',
   // injectRegister: 'auto',
   strategies: 'injectManifest',
   srcDir: 'src',
+  swDest:'dist',
   filename: 'sw.js',
   manifest,
   includeAssets: ['favicon.svg', 'favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
