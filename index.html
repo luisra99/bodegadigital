@@ -22,18 +22,6 @@
   <meta property="og:url" content="https://react-pwa.surenatoyan.com/" data-react-helmet="true" />
   <meta property="og:image" content="https://react-pwa.surenatoyan.com/cover.png" data-react-helmet="true" />
   <meta name="twitter:card" content="summary" data-react-helmet="true" />
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', async (event) => {
-        try {
-          const registration = await navigator.serviceWorker.register('./sw.js');
-          console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        } catch (err) {
-          console.log('ServiceWorker registration failed: ', err);
-        }
-      });
-    }
-  </script>
 </head>
 
 <body>
