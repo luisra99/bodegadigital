@@ -24,7 +24,7 @@
   <meta name="twitter:card" content="summary" data-react-helmet="true" />
   <script>
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', async () => {
+      window.addEventListener('load', async (event) => {
         try {
           const registration = await navigator.serviceWorker.register('./sw.js');
           console.log('ServiceWorker registration successful with scope: ', registration.scope);
@@ -33,6 +33,19 @@
         }
       });
     }
+    self.addEventListener('install', (event) => {
+      console.log('SW installed')
+      event.waitUntil(self.skipWaiting());
+    });
+
+    self.addEventListener('activate', (event) => {
+      console.log('SW Activated')
+      event.waitUntil(
+        Promise.all([
+          self.clients.claim(),
+        ]),
+      );
+    });
   </script>
 </head>
 
