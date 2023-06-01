@@ -6,10 +6,12 @@ const CACHE_NAME = `my-cache-v${version}`;
 self.__WB_MANIFEST;
 
 self.addEventListener('install', (event) => {
+  console.log('SW installed')
   event.waitUntil(self.skipWaiting());
 });
 
 self.addEventListener('activate', (event) => {
+  console.log('SW Activated')
   event.waitUntil(
     Promise.all([
       self.clients.claim(),
