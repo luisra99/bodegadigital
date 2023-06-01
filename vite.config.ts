@@ -7,15 +7,13 @@ import manifest from './manifest.json';
 
 const pwaOptions: Partial<VitePWAOptions> = {
   registerType: 'autoUpdate',
-  strategies: 'injectManifest',
+  injectRegister: false,
   manifest,
   includeAssets: ['favicon.svg', 'favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
   // switch to "true" to enable sw on development
   devOptions: {
     enabled: true,
   },
-  srcDir:'src',
-  filename:'sw.js'
 };
 // https://vitejs.dev/config/
 
