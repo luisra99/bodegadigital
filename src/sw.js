@@ -1,9 +1,22 @@
 import { registerRoute } from 'workbox-routing';
-import { StaleWhileRevalidate,CacheFirst } from 'workbox-strategies';
+import { StaleWhileRevalidate,CacheFirst, } from 'workbox-strategies';
 const version=1;
 const CACHE_NAME = `my-cache-v${version}`;
 
 self.__WB_MANIFEST;
+
+self.addEventListener('install', (event) => {
+  event.waitUntil(self.skipWaiting());
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    Promise.all([
+      self.clients.claim(),
+    ]),
+  );
+});
+
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
   console.log(url)
