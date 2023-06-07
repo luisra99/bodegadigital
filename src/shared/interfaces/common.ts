@@ -18,7 +18,7 @@ export interface CustomNotification {
   hora?: string;
 }
 export interface UserProfile extends Person {
-  foto?: string;
+  foto: string;
   tomo: string;
   folio: string;
   direccion: string;
@@ -47,8 +47,8 @@ export interface InfoNucleo {
   qr?: string;
 }
 export interface ProfileContent {
+  profile: UserProfile;
   isConfig?: boolean;
-  profile?: UserProfile;
   nucleo?: InfoNucleo;
 }
 export interface GTableProps {

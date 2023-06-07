@@ -1,7 +1,7 @@
 {
   "name": "Bodega Digital",
-  "short_name": "BV",
-  "description": "BD",
+  "short_name": "BD",
+  "description": "Informaciones comerciales al alcance de todos",
   "icons": [
     {
       "src": "pwa-192x192.png",
