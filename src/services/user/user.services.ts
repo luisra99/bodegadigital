@@ -1,12 +1,6 @@
-import { ProfileContent } from '@/shared/interfaces/common';
+import { getToken } from '../wso2';
 
-import { isConfig_seed, profile_seed, infoNucleo_seed } from '../../seed';
-
-import axios from 'axios';
-
-const api = import.meta.env.VITE_BODEGA_ENDPOINT;
-const claim_api = import.meta.env.VITE_BODEGA_CLAIM;
-const profile_api = import.meta.env.VITE_BODEGA_PROFILE;
+import axios, { AxiosHeaders } from 'axios';
 
 export async function SetProfileConfiguration(params: any) {
   try {
@@ -23,10 +17,19 @@ export async function SetProfileConfiguration(params: any) {
 }
 export async function GetProfileConfiguration(params?: any) {
   try {
-    const { username } = params;
-    const response = await axios.get(`http://localhost:3000/profile`);
-    const { isConfig, profile, nucleo } = response.data;
-    return { isConfig, profile, nucleo };
+    const { userId } = params || '159-951-753-357';
+    // const { data } = await getToken();
+    // const d: AxiosHeaders = data as AxiosHeaders;
+    const response = await axios.get(
+      `https://wso2-gws.mtz.xetid.cu:443/appciudadano1/1.0.0/api/apiusuario?idusuario=159-951-753-357`,
+      {
+        headers: {
+          'Internal-Key': import.meta.env.VITE_TOKEN,
+        },
+      },
+    );
+    return response.data[0];
+    // return { profile: { nombre: 'luis raul', foto: null } };
   } catch (error) {
     console.error('Error en la controladora', error);
     return null;

@@ -6,8 +6,8 @@ import LoginIcon from '@mui/icons-material/Login';
 import MenuIcon from '@mui/icons-material/Menu';
 import Notifications from '@mui/icons-material/Notifications';
 import AppBar from '@mui/material/AppBar';
+import Avatar from '@mui/material/Avatar';
 import Badge from '@mui/material/Badge';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
@@ -16,6 +16,7 @@ import Tooltip from '@mui/material/Tooltip';
 
 import { useAuthContext } from '@asgardeo/auth-react';
 
+import { useProfileData } from '@/hooks/useProfileData';
 import { FlexBox } from '@/shared/components/styled';
 import useHotKeysDialog from '@/store/hotkeys';
 import useNotifications from '@/store/notifications';
@@ -31,8 +32,10 @@ function Header() {
   const [, notificationsActions] = useNotifications();
   const [, hotKeysDialogActions] = useHotKeysDialog();
   // const [session, setSession] = useState(true);
-  const { state, signIn, signOut, getBasicUserInfo } = useAuthContext();
-
+  const { state, signIn, signOut } = useAuthContext();
+  const {
+    profile: { nombre, foto },
+  } = useProfileData();
   return (
     <AppBar color="default" elevation={1} position="fixed">
       <Toolbar sx={{ justifyContent: 'space-between', minHeight: '64px' }}>
@@ -43,7 +46,12 @@ function Header() {
             edge="start"
             color="info"
             aria-label="menu"
-            sx={{ mr: 1, color: '#3f51b5' }}
+            sx={{
+              mr: 1,
+              color: '#3f51b5',
+              visibility: state.isAuthenticated ? 'visible' : 'hidden',
+            }}
+            disabled={!state.isAuthenticated}
           >
             <MenuIcon />
           </IconButton>
@@ -114,48 +122,42 @@ function Header() {
                 {/* <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}> */}
                 <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
                   <AccountCircleIcon />
+                  <Avatar alt="asd" src={'/sd'} />
                 </IconButton>
               </Tooltip>
             </>
           ) : (
-            <Tooltip title="Iniciar sesion" arrow sx={{ color: '#3f51b5' }}>
-              <IconButton
-                color="info"
-                edge="end"
-                size="large"
-                onClick={() => {
-                  signIn().then(({ username }) => {
+            <>
+              <Tooltip title="Iniciar sesion" arrow sx={{ color: '#3f51b5' }}>
+                <IconButton
+                  color="info"
+                  edge="end"
+                  size="large"
+                  onClick={() => {
+                    // signIn().then(({ username }) => {
                     //Consultar datos del perfil
-                    console.log(username);
-                  });
-                }}
-              >
-                <LoginIcon />
-              </IconButton>
-            </Tooltip>
+                    // console.log(username);
+                    // getBasicUserInfo();
+                    // });
+                  }}
+                >
+                  <LoginIcon />
+                </IconButton>
+              </Tooltip>
+              <Divider
+                orientation="vertical"
+                flexItem
+                sx={{ margin: '0px', paddingLeft: '10px', paddingRight: '10px' }}
+              />
+              <Tooltip title="Opciones de usuario" arrow sx={{ color: '#3f51b5' }}>
+                {/* <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}> */}
+                <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
+                  {/* <AccountCircleIcon /> */}
+                  <Avatar alt={nombre} src={foto || 'none'} />
+                </IconButton>
+              </Tooltip>
+            </>
           )}
-          <Divider
-            orientation="vertical"
-            flexItem
-            sx={{ margin: '0px', paddingLeft: '10px', paddingRight: '10px' }}
-          />
-          <Tooltip title="Opciones de usuario" arrow sx={{ color: '#3f51b5' }}>
-            <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
-              <AccountCircleIcon />
-            </IconButton>
-          </Tooltip>
-          <Divider
-            orientation="vertical"
-            flexItem
-            sx={{ margin: '0px', paddingLeft: '10px', paddingRight: '10px' }}
-          />
-          <Tooltip title="Notificaciones" arrow sx={{ color: '#3f51b5' }}>
-            <IconButton color="info" edge="end" size="large" component={Link} to={'/notifications'}>
-              <Badge badgeContent={4} max={99} color="error">
-                <Notifications />
-              </Badge>
-            </IconButton>
-          </Tooltip>
         </FlexBox>
       </Toolbar>
     </AppBar>
