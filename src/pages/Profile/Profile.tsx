@@ -3,31 +3,26 @@ import { useState, useEffect } from 'react';
 import { Avatar, Badge, Box, Button, Grid } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
-import { useAuthContext } from '@asgardeo/auth-react';
-
 import { GetProfileConfiguration, ReclaimRegistration } from '@/services/user/user.services';
 import GTable from '@/shared/components/Generic/GTable/GTable';
 import GTableContainer from '@/shared/components/Generic/GTableContainer/GTableContainer';
 import Meta from '@/shared/components/Meta';
-import { ProfileContent } from '@/shared/interfaces/common';
 
 import './Profile.sass';
 
 function Profile() {
-  const [profileContent, setProfileContent] = useState<any>({ profile: {} });
+  const [profileContent, setProfileContent] = useState<any>({});
   const [requestButton, activeButton] = useState<boolean>(true);
-  const { state, signOut } = useAuthContext();
   useEffect(() => {
-    GetProfileConfiguration({ username: 'luis' }).then(
-      (result) => result && setProfileContent(result),
-    );
+    GetProfileConfiguration().then((result) => {
+      result && setProfileContent(result);
+    });
   }, []);
-
   return (
     <>
       <Meta title="Perfil" />
       <Grid container spacing={2} justifyContent="space-around" mt={2}>
-        {profileContent.profile && Object.keys(profileContent.profile).length < 1 ? (
+        {!profileContent ? (
           <Typography variant="h4">No se pudo obtener la información del perfil </Typography>
         ) : (
           <>
@@ -72,28 +67,30 @@ function Profile() {
               </div>
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={5} xl={4}>
-              {profileContent.nucleo ? (
+              {profileContent.infoNucleo ? (
                 <div style={{ textAlign: 'center' }}>
                   <Typography variant="h5">Información del núcleo</Typography>
                   <Typography>
-                    Oficina: {profileContent.nucleo?.oficina} Bodega:{' '}
-                    {profileContent.nucleo?.bodega}{' '}
+                    Oficina: {profileContent.infoNucleo?.oficina} Bodega:{' '}
+                    {profileContent.infoNucleo?.bodega}{' '}
                   </Typography>
-                  <Typography>Núcleo: {profileContent.nucleo?.nucleo}</Typography>
+                  <Typography>Núcleo: {profileContent.infoNucleo?.nucleo}</Typography>
                   <Box style={{ textAlign: 'left', padding: '0px 10px 10px 10px' }}>
                     <Typography variant="body2" sx={{ marginLeft: '10px', marginBottom: '5px' }}>
-                      Integrantes: {profileContent.nucleo?.integrantes_count}
+                      Integrantes: {profileContent.infoNucleo?.integrantes_count}
                     </Typography>
                     <GTableContainer>
                       <GTable
-                        data={profileContent?.nucleo?.integrantes}
+                        data={profileContent?.infoNucleo?.integrantes}
                         messageForEmpty="No se pudieron obtener los integrantes del nucleo"
                         columns={[
                           { header: 'Carnet', name: 'ci', type: 'text' },
                           { header: 'Nombre', name: 'nombre', type: 'text' },
-                          { header: 'Edad', name: 'edad', type: 'text' },
-                          { header: 'Sexo', name: 'sex', type: 'text' },
-                          { header: 'Nacimiento', name: 'fecha_n', type: 'text' },
+                          { header: 'Primer apellido', name: 'primer_apellido', type: 'text' },
+                          { header: 'Segundo apellido', name: 'segundo_apellido', type: 'text' },
+                          // { header: 'Edad', name: 'edad', type: 'text' },
+                          // { header: 'Sexo', name: 'sex', type: 'text' },
+                          // { header: 'Nacimiento', name: 'fecha_n', type: 'text' },
                         ]}
                         fullWith={true}
                         readOnly={true}
@@ -121,20 +118,6 @@ function Profile() {
             </Grid>
           </>
         )}
-        <Grid item xs={12} sx={{ textAlign: 'center', margin: '20px' }}>
-          <Button
-            variant={'outlined'}
-            color="error"
-            onClick={() => {
-              signOut().then(() => {
-                //Consultar datos del perfil
-                console.log('SESIÓN CERRADA');
-              });
-            }}
-          >
-            CERRAR SESIÓN
-          </Button>
-        </Grid>
       </Grid>
     </>
   );
