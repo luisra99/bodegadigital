@@ -14,7 +14,7 @@ const HotKeysButton = styled(Button)(({ theme }) => ({
 }));
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: '#29539b',
-  backgroundImage: 'linear-gradient(315deg,#1e3b70 0,#29539b 74%)',
+  backgroundImage: 'linear-gradient(357deg,#1e3b70 0,#29539b 74%)',
 }));
 
 export { HotKeysButton, StyledAppBar };

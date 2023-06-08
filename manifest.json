@@ -1,6 +1,7 @@
 {
   "name": "Bodega Digital",
-  "short_name": "BD",
+  "short_name": "BodegaDigital",
+  "theme-color": "#29539b",
   "description": "Informaciones comerciales al alcance de todos",
   "icons": [
     {
