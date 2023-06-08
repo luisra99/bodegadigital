@@ -22,12 +22,9 @@ function useTheme(): [Themes, Actions] {
 
   function toggle() {
     setThemeMode((mode: Themes) => {
-      const themeMeta = document.querySelector('meta[name="theme-color"]');
       if (mode === Themes.DARK) {
-        themeMeta && themeMeta.setAttribute('content', '#FAFAFA');
         return Themes.LIGHT;
       } else {
-        themeMeta && themeMeta.setAttribute('content', '#111111');
         return Themes.DARK;
       }
     });
