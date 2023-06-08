@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { Avatar, Badge, Box, Button, Grid } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 
 import { GetProfileConfiguration, ReclaimRegistration } from '@/services/user/user.services';
@@ -11,7 +12,7 @@ import Meta from '@/shared/components/Meta';
 import './Profile.sass';
 
 function Profile() {
-  const [profileContent, setProfileContent] = useState<any>({});
+  const [profileContent, setProfileContent] = useState<any>(null);
   const [requestButton, activeButton] = useState<boolean>(true);
   useEffect(() => {
     GetProfileConfiguration().then((result) => {
@@ -23,22 +24,25 @@ function Profile() {
       <Meta title="Perfil" />
       <Grid container spacing={2} justifyContent="space-around" mt={2}>
         {!profileContent ? (
-          <Typography variant="h4">No se pudo obtener la información del perfil </Typography>
+          <Box textAlign={'center'} m={3}>
+            <Typography variant="h4">No se pudo obtener la información del perfil</Typography>
+          </Box>
         ) : (
           <>
             <Grid item xs={12} sm={12} md={6} lg={5} xl={4}>
-              <div style={{ display: 'flex', justifyContent: 'center' }}></div>
               <div style={{ textAlign: 'center' }}>
                 <Badge
                   id="badge"
                   color="primary"
                   anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-                  badgeContent={profileContent.profile?.jefe_nucleo ? 'Jefe de Núcleo' : 0}
+                  badgeContent={
+                    profileContent.profile?.jefe_nucleo ? 'Jefe de Núcleo' : 'Integrante'
+                  }
                 >
                   <Avatar
                     alt={profileContent.profile?.nombre}
                     src={profileContent.profile?.foto}
-                    sx={{ width: '6rem', height: '6rem' }}
+                    sx={{ width: '4rem', height: '4rem' }}
                   />
                 </Badge>
                 <Typography sx={{ marginX: '10px' }} variant="h5">

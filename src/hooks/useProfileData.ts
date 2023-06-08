@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 
-import { GetProfileConfiguration } from '@/services/user/user.services';
+import { GetProfileConfiguration, SetProfileConfiguration } from '@/services/user/user.services';
 import { ProfileContent } from '@/shared/interfaces/common';
 
 export const useProfileData = () => {
   const [profile, setProfile] = useState<ProfileContent>({
     profile: {
-      nombre: 'Nombre del usuario',
+      nombre: '',
       primer_apellido: 'Primer apellido del usuario',
       segundo_apellido: 'Segundo apellido del usuario',
       ci: 'CI del usuario',
@@ -24,7 +24,8 @@ export const useProfileData = () => {
   });
   useEffect(() => {
     GetProfileConfiguration().then((result) => {
-      result && setProfileData(result);
+      result ? setProfileData(result) : SetProfileConfiguration();
+      SetProfileConfiguration();
     });
   }, []);
   function setProfileData(profile: any) {

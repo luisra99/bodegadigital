@@ -19,6 +19,8 @@ import { Routes } from '@/routes/types';
 import useSidebar from '@/store/sidebar';
 import useTheme from '@/store/theme';
 
+import './Sidebar.sass';
+
 function Sidebar() {
   const [isSidebarOpen, sidebarActions] = useSidebar();
   const [, themeActions] = useTheme();
@@ -77,6 +79,7 @@ function Sidebar() {
       onOpen={sidebarActions.open}
       disableBackdropTransition={false}
       swipeAreaWidth={30}
+      id="sidebar"
     >
       <List sx={{ width: 250, pt: (theme) => `${theme.mixins.toolbar.minHeight}px` }}>
         {drawerMenu()}

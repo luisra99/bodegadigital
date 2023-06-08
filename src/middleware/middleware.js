@@ -44,20 +44,20 @@ app.get('/token', async (req, res) => {
     console.log(access_token);
 
     res.json({
-      'Internal-Key': `${access_token}`,
+      Authorization: `Bearer ${access_token}`,
       'Access-Control-Allow-Origin': '*',
     });
   } catch (error) {
     console.error(`Error occurred while fetching token. Details: ${error.message}`);
     return {};
   }
-  try {
-    axios
-      .post('https://identity.enzona.net/oauth2/token')
-      .then((response) => console.log(response));
-  } catch (err) {
-    console.log(err);
-  }
+  // try {
+  //   axios
+  //     .post('https://identity.enzona.net/oauth2/token')
+  //     .then((response) => console.log(response));
+  // } catch (err) {
+  //   console.log(err);
+  // }
   //TODO: llamar al api de enzona
 });
 // app.use((req, res, next) => {

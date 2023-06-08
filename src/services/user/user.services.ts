@@ -2,13 +2,42 @@ import { getToken } from '../wso2';
 
 import axios, { AxiosHeaders } from 'axios';
 
-export async function SetProfileConfiguration(params: any) {
+const user_api = import.meta.env.VITE_BODEGA_PRODUCTS;
+const api = import.meta.env.VITE_BODEGA_USUARIO;
+const id = import.meta.env.VITE_ID;
+export async function SetProfileConfiguration(params?: any) {
   try {
-    const { values } = params;
-    const response = await axios.post(`http://localhost:3000/profile`, values);
-
+    const { values } = params || {};
+    const { data } = await getToken();
+    const d: AxiosHeaders = data as AxiosHeaders;
+    const response = await axios.post(
+      `${api}${user_api}`,
+      {
+        PI: {
+          idpi: '562-5784-545',
+          username: 'xfgfbcfb',
+          nombre: '4f54f5sd4',
+          apellido1: '55vf5sd41',
+          apellido2: 'f21vs5v4fc5',
+          tomo: '2541',
+          folio: '64554',
+          sexo: '5fv4s564',
+          direccion: 'd4rdfv',
+          correo: '4fv545',
+          foto_p: '41v5',
+          telefono: 'sd6fd',
+        },
+      },
+      {
+        params: {
+          userId: id,
+        },
+        headers: d,
+      },
+    );
     return response;
   } catch (error) {
+    console.log('Error set profile data', error);
     return {
       status: 500,
       error: error,
@@ -18,14 +47,12 @@ export async function SetProfileConfiguration(params: any) {
 export async function GetProfileConfiguration(params?: any) {
   try {
     const { userId } = params || '159-951-753-357';
-    // const { data } = await getToken();
-    // const d: AxiosHeaders = data as AxiosHeaders;
+    const { data } = await getToken();
+    const d: AxiosHeaders = data as AxiosHeaders;
     const response = await axios.get(
-      `https://wso2-gws.mtz.xetid.cu:443/appciudadano1/1.0.0/api/apiusuario?idusuario=159-951-753-357`,
+      `https://bodegadigital.prod.xetid.cu/wso2/api/apiusuario?idusuario=159-951-753-357`,
       {
-        headers: {
-          'Internal-Key': import.meta.env.VITE_TOKEN,
-        },
+        headers: d,
       },
     );
     return response.data[0];

@@ -1,18 +1,24 @@
-import { useState, Fragment } from 'react';
+import { useState, Fragment, useEffect } from 'react';
 
 import { Box, Grid, Typography } from '@mui/material';
 
 import { Column } from '@interfaces/common';
 
+import { GetProducts } from '@/services/venta-regulada/products.services';
 import GTabPanel from '@/shared/components/Generic/GTabPanel/GTabPanel';
 import GTable from '@/shared/components/Generic/GTable/GTable';
 import GTableContainer from '@/shared/components/Generic/GTableContainer/GTableContainer';
 import Meta from '@/shared/components/Meta';
 
-import { ventaRegulada_seed } from '../../seed';
-
 function VentaRegulada() {
-  const [content, setContent] = useState<any[]>(ventaRegulada_seed);
+  const [products, setProducts] = useState<any[]>([]);
+  useEffect(() => {
+    GetProducts().then((response) => {
+      setProducts(response);
+      console.table(response);
+    });
+  }, []);
+
   const porComprarColumns: Column[] = [
     { header: 'Producto', name: 'denominacion', type: 'text' },
     { header: 'Cantidad', name: 'cantidad', type: 'number' },
@@ -23,10 +29,10 @@ function VentaRegulada() {
     { header: 'Cantidad', name: 'cantidad', type: 'number' },
     { header: 'Fecha', name: 'adquirido', type: 'date' },
   ];
-  const productsForBuy = content.filter(({ confirmado }) => {
+  const productsForBuy = products.filter(({ confirmado }) => {
     return !confirmado;
   });
-  const purchasedProducts = content.filter(({ confirmado }) => {
+  const purchasedProducts = products.filter(({ confirmado }) => {
     return !!confirmado;
   });
   return (

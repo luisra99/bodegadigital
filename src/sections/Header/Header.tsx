@@ -5,7 +5,6 @@ import ThemeIcon from '@mui/icons-material/InvertColors';
 import LoginIcon from '@mui/icons-material/Login';
 import MenuIcon from '@mui/icons-material/Menu';
 import Notifications from '@mui/icons-material/Notifications';
-import AppBar from '@mui/material/AppBar';
 import Avatar from '@mui/material/Avatar';
 import Badge from '@mui/material/Badge';
 import Button from '@mui/material/Button';
@@ -24,7 +23,7 @@ import useSidebar from '@/store/sidebar';
 import useTheme from '@/store/theme';
 import { showNotification } from '@/utils/notification/notification';
 
-import { HotKeysButton } from './styled';
+import { StyledAppBar } from './styled';
 
 function Header() {
   const [, sidebarActions] = useSidebar();
@@ -37,7 +36,7 @@ function Header() {
     profile: { nombre, foto },
   } = useProfileData();
   return (
-    <AppBar color="default" elevation={1} position="fixed">
+    <StyledAppBar color="default" elevation={1} position="fixed">
       <Toolbar sx={{ justifyContent: 'space-between', minHeight: '64px' }}>
         <FlexBox sx={{ alignItems: 'center' }}>
           <IconButton
@@ -48,10 +47,10 @@ function Header() {
             aria-label="menu"
             sx={{
               mr: 1,
-              color: '#3f51b5',
-              visibility: state.isAuthenticated ? 'visible' : 'hidden',
+              color: '#fff',
+              // visibility: state.isAuthenticated ? 'visible' : 'hidden',
             }}
-            disabled={!state.isAuthenticated}
+            // disabled={!state.isAuthenticated}
           >
             <MenuIcon />
           </IconButton>
@@ -69,26 +68,13 @@ function Header() {
               })
             }
             color="info"
-            sx={{ color: '#3f51b5', display: { xs: 'none', md: 'block' } }}
+            sx={{ color: '#fff', display: { xs: 'none', md: 'block' } }}
           >
             Probar Aviso
           </Button>
         </FlexBox>
         <FlexBox>
-          <FlexBox>
-            <Tooltip title="Hot keys" arrow sx={{ display: { xs: 'none', md: 'block' } }}>
-              <HotKeysButton
-                size="small"
-                variant="outlined"
-                aria-label="open hotkeys dialog"
-                onClick={hotKeysDialogActions.open}
-              >
-                alt + /
-              </HotKeysButton>
-            </Tooltip>
-          </FlexBox>
-
-          <Tooltip title="Cambiar tema" arrow sx={{ color: '#3f51b5' }}>
+          <Tooltip title="Cambiar tema" arrow sx={{ color: '#fff' }}>
             <IconButton color="info" edge="end" size="large" onClick={themeActions.toggle}>
               <ThemeIcon />
             </IconButton>
@@ -100,7 +86,7 @@ function Header() {
           />
           {state.isAuthenticated ? (
             <>
-              <Tooltip title="Notificaciones" arrow sx={{ color: '#3f51b5' }}>
+              <Tooltip title="Notificaciones" arrow sx={{ color: '#fff' }}>
                 <IconButton
                   color="info"
                   edge="end"
@@ -118,7 +104,7 @@ function Header() {
                 flexItem
                 sx={{ margin: '0px', paddingLeft: '10px', paddingRight: '10px' }}
               />
-              <Tooltip title="Opciones de usuario" arrow sx={{ color: '#3f51b5' }}>
+              <Tooltip title="Opciones de usuario" arrow sx={{ color: '#fff' }}>
                 {/* <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}> */}
                 <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
                   <AccountCircleIcon />
@@ -128,17 +114,16 @@ function Header() {
             </>
           ) : (
             <>
-              <Tooltip title="Iniciar sesion" arrow sx={{ color: '#3f51b5' }}>
+              <Tooltip title="Iniciar sesion" arrow sx={{ color: '#fff' }}>
                 <IconButton
                   color="info"
                   edge="end"
                   size="large"
                   onClick={() => {
-                    // signIn().then(({ username }) => {
-                    //Consultar datos del perfil
-                    // console.log(username);
-                    // getBasicUserInfo();
-                    // });
+                    signIn().then((result) => {
+                      console.log(result);
+                      // getBasicUserInfo();
+                    });
                   }}
                 >
                   <LoginIcon />
@@ -149,7 +134,7 @@ function Header() {
                 flexItem
                 sx={{ margin: '0px', paddingLeft: '10px', paddingRight: '10px' }}
               />
-              <Tooltip title="Opciones de usuario" arrow sx={{ color: '#3f51b5' }}>
+              <Tooltip title="Opciones de usuario" arrow sx={{ color: '#fff' }}>
                 {/* <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}> */}
                 <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
                   {/* <AccountCircleIcon /> */}
@@ -160,7 +145,7 @@ function Header() {
           )}
         </FlexBox>
       </Toolbar>
-    </AppBar>
+    </StyledAppBar>
   );
 }
 

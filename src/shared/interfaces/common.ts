@@ -10,7 +10,7 @@ export interface CustomNotification {
   title: string;
   subTitle: string;
   content: string;
-  fecha?: Date;
+  fecha?: Date | string;
   price?: number;
   secondarySubTitle?: string;
   secondaryContent?: string;

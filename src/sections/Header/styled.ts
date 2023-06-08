@@ -1,3 +1,4 @@
+import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/system';
 
@@ -11,5 +12,9 @@ const HotKeysButton = styled(Button)(({ theme }) => ({
   },
   color: theme.palette.text.disabled,
 }));
+const StyledAppBar = styled(AppBar)(({ theme }) => ({
+  backgroundColor: '#29539b',
+  backgroundImage: 'linear-gradient(315deg,#1e3b70 0,#29539b 74%)',
+}));
 
-export { HotKeysButton };
+export { HotKeysButton, StyledAppBar };

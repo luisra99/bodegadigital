@@ -1,11 +1,7 @@
 import * as React from 'react';
 import { useState, Fragment, useEffect } from 'react';
 
-import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import Typography from '@mui/material/Typography';
 
 import { GetNotifications } from '@/services/notification/notification.services';
 import GNotificationItem from '@/shared/components/Generic/GNotificationsItem/GNotificationItem';
@@ -19,14 +15,17 @@ export default function Notifications() {
   useEffect(() => {
     GetNotifications().then((response) => {
       setNotifications(response);
+      console.table(response);
     });
   }, []);
   const today = new Date();
   const validNotifications = notifications.filter(({ fecha }) => {
-    return fecha ? fecha >= today : false;
+    const date = fecha ? new Date(fecha) : undefined;
+    return date ? date >= today : false;
   });
   const pastNotifications = notifications.filter(({ fecha }) => {
-    return fecha ? fecha < today : false;
+    const date = fecha ? new Date(fecha) : undefined;
+    return date ? date < today : false;
   });
   console.log(notifications);
   return (

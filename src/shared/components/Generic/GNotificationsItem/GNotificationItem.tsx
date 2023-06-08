@@ -37,7 +37,8 @@ export default function GNotificationItem({
         }
       />
       {fecha && (
-        <p className="price-tag">{`${fecha.toLocaleDateString()} ${hora && ` - ${hora}`}`}</p>
+        <p className="price-tag">{`${fecha} ${hora && ` - ${hora}`}`}</p>
+        // <p className="price-tag">{`${fecha.toLocaleDateString()} ${hora && ` - ${hora}`}`}</p>
       )}
     </ListItem>
   );
