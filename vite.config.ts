@@ -19,13 +19,7 @@ const pwaOptions: Partial<VitePWAOptions> = {
 // https://vitejs.dev/config/
 
 export default defineConfig({
-  plugins: [
-    react(),
-    VitePWA(pwaOptions),
-    mix({
-      handler: './src/middleware/middleware.js',
-    }),
-  ],
+  plugins: [react(), VitePWA(pwaOptions)],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
