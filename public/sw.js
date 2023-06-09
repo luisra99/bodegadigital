@@ -8,7 +8,6 @@ const CACHE_NAME = `my-cache-v${version}`;
 const filesToCache = ['/', '/nukes', '/profile', '/venta-regulada'];
 self.__WB_MANIFEST;
 precacheAndRoute(self.__WB_MANIFEST);
-precacheAndRoute(filesToCache);
 
 self.skipWaiting();
 clientsClaim();
