@@ -60,6 +60,42 @@ app.get('/token', async (req, res) => {
   // }
   //TODO: llamar al api de enzona
 });
+// app.get('/eztoken', async (req, res) => {
+//   try {
+//     const response = await axios({
+//       method: 'post',
+//       url: dir_token,
+//       headers: {
+//         Authorization: `Basic ${basic}`,
+//         'Access-Control-Allow-Origin': '*',
+//       },
+//       params: {
+//         grant_type: 'client_credentials',
+//       },
+//     });
+//     const { access_token } = response.data || {};
+//     console.log(basic);
+
+//     console.log(access_token);
+
+//     res.json({
+//       Authorization: `Bearer ${access_token}`,
+//       'Access-Control-Allow-Origin': '*',
+//     });
+//   } catch (error) {
+//     console.error(`Error occurred while fetching token. Details: ${error.message}`);
+//     return {};
+//   }
+//   // try {
+//   //   axios
+//   //     .post('https://identity.enzona.net/oauth2/token')
+//   //     .then((response) => console.log(response));
+//   // } catch (err) {
+//   //   console.log(err);
+//   // }
+//   //TODO: llamar al api de enzona
+// });
+
 // app.use((req, res, next) => {
 //   if (req.path === '/oauth2/token') {
 //     console.log('cors');

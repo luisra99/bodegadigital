@@ -12,32 +12,12 @@ export async function GetProducts(params?: any): Promise<CustomNotification[]> {
   try {
     const { data } = await getToken();
     const d: AxiosHeaders = data as AxiosHeaders;
-    const response = await axios.post(
-      `${api}${products_api}`,
-      {
-        idsistema: 422,
-        PI: {
-          idpi: '562-5784-545',
-          username: 'xfgfbcfb',
-          nombre: '4f54f5sd4',
-          apellido1: '55vf5sd41',
-          apellido2: 'f21vs5v4fc5',
-          tomo: '2541',
-          folio: '64554',
-          sexo: '5fv4s564',
-          direccion: 'd4rdfv',
-          correo: '4fv545',
-          foto_p: '41v5',
-          telefono: 'sd6fd',
-        },
+    const response = await axios.get(`${api}${products_api}`, {
+      params: {
+        ticket: ticket,
       },
-      {
-        params: {
-          ticket: ticket,
-        },
-        headers: d,
-      },
-    );
+      headers: d,
+    });
     const productos = response.data[0];
     return productos;
   } catch (error) {

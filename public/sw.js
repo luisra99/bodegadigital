@@ -5,9 +5,10 @@ import { StaleWhileRevalidate, CacheFirst } from 'workbox-strategies';
 
 const version = 1;
 const CACHE_NAME = `my-cache-v${version}`;
-
+const filesToCache = ['/', '/nukes', '/profile', '/venta-regulada'];
 self.__WB_MANIFEST;
 precacheAndRoute(self.__WB_MANIFEST);
+precacheAndRoute(filesToCache);
 
 self.skipWaiting();
 clientsClaim();
