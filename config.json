@@ -1,7 +1,7 @@
 {
   "clientID": "gvQyhhqYoeALp2L9RSKQZ7fW4i4a",
   "baseUrl": "https://identity.enzona.net",
-  "signInRedirectURL": "https://bodegadigital.prod.xetid.cu/",
+  "signInRedirectURL": "https://bodegadigital.vercel.app/",
   "signOutRedirectURL": "https://bodegadigital.prod.xetid.cu/",
   "scope": ["openid", "profile"]
 }
