@@ -79,11 +79,7 @@ function Header() {
               <ThemeIcon />
             </IconButton>
           </Tooltip>
-          <Divider
-            orientation="vertical"
-            flexItem
-            sx={{ margin: '0px', paddingLeft: '10px', paddingRight: '10px' }}
-          />
+          
           {state.isAuthenticated ? (
             <>
               <Tooltip title="Notificaciones" arrow sx={{ color: '#fff' }}>
@@ -99,11 +95,7 @@ function Header() {
                   </Badge>
                 </IconButton>
               </Tooltip>
-              <Divider
-                orientation="vertical"
-                flexItem
-                sx={{ margin: '0px', paddingLeft: '10px', paddingRight: '10px' }}
-              />
+              
               <Tooltip title="Opciones de usuario" arrow sx={{ color: '#fff' }}>
                 {/* <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}> */}
                 <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
@@ -129,11 +121,7 @@ function Header() {
                   <LoginIcon />
                 </IconButton>
               </Tooltip>
-              <Divider
-                orientation="vertical"
-                flexItem
-                sx={{ margin: '0px', paddingLeft: '10px', paddingRight: '10px' }}
-              />
+              
               <Tooltip title="Opciones de usuario" arrow sx={{ color: '#fff' }}>
                 {/* <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}> */}
                 <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
