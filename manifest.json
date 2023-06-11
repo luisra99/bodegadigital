@@ -1,5 +1,6 @@
 {
   "name": "Bodega Digital",
+  "id": "/",
   "short_name": "BodegaDigital",
   "start_url": "https://bodegadigital.vercel.app",
   "display": "fullscreen",
