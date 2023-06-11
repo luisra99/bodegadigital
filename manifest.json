@@ -3,7 +3,6 @@
   "short_name": "BodegaDigital",
   "start_url": "https://bodegadigital.vercel.app",
   "display": "fullscreen",
-  "display_override": "fullscreen",
   "theme_color": "#48B15F",
   "background_color": "#48B15F",
   "description": "Informaciones comerciales al alcance de todos",
@@ -13,31 +12,31 @@
   "prefer_related_applications": false,
   "screenshots": [
     {
-      "src": "/screen1.png",
+      "src": "https://bodegadigital.vercel.app/screen1.png",
       "type": "image/png",
       "description": "Captura de pantalla de la página de inicio"
     },
     {
-      "src": "/screen1.png",
+      "src": "https://bodegadigital.vercel.app/screen1.png",
       "type": "image/png",
       "description": "Captura de pantalla del menu lateral"
     }
   ],
   "icons": [
     {
-      "src": "/pwa-192x192.png",
+      "src": "https://bodegadigital.vercel.app/pwa-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/pwa-512x512.png",
+      "src": "https://bodegadigital.vercel.app/pwa-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "/pwa-512x512.png",
+      "src": "https://bodegadigital.vercel.app/pwa-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
