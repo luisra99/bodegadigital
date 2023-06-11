@@ -11,7 +11,22 @@ precacheAndRoute(self.__WB_MANIFEST);
 
 self.skipWaiting();
 clientsClaim();
+self.addEventListener('sync', (event) => {
+  if (event.tag === 'mySync') {
+    event.waitUntil(doSync());
+  }
+});
+self.addEventListener('periodicsync', (event) => {
+  if (event.tag === 'myPeriodicSync') {
+    console.log('Sync event received');
+    event.waitUntil(doBackgroundSync());
+  }
+});
 
+// Schedule the periodic sync task
+self.registration.periodicSync.register('myPeriodicSync', {
+  minInterval: 24 * 60 * 60 * 1000, // Sync once per day
+});
 // self.addEventListener('fetch', (event) => {
 //   const url = new URL(event.request.url);
 //   event.respondWith(
@@ -57,27 +72,10 @@ registerRoute(
 );
 //TODO: Investigar
 
-self.addEventListener('periodicsync', (event) => {
-  if (event.tag === 'myPeriodicSync') {
-    console.log('Sync event received');
-    event.waitUntil(doBackgroundSync());
-  }
-});
-
-// Schedule the periodic sync task
-self.registration.periodicSync.register('myPeriodicSync', {
-  minInterval: 24 * 60 * 60 * 1000, // Sync once per day
-});
 //TODO: Investigar
 function doBackgroundSync() {
   // ... Perform background synchronization logic here ...
 }
-
-self.addEventListener('sync', (event) => {
-  if (event.tag === 'mySync') {
-    event.waitUntil(doSync());
-  }
-});
 
 function doSync() {
   // ... Perform background synchronization logic here ...
