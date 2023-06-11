@@ -55,7 +55,7 @@ function Welcome() {
             display={'flex'}
             sx={{ width: '100%' }}
           >
-            <img src={'/image_c.jpg'} alt="bodega" />
+            <img loading="lazy" src={'/image_c.jpg'} alt="bodega" />
           </Grid>
         </Grid>
 
