@@ -56,5 +56,13 @@
         }
       ]
     }
+  ],
+  "display_override": ["window-controls-overlay"],
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://www.enzona.net",
+      "id": "ENZONA"
+    }
   ]
 }
