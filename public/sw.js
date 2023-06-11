@@ -12,30 +12,30 @@ precacheAndRoute(self.__WB_MANIFEST);
 self.skipWaiting();
 clientsClaim();
 
-self.addEventListener('fetch', (event) => {
-  const url = new URL(event.request.url);
-  event.respondWith(
-    (async function () {
-      const cachedResponse = await caches.match(url.pathname);
-      if (cachedResponse) {
-        console.log('La url es ', url.pathname);
-        const cachestr = cachedResponse;
-        console.table(cachedResponse.bodyUsed);
-        return cachedResponse;
-      }
-      try {
-        const fetchResponse = await fetch(event.request);
-        const cache = await caches.open(CACHE_NAME);
-        cache.put(event.request, fetchResponse.clone());
-        return fetchResponse;
-      } catch (err) {
-        console.error('Error en el service worker');
-        console.error(err);
-        return new Response(null, { status: 404 });
-      }
-    })(),
-  );
-});
+// self.addEventListener('fetch', (event) => {
+//   const url = new URL(event.request.url);
+//   event.respondWith(
+//     (async function () {
+//       const cachedResponse = await caches.match(url.pathname);
+//       if (cachedResponse) {
+//         console.log('La url es ', url.pathname);
+//         const cachestr = cachedResponse;
+//         console.table(cachedResponse.bodyUsed);
+//         return cachedResponse;
+//       }
+//       try {
+//         const fetchResponse = await fetch(event.request);
+//         const cache = await caches.open(CACHE_NAME);
+//         cache.put(event.request, fetchResponse.clone());
+//         return fetchResponse;
+//       } catch (err) {
+//         console.error('Error en el service worker');
+//         console.error(err);
+//         return new Response(null, { status: 404 });
+//       }
+//     })(),
+//   );
+// });
 
 registerRoute(
   ({ url }) => url.origin === 'http://localhost:3000',
