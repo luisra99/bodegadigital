@@ -13,31 +13,31 @@
   "prefer_related_applications": false,
   "screenshots": [
     {
-      "src": "/screenshots/screen1.png",
+      "src": "screen1.png",
       "type": "image/png",
       "description": "Captura de pantalla de la página de inicio"
     },
     {
-      "src": "/screenshots/screen1.png",
+      "src": "screen1.png",
       "type": "image/png",
       "description": "Captura de pantalla del menu lateral"
     }
   ],
   "icons": [
     {
-      "src": "https://bodegadigital.vercel.app/public/pwa-192x192.png",
+      "src": "pwa-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "https://bodegadigital.vercel.app/public/pwa-512x512.png",
+      "src": "pwa-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "https://bodegadigital.vercel.app/public/pwa-512x512.png",
+      "src": "pwa-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
