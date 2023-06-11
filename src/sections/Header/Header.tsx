@@ -13,8 +13,6 @@ import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 
-import { useAuthContext } from '@asgardeo/auth-react';
-
 import { useProfileData } from '@/hooks/useProfileData';
 import { FlexBox } from '@/shared/components/styled';
 import useHotKeysDialog from '@/store/hotkeys';
@@ -31,9 +29,12 @@ function Header() {
   const [, notificationsActions] = useNotifications();
   const [, hotKeysDialogActions] = useHotKeysDialog();
   // const [session, setSession] = useState(true);
-  const { state, signIn, signOut } = useAuthContext();
   const {
-    profile: { nombre, foto },
+    profile: {
+      profile: { nombre, foto },
+    },
+    LOG,
+    state,
   } = useProfileData();
   return (
     <StyledAppBar color="default" elevation={1} position="fixed">
@@ -79,7 +80,7 @@ function Header() {
               <ThemeIcon />
             </IconButton>
           </Tooltip>
-          
+
           {state.isAuthenticated ? (
             <>
               <Tooltip title="Notificaciones" arrow sx={{ color: '#fff' }}>
@@ -95,7 +96,7 @@ function Header() {
                   </Badge>
                 </IconButton>
               </Tooltip>
-              
+
               <Tooltip title="Opciones de usuario" arrow sx={{ color: '#fff' }}>
                 {/* <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}> */}
                 <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
@@ -112,7 +113,7 @@ function Header() {
                   edge="end"
                   size="large"
                   onClick={() => {
-                    signIn().then((result) => {
+                    LOG().then((result: any) => {
                       console.log(result);
                       // getBasicUserInfo();
                     });
@@ -121,7 +122,7 @@ function Header() {
                   <LoginIcon />
                 </IconButton>
               </Tooltip>
-              
+
               <Tooltip title="Opciones de usuario" arrow sx={{ color: '#fff' }}>
                 {/* <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}> */}
                 <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
