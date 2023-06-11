@@ -52,7 +52,7 @@
       "icons": [
         {
           "src": "https://bodegadigital.vercel.app/favicon.ico",
-          "sizes": "192x192"
+          "sizes": "96x96"
         }
       ]
     }
@@ -64,5 +64,11 @@
       "url": "https://www.enzona.net",
       "id": "ENZONA"
     }
-  ]
+  ],
+  "launch_handler": {
+    "client_mode": "focus-existing"
+  },
+  "edge_side_panel": {
+    "preferred_width": 600
+  }
 }
