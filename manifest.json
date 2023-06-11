@@ -12,12 +12,12 @@
   "prefer_related_applications": false,
   "screenshots": [
     {
-      "src": "https://bodegadigital.vercel.app/screen1.png",
+      "src": "https://bodegadigital.vercel.app/screen1.PNG",
       "type": "image/png",
       "description": "Captura de pantalla de la página de inicio"
     },
     {
-      "src": "https://bodegadigital.vercel.app/screen1.png",
+      "src": "https://bodegadigital.vercel.app/screen1.PNG",
       "type": "image/png",
       "description": "Captura de pantalla del menu lateral"
     }
@@ -50,7 +50,7 @@
       "url": "/venta-regulada",
       "icons": [
         {
-          "src": "/pwa-192x192.png",
+          "src": "https://bodegadigital.vercel.app/favicon.ico",
           "sizes": "192x192"
         }
       ]
