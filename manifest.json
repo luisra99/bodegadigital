@@ -25,22 +25,10 @@
   ],
   "icons": [
     {
-      "src": "https://bodegadigital.vercel.app/pwa-192x192.png",
-      "sizes": "192x192",
+      "src": "https://bodegadigital.vercel.app/pwa-512x512.png",
+      "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
-    },
-    {
-      "src": "https://bodegadigital.vercel.app/pwa-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
-    },
-    {
-      "src": "https://bodegadigital.vercel.app/pwa-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
     }
   ],
   "shortcuts": [
@@ -71,5 +59,6 @@
   "edge_side_panel": {
     "preferred_width": 600
   },
-  "handle_links": "auto"
+  "handle_links": "auto",
+  "categories": ["food"]
 }
