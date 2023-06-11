@@ -49,3 +49,9 @@ registerRoute(
     cacheName: 'assets',
   }),
 );
+registerRoute(
+  /\/*/,
+  new StaleWhileRevalidate({
+    cacheName: CACHE_NAME,
+  }),
+);
