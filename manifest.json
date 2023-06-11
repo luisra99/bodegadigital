@@ -47,7 +47,7 @@
       "name": "Venta Regulada",
       "short_name": "Venta Regulada",
       "description": "Acceder a la página de ventas reguladas",
-      "url": "/venta-regulada",
+      "url": "https://bodegadigital.vercel.app/venta-regulada",
       "icons": [
         {
           "src": "https://bodegadigital.vercel.app/favicon.ico",
