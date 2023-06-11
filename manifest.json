@@ -1,7 +1,7 @@
 {
   "name": "Bodega Digital",
   "short_name": "BodegaDigital",
-  "start_url": "/",
+  "start_url": "/index.html",
   "display": "fullscreen",
   "display_override": "fullscreen",
   "theme_color": "#48B15F",
@@ -25,19 +25,19 @@
   ],
   "icons": [
     {
-      "src": "pwa-192x192.png",
+      "src": "/public/pwa-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "pwa-512x512.png",
+      "src": "/public/pwa-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "pwa-512x512.png",
+      "src": "/public/pwa-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
