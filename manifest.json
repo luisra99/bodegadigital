@@ -2,7 +2,7 @@
   "name": "Bodega Digital",
   "id": "/",
   "short_name": "BodegaDigital",
-  "start_url": "https://bodegadigital.vercel.app",
+  "start_url": "https://bodegadigital.prod.xetid.cu",
   "display": "fullscreen",
   "theme_color": "#48B15F",
   "background_color": "#48B15F",
@@ -13,19 +13,19 @@
   "prefer_related_applications": false,
   "screenshots": [
     {
-      "src": "https://bodegadigital.vercel.app/screen1.PNG",
+      "src": "https://bodegadigital.prod.xetid.cu/screen1.PNG",
       "type": "image/png",
       "description": "Captura de pantalla de la página de inicio"
     },
     {
-      "src": "https://bodegadigital.vercel.app/screen1.PNG",
+      "src": "https://bodegadigital.prod.xetid.cu/screen1.PNG",
       "type": "image/png",
       "description": "Captura de pantalla del menu lateral"
     }
   ],
   "icons": [
     {
-      "src": "https://bodegadigital.vercel.app/pwa-512x512.png",
+      "src": "https://bodegadigital.prod.xetid.cu/pwa-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
@@ -36,10 +36,10 @@
       "name": "Venta Regulada",
       "short_name": "Venta Regulada",
       "description": "Acceder a la página de ventas reguladas",
-      "url": "https://bodegadigital.vercel.app/venta-regulada",
+      "url": "https://bodegadigital.prod.xetid.cu/venta-regulada",
       "icons": [
         {
-          "src": "https://bodegadigital.vercel.app/favicon.ico",
+          "src": "https://bodegadigital.prod.xetid.cu/favicon.ico",
           "sizes": "96x96"
         }
       ]

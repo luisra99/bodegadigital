@@ -27,8 +27,8 @@ export const useProfileData = () => {
   });
   useEffect(() => {
     GetProfileConfiguration().then((result) => {
-      result ? setProfileData(result) : SetProfileConfiguration();
-      SetProfileConfiguration();
+      // result ? setProfileData(result) : SetProfileConfiguration();
+      // SetProfileConfiguration();
     });
   }, []);
   function setProfileData(profile: any) {
