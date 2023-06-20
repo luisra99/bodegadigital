@@ -1,0 +1,14 @@
+{
+  "TOKEN_ENDPOINT": "http://bodega.prod.xetid.cu/api/token",
+  "CLIENT_INFO": "http://bodega.prod.xetid.cu/api/getinfo",
+  "AUTHORIZE_ENDPOINT": "https://wso2-is.mtz.xetid.cu/oauth2/authorize",
+  "RESPONSE_TYPE": "code",
+  "SCOPE": "openid",
+  "REDIRECT_URI": "http://bodega.prod.xetid.cu/",
+  "CLIENT_ID": "eWVhDCeXhI4oG4WoYeGCCK8i9Ica",
+  "CLIENT_SECRET": "vrj6od7jXSRaMZXMUU2OPmysFz8a",
+  "GRANT_TYPE": "authorization_code",
+  "CLIENT_URL": "https://wso2-is.mtz.xetid.cu/",
+  "LOGOUT_URL": "http://bodega.prod.xetid.cu/",
+  "COOKIE_PATH": "/"
+}

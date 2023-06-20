@@ -7,42 +7,6 @@ import Meta from '@/shared/components/Meta';
 import './Welcome.sass';
 
 function Welcome() {
-  const login = () => {
-    // try {
-    // getToken();
-    // axios
-    //   .get('https://bodegadigital.prod.xetid.cu/iapi/token')
-    //   .then(({ data }) => ladaat(data?.title));
-    //   signIn().then(async (data) => {
-    //     try {
-    //       console.table(data);
-    //       const response = await GetProfileConfiguration(data);
-    //       const isConfig = response?.isConfig ?? false;
-    //       // isConfig && navigate('/profile');
-    //       setConfig(isConfig);
-    //     } catch (error: any) {
-    //       showNotification(notificationsActions, {
-    //         title: 'Operación fallida',
-    //         subTitle: 'Estado',
-    //         type: 'error',
-    //         content: 'Ha ocurrido un error obteniendo los datos del perfil de usuario',
-    //         secondarySubTitle: 'Detalles',
-    //         secondaryContent: error,
-    //       });
-    //     }
-    //   });
-    // } catch (error: any) {
-    //   showNotification(notificationsActions, {
-    //     title: 'Operación fallida',
-    //     subTitle: 'Estado',
-    //     type: 'error',
-    //     content: 'Ha ocurrido un error tratando de iniciar la sesión',
-    //     secondarySubTitle: 'Detalles',
-    //     secondaryContent: error,
-    //   });
-    // }
-  };
-
   return (
     <>
       <Meta title="Inicio" />

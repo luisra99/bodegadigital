@@ -3,5 +3,13 @@ type Actions = {
   close: () => void;
   open: () => void;
 };
-
-export type { Actions };
+type SessionActions = {
+  create: (params?: any) => void;
+  close: () => void;
+};
+type Session = {
+  tokenResponse?: string;
+  idToken?: string;
+  isLoggedIn: boolean;
+};
+export type { Actions, SessionActions, Session };

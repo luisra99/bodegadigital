@@ -1,3 +1,5 @@
+import { default as authConfig } from '../../AuthConfig.json';
+import { getCookie, removeCookie, setCookie } from '../../helpers/cookies';
 import { getToken } from '../wso2';
 
 import axios, { AxiosHeaders } from 'axios';
@@ -7,35 +9,7 @@ const api = import.meta.env.VITE_BODEGA_USUARIO;
 const id = import.meta.env.VITE_ID;
 export async function SetProfileConfiguration(params?: any) {
   try {
-    const { values } = params || {};
-    const { data } = await getToken();
-    const d: AxiosHeaders = data as AxiosHeaders;
-    const response = await axios.post(
-      `${api}${user_api}`,
-      {
-        PI: {
-          idpi: '562-5784-545',
-          username: 'xfgfbcfb',
-          nombre: '4f54f5sd4',
-          apellido1: '55vf5sd41',
-          apellido2: 'f21vs5v4fc5',
-          tomo: '2541',
-          folio: '64554',
-          sexo: '5fv4s564',
-          direccion: 'd4rdfv',
-          correo: '4fv545',
-          foto_p: '41v5',
-          telefono: 'sd6fd',
-        },
-      },
-      {
-        params: {
-          userId: id,
-        },
-        headers: d,
-      },
-    );
-    return response;
+    return 'response';
   } catch (error) {
     console.log('Error set profile data', error);
     return {
@@ -44,18 +18,39 @@ export async function SetProfileConfiguration(params?: any) {
     };
   }
 }
+export async function GetUserToken(params?: any) {
+  try {
+    const { code } = params || '';
+    const { data } = await getToken();
+    console.log(params);
+    const d: AxiosHeaders = data as AxiosHeaders;
+    const response = await axios.post(
+      `https://bodega.prod.xetid.cu/api/token`,
+      {
+        code: params,
+      },
+      {
+        headers: d,
+      },
+    );
+    return response;
+  } catch (error) {
+    console.error('Error en la controladora', error);
+    return null;
+  }
+}
 export async function GetProfileConfiguration(params?: any) {
   try {
     const { userId } = params || '159-951-753-357';
     const { data } = await getToken();
     const d: AxiosHeaders = data as AxiosHeaders;
-    const response = await axios.get(
-      `https://bodegadigital.prod.xetid.cu/wso2/api/apiusuario?idusuario=159-951-753-357`,
-      {
-        headers: d,
+    const response = axios.get(`${authConfig.CLIENT_INFO}`, {
+      params: {
+        access_token: getCookie('ACCESS_TOKEN'),
       },
-    );
-    return response.data[0];
+      headers: d,
+    });
+    return response;
     // return { profile: { nombre: 'luis raul', foto: null } };
   } catch (error) {
     console.error('Error en la controladora', error);

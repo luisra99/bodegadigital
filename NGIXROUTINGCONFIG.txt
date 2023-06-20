@@ -1,0 +1,2 @@
+<nombreDeDominio>/api - Aplicación correspondiente en el wso2 (Para consumir servicios evitando el cors)
+<nombreDeDominio>/apim - Dirección del Api Manager (Para consumir el Token del Api Manager evitando el cors)
