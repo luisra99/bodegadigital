@@ -6,12 +6,12 @@
   "printWidth": 100,
   "trailingComma": "all",
   "importOrder": [
+    "^[./(.sass)]",
     "^(^react$|@react|react|^recoil$)",
     "^@mui/(.*)$",
     "<THIRD_PARTY_MODULES>",
     "^@/(.*)$",
-    "^[./]",
-    "^[./(.sass)]"
+    "^[./]"
   ],
   "importOrderGroupNamespaceSpecifiers": false,
   "importOrderSeparation": true,

@@ -46,7 +46,7 @@ export const sendTokenRequest = async (code: any) => {
       console.table(isToken);
       // Store the response in the session storage
       initAuthenticatedSession(isToken);
-      return [isToken, decodeIdToken(isToken)];
+      return isToken;
     })
     .catch((error) => {
       return Promise.reject(error);

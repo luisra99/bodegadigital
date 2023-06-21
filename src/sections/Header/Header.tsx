@@ -1,30 +1,31 @@
+import { isValidSession, getAllSessionParameters, decodeIdToken } from '../../actions/session';
+import { sendAuthorizationRequest, sendTokenRequest } from '../../actions/sign-in';
+import { dispatchLogout } from '../../actions/sign-out';
+import './Header.sass';
+import { StyledAppBar } from './styled';
+
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ThemeIcon from '@mui/icons-material/InvertColors';
 import LoginIcon from '@mui/icons-material/Login';
+import LogOut from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
 import Notifications from '@mui/icons-material/Notifications';
 import Avatar from '@mui/material/Avatar';
 import Badge from '@mui/material/Badge';
 import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 
+import { GetProfileConfiguration } from '@/services/user/user.services';
 import { FlexBox } from '@/shared/components/styled';
 import { useHotKeysDialog, useSession } from '@/store/hotkeys';
 import useNotifications from '@/store/notifications';
 import useSidebar from '@/store/sidebar';
 import useTheme from '@/store/theme';
 import { showNotification } from '@/utils/notification/notification';
-
-import { isValidSession, getAllSessionParameters, decodeIdToken } from '../../actions/session';
-import { sendAuthorizationRequest, sendTokenRequest } from '../../actions/sign-in';
-import { dispatchLogout } from '../../actions/sign-out';
-import { StyledAppBar } from './styled';
 
 function Header() {
   const [, sidebarActions] = useSidebar();
@@ -33,10 +34,10 @@ function Header() {
   const [, hotKeysDialogActions] = useHotKeysDialog();
   const [sessionState, sessionActions] = useSession();
   useEffect(() => {
-    const code = new URL(window.location.href).searchParams.get('code');
     // See if there is a valid session.
     if (isValidSession()) {
       const session = getAllSessionParameters();
+      GetProfileConfiguration();
       const _tokenResponse = {
         access_token: session.ACCESS_TOKEN,
         refresh_token: session.REFRESH_TOKEN,
@@ -54,7 +55,8 @@ function Header() {
     }
 
     // Reads the URL and retrieves the `code` param.
-
+    const code = new URL(window.location.href).searchParams.get('code');
+    history.replaceState({}, document.title, window.location.pathname);
     // If a authorization code exists, sends a token request.
     if (code) {
       console.log(code);
@@ -66,6 +68,7 @@ function Header() {
             idToken: response[1],
             isLoggedIn: true,
           });
+          GetProfileConfiguration();
         })
         .catch((error) => {
           console.log('TOKEN REQUEST ERROR', error);
@@ -86,9 +89,9 @@ function Header() {
             sx={{
               mr: 1,
               color: '#fff',
-              // visibility: state.isAuthenticated ? 'visible' : 'hidden',
+              visibility: sessionState ? 'visible' : 'hidden',
             }}
-            // disabled={!state.isAuthenticated}
+            disabled={!sessionState}
           >
             <MenuIcon />
           </IconButton>
@@ -112,37 +115,48 @@ function Header() {
           </Button>
         </FlexBox>
         <FlexBox>
-          <Tooltip title="Cambiar tema" arrow sx={{ color: '#fff' }}>
+          <Tooltip className="header-button" title="Cambiar tema" arrow>
             <IconButton color="info" edge="end" size="large" onClick={themeActions.toggle}>
               <ThemeIcon />
             </IconButton>
           </Tooltip>
-
-          <>
-            <Tooltip title="Notificaciones" arrow sx={{ color: '#fff' }}>
-              <IconButton
-                color="info"
-                edge="end"
-                size="large"
-                component={Link}
-                to={'/notifications'}
-              >
-                <Badge badgeContent={4} max={99} color="error">
-                  <Notifications />
-                </Badge>
-              </IconButton>
-            </Tooltip>
-
-            <Tooltip title="Opciones de usuario" arrow sx={{ color: '#fff' }}>
-              {/* <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}> */}
-              <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
-                <AccountCircleIcon />
-                <Avatar alt="asd" src={'/sd'} />
-              </IconButton>
-            </Tooltip>
-          </>
-          <>
-            <Tooltip title="Iniciar sesion" arrow sx={{ color: '#fff' }}>
+          {!sessionState ? (
+            <>
+              <Tooltip className="header-button" title="Notificaciones" arrow>
+                <IconButton
+                  color="info"
+                  edge="end"
+                  size="large"
+                  component={Link}
+                  to={'/notifications'}
+                >
+                  <Badge badgeContent={4} max={99} color="error">
+                    <Notifications />
+                  </Badge>
+                </IconButton>
+              </Tooltip>
+              <Tooltip className="header-button" title="Cerrar Sesión" arrow>
+                <IconButton
+                  color="info"
+                  edge="end"
+                  size="large"
+                  onClick={() => {
+                    dispatchLogout();
+                  }}
+                >
+                  <LogOut />
+                </IconButton>
+              </Tooltip>
+              <Tooltip className="header-button" title="Opciones de usuario" arrow>
+                {/* <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}> */}
+                <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
+                  {/* <AccountCircleIcon /> */}
+                  <Avatar alt={'nombre'} src={'foto' || 'none'} />
+                </IconButton>
+              </Tooltip>
+            </>
+          ) : (
+            <Tooltip className="header-button" title="Iniciar sesión" arrow>
               <IconButton
                 color="info"
                 edge="end"
@@ -154,15 +168,7 @@ function Header() {
                 <LoginIcon />
               </IconButton>
             </Tooltip>
-
-            <Tooltip title="Opciones de usuario" arrow sx={{ color: '#fff' }}>
-              {/* <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}> */}
-              <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
-                {/* <AccountCircleIcon /> */}
-                <Avatar alt={'nombre'} src={'foto' || 'none'} />
-              </IconButton>
-            </Tooltip>
-          </>
+          )}
         </FlexBox>
       </Toolbar>
     </StyledAppBar>

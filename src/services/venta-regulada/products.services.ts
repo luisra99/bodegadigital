@@ -1,22 +1,20 @@
-import { CustomNotification } from '@/shared/interfaces/common';
-
 import { getToken } from '../wso2';
+import axios from 'axios';
 
-import axios, { AxiosHeaders } from 'axios';
+import { CustomNotification } from '@/shared/interfaces/common';
 
 const products_api = import.meta.env.VITE_BODEGA_PRODUCTS;
 const api = import.meta.env.VITE_BODEGA_ENDPOINT;
 const ticket = import.meta.env.VITE_TICKET;
-//Obtener datos del usuario para hacer la petición
+
 export async function GetProducts(params?: any): Promise<CustomNotification[]> {
   try {
-    const { data } = await getToken();
-    const d: AxiosHeaders = data as AxiosHeaders;
+    const wso2TokenHeader = await getToken();
     const response = await axios.get(`${api}${products_api}`, {
       params: {
         ticket: ticket,
       },
-      headers: d,
+      headers: wso2TokenHeader,
     });
     const productos = response.data[0];
     return productos;

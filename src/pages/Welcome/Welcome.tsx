@@ -3,10 +3,13 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
 import Meta from '@/shared/components/Meta';
+import { useSession } from '@/store/hotkeys';
 
 import './Welcome.sass';
 
 function Welcome() {
+  const [sessionState, sessionActions] = useSession();
+
   return (
     <>
       <Meta title="Inicio" />
@@ -32,7 +35,8 @@ function Welcome() {
           fontWeight={900}
           color={'whitesmoke'}
         >
-          Bienvenido al sistema de bodega digital
+          Bienvenido al sistema de bodega digital{' '}
+          {sessionState ? 'Authenticado' : 'No authenticado'}
         </Typography>
         <Typography
           px={3}

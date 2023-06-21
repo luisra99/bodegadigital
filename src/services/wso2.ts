@@ -1,12 +1,11 @@
-import { ApiConfig, RawAxiosHeaders } from '@interfaces/request-interface';
+import axios, { AxiosHeaders } from 'axios';
 
-import axios from 'axios';
-
-export async function getToken(): Promise<RawAxiosHeaders> {
+export async function getToken(): Promise<AxiosHeaders> {
   try {
-    return await axios('http://localhost:3000/token');
+    const response = await axios('http://localhost:3000/token');
+    return response.data;
   } catch (error: any) {
     console.error(`Error occurred while fetching token. Details: ${error.message}`);
-    return {};
+    return new AxiosHeaders({});
   }
 }
