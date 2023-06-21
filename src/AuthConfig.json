@@ -10,5 +10,6 @@
   "GRANT_TYPE": "authorization_code",
   "CLIENT_URL": "https://wso2-is.mtz.xetid.cu/",
   "LOGOUT_URL": "http://bodega.prod.xetid.cu/",
+  "SIGN_OUT_PATH": "oidc/logout",
   "COOKIE_PATH": "/"
 }

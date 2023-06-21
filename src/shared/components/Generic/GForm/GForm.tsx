@@ -416,7 +416,6 @@ export function GForm(props: GFormProps) {
       validationSchema={validationSchema}
       validateOnChange
       onSubmit={async (values, { setSubmitting, resetForm }) => {
-        console.table(values);
         if (id) {
           await put_service?.({ values, id, serviceParams }).then(
             (response: { data: { error?: string }; status: number }) => {

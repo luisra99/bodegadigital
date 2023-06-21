@@ -11,5 +11,6 @@ type Session = {
   tokenResponse?: string;
   idToken?: string;
   isLoggedIn: boolean;
+  profile: any;
 };
 export type { Actions, SessionActions, Session };

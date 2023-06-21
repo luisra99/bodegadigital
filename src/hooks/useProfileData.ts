@@ -1,12 +1,9 @@
 import { useState, useEffect } from 'react';
 
-import { useAuthContext } from '@asgardeo/auth-react';
-
-import { GetProfileConfiguration, SetProfileConfiguration } from '@/services/user/user.services';
+import { GetProfileConfiguration } from '@/services/user/user.services';
 import { ProfileContent } from '@/shared/interfaces/common';
 
 export const useProfileData = () => {
-  const { state, signIn, signOut } = useAuthContext();
   const [profile, setProfile] = useState<ProfileContent>({
     profile: {
       nombre: '',
@@ -27,15 +24,14 @@ export const useProfileData = () => {
   });
   useEffect(() => {
     GetProfileConfiguration().then((result) => {
-      // result ? setProfileData(result) : SetProfileConfiguration();
-      // SetProfileConfiguration();
+      setProfileData(result);
     });
   }, []);
   function setProfileData(profile: any) {
     setProfile(profile);
   }
   function LOG(): any {
-    signIn();
+    // signIn();
   }
-  return { profile, LOG, state };
+  return { profile, LOG };
 };

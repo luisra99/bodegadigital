@@ -1,3 +1,5 @@
+import './Welcome.sass';
+
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -5,10 +7,8 @@ import Typography from '@mui/material/Typography';
 import Meta from '@/shared/components/Meta';
 import { useSession } from '@/store/hotkeys';
 
-import './Welcome.sass';
-
 function Welcome() {
-  const [sessionState, sessionActions] = useSession();
+  const [sessionState, userData, sessionActions] = useSession();
 
   return (
     <>
@@ -35,8 +35,7 @@ function Welcome() {
           fontWeight={900}
           color={'whitesmoke'}
         >
-          Bienvenido al sistema de bodega digital{' '}
-          {sessionState ? 'Authenticado' : 'No authenticado'}
+          Bienvenido al sistema de bodega digital
         </Typography>
         <Typography
           px={3}

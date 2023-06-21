@@ -1,3 +1,5 @@
+import './Notifications.sass';
+
 import * as React from 'react';
 import { useState, Fragment, useEffect } from 'react';
 
@@ -8,14 +10,11 @@ import GNotificationItem from '@/shared/components/Generic/GNotificationsItem/GN
 import GTabPanel from '@/shared/components/Generic/GTabPanel/GTabPanel';
 import { CustomNotification } from '@/shared/interfaces/common';
 
-import './Notifications.sass';
-
 export default function Notifications() {
   const [notifications, setNotifications] = useState<CustomNotification[]>([]);
   useEffect(() => {
     GetNotifications().then((response) => {
       setNotifications(response);
-      console.table(response);
     });
   }, []);
   const today = new Date();

@@ -1,3 +1,5 @@
+import './Profile.sass';
+
 import { useState, useEffect } from 'react';
 
 import { Avatar, Badge, Box, Button, Grid } from '@mui/material';
@@ -8,22 +10,20 @@ import { GetProfileConfiguration, ReclaimRegistration } from '@/services/user/us
 import GTable from '@/shared/components/Generic/GTable/GTable';
 import GTableContainer from '@/shared/components/Generic/GTableContainer/GTableContainer';
 import Meta from '@/shared/components/Meta';
-
-import './Profile.sass';
+import { useSession } from '@/store/hotkeys';
 
 function Profile() {
-  const [profileContent, setProfileContent] = useState<any>(null);
+  const [sessionState, userData, sessionActions] = useSession();
+
   const [requestButton, activeButton] = useState<boolean>(true);
   useEffect(() => {
-    GetProfileConfiguration().then((result) => {
-      result && setProfileContent(result);
-    });
+    GetProfileConfiguration();
   }, []);
   return (
     <>
       <Meta title="Perfil" />
       <Grid container spacing={2} justifyContent="space-around" mt={2}>
-        {!profileContent ? (
+        {!userData ? (
           <Box textAlign={'center'} m={3}>
             <Typography variant="h4">No se pudo obtener la información del perfil</Typography>
           </Box>
@@ -35,27 +35,44 @@ function Profile() {
                   id="badge"
                   color="primary"
                   anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-                  badgeContent={
-                    profileContent.profile?.jefe_nucleo ? 'Jefe de Núcleo' : 'Integrante'
-                  }
+                  badgeContent={userData.profile?.jefe_nucleo ? 'Jefe de Núcleo' : 'Integrante'}
                 >
                   <Avatar
-                    alt={profileContent.profile?.nombre}
-                    src={profileContent.profile?.foto}
+                    alt={userData.profile?.nombre}
+                    src={userData.profile?.foto}
                     sx={{ width: '4rem', height: '4rem' }}
                   />
                 </Badge>
-                <Typography sx={{ marginX: '10px' }} variant="h5">
-                  {` ${profileContent.profile?.nombre} ${profileContent.profile?.primer_apellido} ${profileContent.profile?.segundo_apellido}`}
-                </Typography>
-                <Typography variant="subtitle1">CI: {profileContent.profile?.ci}</Typography>
+                {/* <Typography sx={{ marginX: '10px' }} variant="h5">
+                  {` ${userData.profile?.nombre} ${userData.profile?.primer_apellido} ${userData.profile?.segundo_apellido}`}
+                </Typography> */}
+                {/* <Typography variant="subtitle1">CI: {userData.profile?.ci}</Typography> */}
                 <Typography variant="h6">Información Asociada</Typography>
                 <Box style={{ textAlign: 'left', padding: '0px 50px 10px 50px' }}>
                   <Typography sx={{ textAlign: 'center' }}>
-                    Teléfonos:<b> {profileContent.profile?.celular}</b>
+                    Nickname:<b> {userData?.nickname}</b>
                   </Typography>
                   <Typography sx={{ textAlign: 'center' }}>
-                    Dirección: {profileContent.profile?.direccion}
+                    Rol:<b> {userData?.family_name}</b>
+                  </Typography>
+
+                  <Typography sx={{ textAlign: 'center' }}>
+                    Correo:{` `}
+                    <a
+                      href="mailto:soportebodega@xetid.cu"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {userData?.email}
+                    </a>
+                  </Typography>
+                </Box>
+                {/* <Box style={{ textAlign: 'left', padding: '0px 50px 10px 50px' }}>
+                  <Typography sx={{ textAlign: 'center' }}>
+                    Teléfonos:<b> {userData.profile?.celular}</b>
+                  </Typography>
+                  <Typography sx={{ textAlign: 'center' }}>
+                    Dirección: {userData.profile?.direccion}
                   </Typography>
                   <Typography sx={{ textAlign: 'center' }}>
                     Correo:{` `}
@@ -64,28 +81,27 @@ function Profile() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {profileContent.profile?.email}
+                      {userData.profile?.email}
                     </a>
                   </Typography>
-                </Box>
+                </Box> */}
               </div>
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={5} xl={4}>
-              {profileContent.infoNucleo ? (
+              {userData.infoNucleo ? (
                 <div style={{ textAlign: 'center' }}>
                   <Typography variant="h5">Información del núcleo</Typography>
                   <Typography>
-                    Oficina: {profileContent.infoNucleo?.oficina} Bodega:{' '}
-                    {profileContent.infoNucleo?.bodega}{' '}
+                    Oficina: {userData.infoNucleo?.oficina} Bodega: {userData.infoNucleo?.bodega}{' '}
                   </Typography>
-                  <Typography>Núcleo: {profileContent.infoNucleo?.nucleo}</Typography>
+                  <Typography>Núcleo: {userData.infoNucleo?.nucleo}</Typography>
                   <Box style={{ textAlign: 'left', padding: '0px 10px 10px 10px' }}>
                     <Typography variant="body2" sx={{ marginLeft: '10px', marginBottom: '5px' }}>
-                      Integrantes: {profileContent.infoNucleo?.integrantes_count}
+                      Integrantes: {userData.infoNucleo?.integrantes_count}
                     </Typography>
                     <GTableContainer>
                       <GTable
-                        data={profileContent?.infoNucleo?.integrantes}
+                        data={userData?.infoNucleo?.integrantes}
                         messageForEmpty="No se pudieron obtener los integrantes del nucleo"
                         columns={[
                           { header: 'Carnet', name: 'ci', type: 'text' },
@@ -111,8 +127,8 @@ function Profile() {
                     variant={'contained'}
                     disabled={!requestButton}
                     onClick={() =>
-                      profileContent.profile &&
-                      ReclaimRegistration(activeButton, profileContent.profile.persona_id)
+                      userData.profile &&
+                      ReclaimRegistration(activeButton, userData.profile.persona_id)
                     }
                   >
                     Solicitar registro

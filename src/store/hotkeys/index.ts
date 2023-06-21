@@ -1,6 +1,6 @@
-import { atom, useRecoilState } from 'recoil';
-
 import type { Actions, Session, SessionActions } from './types';
+
+import { atom, useRecoilState } from 'recoil';
 
 const hotKeysDialogState = atom<boolean>({
   key: 'hotkeys-dialog-state',
@@ -10,6 +10,7 @@ const sessionState = atom<Session>({
   key: 'session-state',
   default: {
     isLoggedIn: false,
+    profile: null,
   },
 });
 
@@ -31,12 +32,13 @@ export function useHotKeysDialog(): [boolean, Actions] {
   return [isOpen, { toggle, close, open }];
 }
 
-export function useSession(): [boolean, SessionActions] {
+export function useSession(): [boolean, any, SessionActions] {
   const [session, setSession] = useRecoilState(sessionState);
 
   function close() {
     const session = {
       isLoggedIn: false,
+      profile: null,
     };
     setSession(session);
   }
@@ -46,5 +48,5 @@ export function useSession(): [boolean, SessionActions] {
     setSession(params);
   }
 
-  return [session.isLoggedIn, { close, create }];
+  return [session.isLoggedIn, session.profile, { close, create }];
 }

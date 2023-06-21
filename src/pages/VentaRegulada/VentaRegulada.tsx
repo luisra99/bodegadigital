@@ -15,7 +15,6 @@ function VentaRegulada() {
   useEffect(() => {
     GetProducts().then((response) => {
       setProducts(response);
-      console.table(response);
     });
   }, []);
 

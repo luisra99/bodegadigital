@@ -1,5 +1,10 @@
 import { getCookie, removeCookie, setCookie } from '../helpers/cookies';
 
+import Cookies from 'universal-cookie';
+
+import { GetProfileConfiguration } from '@/services/user/user.services';
+
+const cookies = new Cookies();
 interface Session {
   ACCESS_TOKEN: string;
   REFRESH_TOKEN: string;
@@ -7,6 +12,7 @@ interface Session {
   ID_TOKEN: string;
   TOKEN_TYPE: string;
   EXPIRES_IN: string;
+  PROFILE: any;
 }
 
 /**
@@ -41,13 +47,17 @@ export const getSessionParameter = (key: any) => {
 /**
  * Reset authenticated session.
  */
-export const resetAuthenticatedSession = () => {
+export const resetAuthenticatedSession = async () => {
+  console.log('Delete Cookie');
+  const token = getCookie('ID_TOKEN');
   removeCookie('ACCESS_TOKEN');
   removeCookie('REFRESH_TOKEN');
   removeCookie('SCOPE');
   removeCookie('ID_TOKEN');
   removeCookie('TOKEN_TYPE');
   removeCookie('EXPIRES_IN');
+  removeCookie('PROFILE');
+  return token;
 };
 
 /**
@@ -73,6 +83,7 @@ export const getAllSessionParameters = () => {
     ID_TOKEN: getCookie('ID_TOKEN'),
     TOKEN_TYPE: getCookie('TOKEN_TYPE'),
     EXPIRES_IN: getCookie('EXPIRES_IN'),
+    PROFILE: getCookie('PROFILE'),
   };
   return session;
 };

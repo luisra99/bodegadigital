@@ -10,13 +10,13 @@ const id = import.meta.env.VITE_ID;
 export async function GetProfileConfiguration(params?: any) {
   try {
     const wso2TokenHeader = await getToken();
-    const response = axios.get(`${authConfig.CLIENT_INFO}`, {
+    const { data } = await axios.get(`${authConfig.CLIENT_INFO}`, {
       params: {
         access_token: getCookie('ACCESS_TOKEN'),
       },
       headers: wso2TokenHeader,
     });
-    return response;
+    return data;
   } catch (error) {
     console.error('Error en la controladora', error);
     return null;

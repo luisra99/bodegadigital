@@ -1,8 +1,10 @@
 import { getToken } from '../../src/services/wso2';
 import { default as authConfig } from '../AuthConfig.json';
 import { decodeIdToken, initAuthenticatedSession } from './session';
-
 import axios, { AxiosHeaders } from 'axios';
+
+import { setCookie } from '@/helpers/cookies';
+import { GetProfileConfiguration } from '@/services/user/user.services';
 
 /**
  * Sends an authorization request.
@@ -42,10 +44,12 @@ export const sendTokenRequest = async (code: any) => {
         );
       }
       const isToken = JSON.parse(response.data);
-
-      console.table(isToken);
-      // Store the response in the session storage
       initAuthenticatedSession(isToken);
+      await GetProfileConfiguration().then((profile) => {
+        setCookie('PROFILE', profile);
+        isToken['profile'] = profile;
+      });
+      // Store the response in the session storage
       return isToken;
     })
     .catch((error) => {
@@ -59,14 +63,13 @@ export const sendTokenRequest = async (code: any) => {
  * @return {{headers: {Accept: string, "Access-Control-Allow-Origin": string, "Content-Type": string}}}
  */
 const getTokenRequestHeaders = async () => {
-  const { data } = await getToken();
-  const d: AxiosHeaders = data as AxiosHeaders;
+  const wso2TokenHeader = await getToken();
   return {
     headers: {
       Accept: 'application/json',
       'Access-Control-Allow-Origin': `${authConfig.CLIENT_URL}`,
       'Content-Type': 'application/x-www-form-urlencoded',
-      ...d,
+      ...wso2TokenHeader,
     },
   };
 };

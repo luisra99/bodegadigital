@@ -19,7 +19,6 @@ import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 
-import { GetProfileConfiguration } from '@/services/user/user.services';
 import { FlexBox } from '@/shared/components/styled';
 import { useHotKeysDialog, useSession } from '@/store/hotkeys';
 import useNotifications from '@/store/notifications';
@@ -31,13 +30,11 @@ function Header() {
   const [, sidebarActions] = useSidebar();
   const [, themeActions] = useTheme();
   const [, notificationsActions] = useNotifications();
-  const [, hotKeysDialogActions] = useHotKeysDialog();
-  const [sessionState, sessionActions] = useSession();
+  const [sessionState, userData, sessionActions] = useSession();
   useEffect(() => {
     // See if there is a valid session.
     if (isValidSession()) {
       const session = getAllSessionParameters();
-      GetProfileConfiguration();
       const _tokenResponse = {
         access_token: session.ACCESS_TOKEN,
         refresh_token: session.REFRESH_TOKEN,
@@ -50,6 +47,7 @@ function Header() {
         tokenResponse: _tokenResponse,
         idToken: decodeIdToken(session.ID_TOKEN),
         isLoggedIn: true,
+        profile: session.PROFILE,
       });
       return;
     }
@@ -67,8 +65,8 @@ function Header() {
             tokenResponse: response[0],
             idToken: response[1],
             isLoggedIn: true,
+            profile: response.profile,
           });
-          GetProfileConfiguration();
         })
         .catch((error) => {
           console.log('TOKEN REQUEST ERROR', error);
@@ -120,7 +118,7 @@ function Header() {
               <ThemeIcon />
             </IconButton>
           </Tooltip>
-          {!sessionState ? (
+          {sessionState ? (
             <>
               <Tooltip className="header-button" title="Notificaciones" arrow>
                 <IconButton
@@ -151,7 +149,7 @@ function Header() {
                 {/* <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}> */}
                 <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
                   {/* <AccountCircleIcon /> */}
-                  <Avatar alt={'nombre'} src={'foto' || 'none'} />
+                  <Avatar alt={userData?.nickname} src={userData?.picture ?? 'none'} />
                 </IconButton>
               </Tooltip>
             </>
