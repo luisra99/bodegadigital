@@ -3,10 +3,6 @@ import { getCookie } from '../../helpers/cookies';
 import { getToken } from '../wso2';
 import axios from 'axios';
 
-const user_api = import.meta.env.VITE_BODEGA_PRODUCTS;
-const api = import.meta.env.VITE_BODEGA_USUARIO;
-const id = import.meta.env.VITE_ID;
-
 export async function GetProfileConfiguration(params?: any) {
   try {
     const wso2TokenHeader = await getToken();

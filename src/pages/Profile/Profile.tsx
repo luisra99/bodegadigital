@@ -2,7 +2,18 @@ import './Profile.sass';
 
 import { useState, useEffect } from 'react';
 
-import { Avatar, Badge, Box, Button, Grid } from '@mui/material';
+import {
+  Avatar,
+  Badge,
+  Box,
+  Button,
+  Grid,
+  Paper,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+} from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 

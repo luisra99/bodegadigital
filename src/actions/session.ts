@@ -2,8 +2,6 @@ import { getCookie, removeCookie, setCookie } from '../helpers/cookies';
 
 import Cookies from 'universal-cookie';
 
-import { GetProfileConfiguration } from '@/services/user/user.services';
-
 const cookies = new Cookies();
 interface Session {
   ACCESS_TOKEN: string;

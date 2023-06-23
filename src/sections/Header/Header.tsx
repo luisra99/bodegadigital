@@ -1,10 +1,15 @@
 import { isValidSession, getAllSessionParameters, decodeIdToken } from '../../actions/session';
-import { sendAuthorizationRequest, sendTokenRequest } from '../../actions/sign-in';
+import {
+  requestChallenge,
+  sendAuthorizationRequest,
+  sendTokenRequest,
+  Challenge,
+} from '../../actions/sign-in';
 import { dispatchLogout } from '../../actions/sign-out';
 import './Header.sass';
 import { StyledAppBar } from './styled';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import ThemeIcon from '@mui/icons-material/InvertColors';
@@ -12,6 +17,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import LogOut from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
 import Notifications from '@mui/icons-material/Notifications';
+import { CircularProgress } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Badge from '@mui/material/Badge';
 import Button from '@mui/material/Button';
@@ -20,7 +26,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 
 import { FlexBox } from '@/shared/components/styled';
-import { useHotKeysDialog, useSession } from '@/store/hotkeys';
+import { useSession } from '@/store/hotkeys';
 import useNotifications from '@/store/notifications';
 import useSidebar from '@/store/sidebar';
 import useTheme from '@/store/theme';
@@ -31,6 +37,7 @@ function Header() {
   const [, themeActions] = useTheme();
   const [, notificationsActions] = useNotifications();
   const [sessionState, userData, sessionActions] = useSession();
+  const [gettingChallenge, setGettingChallenge] = useState(false);
   useEffect(() => {
     // See if there is a valid session.
     if (isValidSession()) {
@@ -43,56 +50,59 @@ function Header() {
         token_type: session.TOKEN_TYPE,
         expires_in: parseInt(session.EXPIRES_IN),
       };
-      sessionActions.create({
-        tokenResponse: _tokenResponse,
-        idToken: decodeIdToken(session.ID_TOKEN),
-        isLoggedIn: true,
-        profile: session.PROFILE,
-      });
+      if (session.ACCESS_TOKEN)
+        sessionActions.create({
+          tokenResponse: _tokenResponse,
+          idToken: decodeIdToken(session.ID_TOKEN),
+          isLoggedIn: true,
+          profile: session.PROFILE,
+        });
       return;
     }
 
     // Reads the URL and retrieves the `code` param.
     const code = new URL(window.location.href).searchParams.get('code');
-    history.replaceState({}, document.title, window.location.pathname);
     // If a authorization code exists, sends a token request.
     if (code) {
+      history.replaceState({}, document.title, window.location.pathname);
       console.log(code);
       sendTokenRequest(code)
         .then((response) => {
           console.log('TOKEN REQUEST SUCCESS', response);
-          sessionActions.create({
-            tokenResponse: response[0],
-            idToken: response[1],
-            isLoggedIn: true,
-            profile: response.profile,
-          });
+          if (response[0])
+            sessionActions.create({
+              tokenResponse: response[0],
+              idToken: response[1],
+              isLoggedIn: true,
+              profile: response.profile,
+            });
         })
         .catch((error) => {
           console.log('TOKEN REQUEST ERROR', error);
           sessionActions.close();
         });
+      return;
     }
   }, []);
   return (
     <StyledAppBar color="default" elevation={1} position="fixed">
       <Toolbar sx={{ justifyContent: 'space-between', minHeight: '64px' }}>
         <FlexBox sx={{ alignItems: 'center' }}>
-          <IconButton
-            onClick={sidebarActions.toggle}
-            size="large"
-            edge="start"
-            color="info"
-            aria-label="menu"
-            sx={{
-              mr: 1,
-              color: '#fff',
-              visibility: sessionState ? 'visible' : 'hidden',
-            }}
-            disabled={!sessionState}
-          >
-            <MenuIcon />
-          </IconButton>
+          {sessionState && (
+            <IconButton
+              onClick={sidebarActions.toggle}
+              size="large"
+              edge="start"
+              color="info"
+              aria-label="menu"
+              sx={{
+                mr: 1,
+                color: '#fff',
+              }}
+            >
+              <MenuIcon />
+            </IconButton>
+          )}
           <Button
             onClick={() =>
               showNotification(notificationsActions, {
@@ -159,11 +169,17 @@ function Header() {
                 color="info"
                 edge="end"
                 size="large"
-                onClick={() => {
-                  sendAuthorizationRequest();
+                onClick={async () => {
+                  setGettingChallenge(true);
+                  const challenge = await requestChallenge();
+                  if (challenge.challenge) {
+                    sendAuthorizationRequest(challenge);
+                  } else {
+                    setGettingChallenge(false);
+                  }
                 }}
               >
-                <LoginIcon />
+                {!gettingChallenge ? <LoginIcon /> : <CircularProgress color="inherit" />}
               </IconButton>
             </Tooltip>
           )}

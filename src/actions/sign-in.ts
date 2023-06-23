@@ -3,17 +3,41 @@ import { default as authConfig } from '../AuthConfig.json';
 import { decodeIdToken, initAuthenticatedSession } from './session';
 import axios, { AxiosHeaders } from 'axios';
 
-import { setCookie } from '@/helpers/cookies';
+import { setCookie, getCookie } from '@/helpers/cookies';
 import { GetProfileConfiguration } from '@/services/user/user.services';
+
+export type Challenge = {
+  verifier: string;
+  challenge: string;
+};
 
 /**
  * Sends an authorization request.
  */
-export const sendAuthorizationRequest = () => {
-  const authorizeRequest = `${authConfig.AUTHORIZE_ENDPOINT}?response_type=${authConfig.RESPONSE_TYPE}&scope=${authConfig.SCOPE}&redirect_uri=${authConfig.REDIRECT_URI}&client_id=${authConfig.CLIENT_ID}`;
+export const sendAuthorizationRequest = ({
+  challenge,
+  verifier,
+}: {
+  challenge: string;
+  verifier: string;
+}) => {
+  setCookie('VERIFIER', verifier);
+  const authorizeRequest = `${authConfig.AUTHORIZE_ENDPOINT}?response_type=${authConfig.RESPONSE_TYPE}&scope=${authConfig.SCOPE}&redirect_uri=${authConfig.REDIRECT_URI}&client_id=${authConfig.CLIENT_ID}&code_challenge=${challenge}&code_challenge_method=S256`;
   window.location.href = authorizeRequest;
 };
 
+export const requestChallenge = async () => {
+  try {
+    const wso2TokenHeader = await getToken();
+    const { data } = await axios.get(`${authConfig.CHALLENGE}`, {
+      headers: wso2TokenHeader,
+    });
+    return data;
+  } catch (error) {
+    console.error('Error en la controladora', error);
+    return { challenge: false };
+  }
+};
 /**
  * Sends a token request.
  *
@@ -21,12 +45,6 @@ export const sendAuthorizationRequest = () => {
  * @return {Promise<AxiosResponse<T> | never>}
  */
 export const sendTokenRequest = async (code: any) => {
-  // const body = [];
-  // body.push(`client_id=${authConfig.CLIENT_ID}`);
-  // body.push(`client_secret=${authConfig.CLIENT_SECRET}`);
-  // body.push(`code=${code}`);
-  // body.push(`grant_type=${authConfig.GRANT_TYPE}`);
-  // body.push(`redirect_uri=${authConfig.REDIRECT_URI}`);
   return axios
     .post(
       `${authConfig.TOKEN_ENDPOINT}`,
@@ -34,6 +52,7 @@ export const sendTokenRequest = async (code: any) => {
         code: code,
         grant_type: authConfig.GRANT_TYPE,
         redirect_uri: authConfig.REDIRECT_URI,
+        verifier: getCookie('VERIFIER'),
       }),
       await getTokenRequestHeaders(),
     )
@@ -44,11 +63,14 @@ export const sendTokenRequest = async (code: any) => {
         );
       }
       const isToken = JSON.parse(response.data);
-      initAuthenticatedSession(isToken);
-      await GetProfileConfiguration().then((profile) => {
-        setCookie('PROFILE', profile);
-        isToken['profile'] = profile;
-      });
+      if (isToken.access_token) {
+        initAuthenticatedSession(isToken);
+        await GetProfileConfiguration().then((profile) => {
+          setCookie('PROFILE', profile);
+          isToken['profile'] = profile;
+        });
+      }
+
       // Store the response in the session storage
       return isToken;
     })
