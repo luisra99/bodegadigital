@@ -4,7 +4,7 @@
   "description": "Informaciones comerciales al alcance de todos",
   "homepage": "https://xetid.cu/",
   "scripts": {
-    "dev": "vite --host 8080",
+    "dev": "vite --host --port 8080",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "https-preview": "serve dist",
