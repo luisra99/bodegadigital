@@ -22,7 +22,7 @@ function Header() {
     <StyledAppBar color="default" elevation={1} position="fixed">
       <Toolbar sx={{ justifyContent: 'space-between', minHeight: '64px' }}>
         <FlexBox sx={{ alignItems: 'center' }}>
-          {!sessionState && (
+          {sessionState && (
             <IconButton
               onClick={sidebarActions.toggle}
               size="large"
