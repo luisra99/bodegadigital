@@ -55,6 +55,7 @@ export const resetAuthenticatedSession = async () => {
   removeCookie('TOKEN_TYPE');
   removeCookie('EXPIRES_IN');
   removeCookie('PROFILE');
+  removeCookie('VERIFIER');
   return token;
 };
 
@@ -73,7 +74,7 @@ export const isValidSession = () => {
  *
  * @returns {{}}
  */
-export const getAllSessionParameters = () => {
+export const getAllSessionParameters = async () => {
   const session: Session = {
     ACCESS_TOKEN: getCookie('ACCESS_TOKEN'),
     REFRESH_TOKEN: getCookie('REFRESH_TOKEN'),

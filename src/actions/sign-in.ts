@@ -26,13 +26,13 @@ export const sendAuthorizationRequest = ({
   window.location.href = authorizeRequest;
 };
 
-export const requestChallenge = async () => {
+export const requestChallenge = async (): Promise<any> => {
   try {
     const wso2TokenHeader = await getToken();
     const { data } = await axios.get(`${authConfig.CHALLENGE}`, {
       headers: wso2TokenHeader,
     });
-    return data;
+    return JSON.parse(data);
   } catch (error) {
     console.error('Error en la controladora', error);
     return { challenge: false };
