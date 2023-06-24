@@ -1,3 +1,6 @@
+import routes from '..';
+import { getPageHeight } from './utils';
+
 import { Fragment, useState, Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
@@ -5,9 +8,6 @@ import Box from '@mui/material/Box';
 
 import Welcome from '@/pages/Welcome';
 import Loading from '@/shared/components/Loading';
-
-import routes from '..';
-import { getPageHeight } from './utils';
 
 function Pages() {
   const [session, setSession] = useState(true);

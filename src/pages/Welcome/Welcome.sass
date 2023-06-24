@@ -1,29 +1,3 @@
-.item
-  position: relative
-  margin-bottom: 25px
-  border-radius: 2px
-  overflow: hidden
-
-  &:after
-    content: ''
-    display: block
-    position: absolute
-    top: 0
-    right: 0
-    bottom: 0
-    left: 0
-    opacity: 0.55
-
-  &--first:after
-    background-image: linear-gradient(45deg, #000, #000)
-
-@media (min-width:800px)
-  img
-    height: 100%
-    width: 100%
-@media (max-width:800px)
-  img
-    max-width: 800px
-
-.welcome-pic
-  -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))
+.welcome
+  background-image: background-image: radial-gradient(circle at 30% 94%, rgba(90,180,34, 0.06) 0%, rgba(90,180,34, 0.06) 50%,rgba(21, 21, 21,0.06) 50%, rgba(21, 21, 21,0.06) 100%),radial-gradient(circle at 59% 19%, rgba(248, 248, 248,0.06) 0%, rgba(248, 248, 248,0.06) 50%,rgba(87, 87, 87,0.06) 50%, rgba(87, 87, 87,0.06) 100%),radial-gradient(circle at 7% 11%, rgba(148, 148, 148,0.06) 0%, rgba(148, 148, 148,0.06) 50%,rgba(145,145,145, 0.06) 50%, rgba(145,145,145, 0.06) 100%),linear-gradient(90deg, rgb(114,114,114),rgb(114,114,114))
+  height:100%

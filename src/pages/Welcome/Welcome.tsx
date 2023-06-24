@@ -1,31 +1,15 @@
 import './Welcome.sass';
 
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
 import Meta from '@/shared/components/Meta';
-import { useSession } from '@/store/hotkeys';
 
 function Welcome() {
-  const [sessionState, userData, sessionActions] = useSession();
-
   return (
     <>
       <Meta title="Inicio" />
-      <Box style={{ textAlign: 'center' }}>
-        <Grid container sx={{ position: 'fixed', zIndex: -1 }} className="welcome-pic">
-          <Grid
-            item
-            className="item item--first"
-            alignContent={'center'}
-            display={'flex'}
-            sx={{ width: '100%' }}
-          >
-            <img loading="lazy" src={'/image_c.jpg'} alt="bodega" />
-          </Grid>
-        </Grid>
-
+      <Box className="welcome" style={{ textAlign: 'center' }}>
         <Typography
           p={3}
           ml={3}
