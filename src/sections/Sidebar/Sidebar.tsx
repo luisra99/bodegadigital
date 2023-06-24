@@ -1,10 +1,11 @@
+import './Sidebar.sass';
+
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import DefaultIcon from '@mui/icons-material/Deblur';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import { Divider } from '@mui/material';
 import Collapse from '@mui/material/Collapse';
 import Icon from '@mui/material/Icon';
 import List from '@mui/material/List';
@@ -17,13 +18,9 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import routes from '@/routes';
 import { Routes } from '@/routes/types';
 import useSidebar from '@/store/sidebar';
-import useTheme from '@/store/theme';
-
-import './Sidebar.sass';
 
 function Sidebar() {
   const [isSidebarOpen, sidebarActions] = useSidebar();
-  const [, themeActions] = useTheme();
   const [open, setOpen] = useState<any>({});
 
   // funcion que modifica el estado del collapse
@@ -60,9 +57,7 @@ function Sidebar() {
                   disablePadding
                   style={{ backdropFilter: `brightness(${1 - 0.1 * level})` }}
                 >
-                  <Divider />
                   {drawerMenu(subPath, level++)}
-                  <Divider />
                 </List>
               </Collapse>
             </List>
