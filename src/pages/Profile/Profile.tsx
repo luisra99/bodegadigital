@@ -40,7 +40,7 @@ function Profile() {
           </Box>
         ) : (
           <>
-            <Grid item xs={12} sm={12} md={6} lg={5} xl={4}>
+            <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
               <div style={{ textAlign: 'center' }}>
                 <Badge
                   id="badge"
@@ -49,56 +49,104 @@ function Profile() {
                   badgeContent={userData.profile?.jefe_nucleo ? 'Jefe de Núcleo' : 'Integrante'}
                 >
                   <Avatar
-                    alt={userData.profile?.nombre}
-                    src={userData.profile?.foto}
+                    alt={userData?.given_name}
+                    src={`https://media.enzona.net/images/user/avatar/${userData?.sub}.png`}
                     sx={{ width: '4rem', height: '4rem' }}
                   />
                 </Badge>
-                {/* <Typography sx={{ marginX: '10px' }} variant="h5">
-                  {` ${userData.profile?.nombre} ${userData.profile?.primer_apellido} ${userData.profile?.segundo_apellido}`}
-                </Typography> */}
-                {/* <Typography variant="subtitle1">CI: {userData.profile?.ci}</Typography> */}
-                <Typography variant="h6">Información Asociada</Typography>
-                <Box style={{ textAlign: 'left', padding: '0px 50px 10px 50px' }}>
-                  <Typography sx={{ textAlign: 'center' }}>
-                    Nickname:<b> {userData?.nickname}</b>
-                  </Typography>
-                  <Typography sx={{ textAlign: 'center' }}>
-                    Rol:<b> {userData?.family_name}</b>
-                  </Typography>
-
-                  <Typography sx={{ textAlign: 'center' }}>
-                    Correo:{` `}
-                    <a
-                      href="mailto:soportebodega@xetid.cu"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {userData?.email}
-                    </a>
-                  </Typography>
-                </Box>
-                {/* <Box style={{ textAlign: 'left', padding: '0px 50px 10px 50px' }}>
-                  <Typography sx={{ textAlign: 'center' }}>
-                    Teléfonos:<b> {userData.profile?.celular}</b>
-                  </Typography>
-                  <Typography sx={{ textAlign: 'center' }}>
-                    Dirección: {userData.profile?.direccion}
-                  </Typography>
-                  <Typography sx={{ textAlign: 'center' }}>
-                    Correo:{` `}
-                    <a
-                      href="mailto:soportebodega@xetid.cu"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {userData.profile?.email}
-                    </a>
-                  </Typography>
-                </Box> */}
               </div>
             </Grid>
-            <Grid item xs={12} sm={12} md={6} lg={5} xl={4}>
+            <Grid item xs={12} sm={12} md={12} lg={6} xl={5}>
+              <div style={{ textAlign: 'center', padding: '16px' }}>
+                <fieldset>
+                  <legend>Información personal</legend>
+                  <div className="panel panel-default">
+                    <div className="panel-body">
+                      <div className="form-group">
+                        <div className="row">
+                          <Grid xs={12} sm={7} md={8} lg={6} xl={6}>
+                            <label className="label-change-switch">Nombre:</label>
+                          </Grid>
+                          <Grid xs={12} sm={4} md={3} lg={6} xl={6}>
+                            <span>{`${userData?.given_name} ${userData?.family_name}`}</span>
+                          </Grid>
+                        </div>
+                      </div>
+                      <div className="form-group">
+                        <hr />
+                        <div className="row">
+                          <Grid xs={12} sm={7} md={8} lg={6} xl={6}>
+                            <label className="label-change-switch">Usuario:</label>
+                          </Grid>
+                          <Grid xs={12} sm={4} md={3} lg={6} xl={6}>
+                            <span>{userData?.sub}</span>
+                          </Grid>
+                        </div>
+                      </div>
+                      <div className="form-group">
+                        <hr />
+                        <div className="row">
+                          <Grid xs={12} sm={7} md={8} lg={6} xl={6}>
+                            <label className="label-change-switch">Carnet de Identidad:</label>
+                          </Grid>
+                          <Grid xs={12} sm={4} md={3} lg={6} xl={6}>
+                            <span>{userData?.identification}</span>
+                          </Grid>
+                        </div>
+                      </div>
+                      <div className="form-group">
+                        <hr />
+                        <div className="row">
+                          <Grid xs={12} sm={7} md={8} lg={6} xl={6}>
+                            <label className="label-change-switch">Dirección:</label>
+                          </Grid>
+                          <Grid xs={12} sm={4} md={3} lg={6} xl={6}>
+                            <span>{userData?.address.address}</span>
+                          </Grid>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+                <fieldset>
+                  <legend>Información de contacto</legend>
+                  <div className="panel panel-default">
+                    <div className="panel-body">
+                      <div className="form-group">
+                        <div className="row">
+                          <Grid xs={12} sm={7} md={8} lg={6} xl={6}>
+                            <label className="label-change-switch">Teléfono:</label>
+                          </Grid>
+                          <Grid xs={12} sm={4} md={3} lg={6} xl={6}>
+                            <span>{userData?.phone_number}</span>
+                          </Grid>
+                        </div>
+                      </div>
+                      <div className="form-group">
+                        <hr />
+                        <div className="row">
+                          <Grid xs={12} sm={7} md={8} lg={6} xl={6}>
+                            <label className="label-change-switch">Correo electrónico:</label>
+                          </Grid>
+                          <Grid xs={12} sm={4} md={3} lg={6} xl={6}>
+                            <span>
+                              <a
+                                href="mailto:soportebodega@xetid.cu"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {userData?.email}
+                              </a>
+                            </span>
+                          </Grid>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+            </Grid>
+            <Grid item xs={12} sm={12} md={12} lg={6} xl={5} m={'auto'}>
               {userData.infoNucleo ? (
                 <div style={{ textAlign: 'center' }}>
                   <Typography variant="h5">Información del núcleo</Typography>
@@ -131,9 +179,6 @@ function Profile() {
                 </div>
               ) : (
                 <Box sx={{ textAlign: 'center' }}>
-                  <Typography p={4} variant="h5" textAlign={'center'}>
-                    Usted no se encuentra registrado en su núcleo
-                  </Typography>
                   <Button
                     variant={'contained'}
                     disabled={!requestButton}
@@ -142,7 +187,7 @@ function Profile() {
                       ReclaimRegistration(activeButton, userData.profile.persona_id)
                     }
                   >
-                    Solicitar registro
+                    Solicitar registro en su núcleo
                   </Button>
                 </Box>
               )}

@@ -87,7 +87,10 @@ function HeaderToolbar() {
           </Tooltip>
           <Tooltip className="header-button" title="Opciones de usuario" arrow>
             <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
-              <Avatar alt={userData?.nickname} src={userData?.picture ?? 'none'} />
+              <Avatar
+                alt={userData?.nickname}
+                src={`https://media.enzona.net/images/user/avatar/${userData?.sub}.png`}
+              />
             </IconButton>
           </Tooltip>
         </>
