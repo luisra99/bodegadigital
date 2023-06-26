@@ -42,11 +42,11 @@ function HeaderToolbar() {
     const code = new URL(window.location.href).searchParams.get('code');
     if (code) {
       history.replaceState({}, document.title, window.location.pathname);
-      console.log(code);
+      // console.log(code);
       sendTokenRequest(code)
         .then((response) => {
-          console.log('TOKEN REQUEST SUCCESS', response);
-          console.log(response.access_token);
+          // console.log('TOKEN REQUEST SUCCESS', response);
+          // console.log(response.access_token);
           if (response.access_token)
             sessionActions.create({
               tokenResponse: response[0],

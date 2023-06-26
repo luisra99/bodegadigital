@@ -46,7 +46,7 @@ export const getSessionParameter = (key: any) => {
  * Reset authenticated session.
  */
 export const resetAuthenticatedSession = async () => {
-  console.log('Delete Cookie');
+  // console.log('Delete Cookie');
   const token = getCookie('ID_TOKEN');
   removeCookie('ACCESS_TOKEN');
   removeCookie('REFRESH_TOKEN');

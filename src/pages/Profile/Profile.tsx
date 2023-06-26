@@ -64,10 +64,10 @@ function Profile() {
                     <div className="panel-body">
                       <div className="form-group">
                         <div className="row">
-                          <Grid xs={12} sm={7} md={8} lg={6} xl={6}>
+                          <Grid item xs={12} sm={7} md={8} lg={6} xl={6}>
                             <label className="label-change-switch">Nombre:</label>
                           </Grid>
-                          <Grid xs={12} sm={4} md={3} lg={6} xl={6}>
+                          <Grid item xs={12} sm={4} md={3} lg={6} xl={6}>
                             <span>{`${userData?.given_name} ${userData?.family_name}`}</span>
                           </Grid>
                         </div>
@@ -75,10 +75,10 @@ function Profile() {
                       <div className="form-group">
                         <hr />
                         <div className="row">
-                          <Grid xs={12} sm={7} md={8} lg={6} xl={6}>
+                          <Grid item xs={12} sm={7} md={8} lg={6} xl={6}>
                             <label className="label-change-switch">Usuario:</label>
                           </Grid>
-                          <Grid xs={12} sm={4} md={3} lg={6} xl={6}>
+                          <Grid item xs={12} sm={4} md={3} lg={6} xl={6}>
                             <span>{userData?.sub}</span>
                           </Grid>
                         </div>
@@ -86,10 +86,10 @@ function Profile() {
                       <div className="form-group">
                         <hr />
                         <div className="row">
-                          <Grid xs={12} sm={7} md={8} lg={6} xl={6}>
+                          <Grid item xs={12} sm={7} md={8} lg={6} xl={6}>
                             <label className="label-change-switch">Carnet de Identidad:</label>
                           </Grid>
-                          <Grid xs={12} sm={4} md={3} lg={6} xl={6}>
+                          <Grid item xs={12} sm={4} md={3} lg={6} xl={6}>
                             <span>{userData?.identification}</span>
                           </Grid>
                         </div>
@@ -97,10 +97,10 @@ function Profile() {
                       <div className="form-group">
                         <hr />
                         <div className="row">
-                          <Grid xs={12} sm={7} md={8} lg={6} xl={6}>
+                          <Grid item xs={12} sm={7} md={8} lg={6} xl={6}>
                             <label className="label-change-switch">Dirección:</label>
                           </Grid>
-                          <Grid xs={12} sm={4} md={3} lg={6} xl={6}>
+                          <Grid item xs={12} sm={4} md={3} lg={6} xl={6}>
                             <span>{userData?.address.address}</span>
                           </Grid>
                         </div>
@@ -114,10 +114,10 @@ function Profile() {
                     <div className="panel-body">
                       <div className="form-group">
                         <div className="row">
-                          <Grid xs={12} sm={7} md={8} lg={6} xl={6}>
+                          <Grid item xs={12} sm={7} md={8} lg={6} xl={6}>
                             <label className="label-change-switch">Teléfono:</label>
                           </Grid>
-                          <Grid xs={12} sm={4} md={3} lg={6} xl={6}>
+                          <Grid item xs={12} sm={4} md={3} lg={6} xl={6}>
                             <span>{userData?.phone_number}</span>
                           </Grid>
                         </div>
@@ -125,10 +125,10 @@ function Profile() {
                       <div className="form-group">
                         <hr />
                         <div className="row">
-                          <Grid xs={12} sm={7} md={8} lg={6} xl={6}>
+                          <Grid item xs={12} sm={7} md={8} lg={6} xl={6}>
                             <label className="label-change-switch">Correo electrónico:</label>
                           </Grid>
-                          <Grid xs={12} sm={4} md={3} lg={6} xl={6}>
+                          <Grid item xs={12} sm={4} md={3} lg={6} xl={6}>
                             <span>
                               <a
                                 href="mailto:soportebodega@xetid.cu"
