@@ -1,6 +1,10 @@
+import { isValidSession } from '../../actions/session';
 import type { Actions, Session, SessionActions } from './types';
+import { restoreSession } from '@/actions/management';
 
+import { useEffect } from 'react';
 import { atom, useRecoilState } from 'recoil';
+
 
 const hotKeysDialogState = atom<boolean>({
   key: 'hotkeys-dialog-state',
@@ -9,7 +13,7 @@ const hotKeysDialogState = atom<boolean>({
 const sessionState = atom<Session>({
   key: 'session-state',
   default: {
-    isLoggedIn: false,
+    isLoggedIn: isValidSession(),
     profile: null,
   },
 });
@@ -34,6 +38,11 @@ export function useHotKeysDialog(): [boolean, Actions] {
 
 export function useSession(): [boolean, any, SessionActions] {
   const [session, setSession] = useRecoilState(sessionState);
+  useEffect(() => {
+    if (isValidSession()) {
+      restoreSession({close,create})
+    }
+  }, []);
 
   function close() {
     const session = {

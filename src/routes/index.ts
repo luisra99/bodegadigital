@@ -1,3 +1,5 @@
+import { Pages, Routes } from './types';
+
 import CreditScoreIcon from '@mui/icons-material/CreditScore';
 import HomeIcon from '@mui/icons-material/Home';
 import RecentActorsIcon from '@mui/icons-material/RecentActors';
@@ -6,13 +8,16 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 import asyncComponentLoader from '@/utils/loader';
 
-import { Pages, Routes } from './types';
-
 const routes: Routes = {
   [Pages.Welcome]: {
-    path: '/',
+    component: asyncComponentLoader(() => import('@/pages/Welcome')),
+    path: '/inicio',
     title: 'Inicio',
     icon: HomeIcon,
+  },
+  [Pages.LandingPage]: {
+    path: '/',
+    title: '',
   },
   [Pages.VentaRegulada]: {
     component: asyncComponentLoader(() => import('@/pages/VentaRegulada')),

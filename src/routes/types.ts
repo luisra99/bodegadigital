@@ -5,6 +5,7 @@ import type { SvgIconProps } from '@mui/material/SvgIcon';
 
 enum Pages {
   Welcome,
+  LandingPage,
   VentaRegulada,
   MisNucleos,
   Productos,
@@ -30,6 +31,7 @@ type PathRouteCustomProps = {
   subPath?: Routes;
   hide?: boolean;
   func?(): void;
+  inverted?: boolean;
 };
 
 type Routes = Record<string, PathRouteProps & PathRouteCustomProps>;

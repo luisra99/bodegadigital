@@ -1,11 +1,10 @@
-import { isValidSession, getAllSessionParameters, decodeIdToken } from '../../../actions/session';
+import { isValidSession } from '../../../actions/session';
 import {
   requestChallenge,
   sendAuthorizationRequest,
-  sendTokenRequest,
 } from '../../../actions/sign-in';
 import { dispatchLogout } from '../../../actions/sign-out';
-
+import { restoreSession,createSession } from '@/actions/management';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -28,37 +27,12 @@ function HeaderToolbar() {
   const [gettingChallenge, setGettingChallenge] = useState(false);
   useEffect(() => {
     if (isValidSession()) {
-      getAllSessionParameters().then((sessionParams) => {
-        if (sessionParams.ACCESS_TOKEN)
-          sessionActions.create({
-            tokenResponse: sessionParams,
-            idToken: decodeIdToken(sessionParams.ID_TOKEN),
-            isLoggedIn: true,
-            profile: sessionParams.PROFILE,
-          });
-      });
+      restoreSession(sessionActions);
       return;
     }
     const code = new URL(window.location.href).searchParams.get('code');
     if (code) {
-      history.replaceState({}, document.title, window.location.pathname);
-      // console.log(code);
-      sendTokenRequest(code)
-        .then((response) => {
-          // console.log('TOKEN REQUEST SUCCESS', response);
-          // console.log(response.access_token);
-          if (response.access_token)
-            sessionActions.create({
-              tokenResponse: response[0],
-              idToken: response[1],
-              isLoggedIn: true,
-              profile: response.profile,
-            });
-        })
-        .catch((error) => {
-          console.log('TOKEN REQUEST ERROR', error);
-          sessionActions.close();
-        });
+      createSession(sessionActions,code);
       return;
     }
   }, []);
@@ -67,15 +41,14 @@ function HeaderToolbar() {
       {sessionState ? (
         <>
           <Tooltip className="header-button" title="Notificaciones" arrow>
-            <IconButton color="info" edge="end" size="large" component={Link} to={'/notifications'}>
-              <Badge badgeContent={4} max={99} color="error">
+            <IconButton edge="end" size="large" component={Link} to={'/notifications'}>
+              <Badge badgeContent={userData?.notifications ?? 0} max={99} color="error">
                 <Notifications />
               </Badge>
             </IconButton>
           </Tooltip>
           <Tooltip className="header-button" title="Cerrar Sesión" arrow>
             <IconButton
-              color="info"
               edge="end"
               size="large"
               onClick={() => {
@@ -86,43 +59,51 @@ function HeaderToolbar() {
             </IconButton>
           </Tooltip>
           <Tooltip className="header-button" title="Opciones de usuario" arrow>
-            <IconButton color="info" edge="end" size="large" component={Link} to={'/profile'}>
-              <Avatar
-                alt={userData?.nickname}
-                src={`https://media.enzona.net/images/user/avatar/${userData?.sub}.png`}
-              />
+            <IconButton edge="end" size="large" component={Link} to={'/profile'} disabled={!userData?.PI?.nombre}>
+              {userData?.PI?.nombre ? (
+                <Avatar
+                  alt={userData?.PI?.nombre}
+                  src={`https://media.enzona.net/images/user/avatar/${userData?.PI?.username}.png`}
+                />
+              ) : (
+                <CircularProgress color="inherit" />
+              )}
             </IconButton>
           </Tooltip>
         </>
       ) : (
-        <Tooltip className="header-button" title="Iniciar sesión" arrow>
-          <IconButton
-            color="info"
-            edge="end"
-            size="large"
-            onClick={async () => {
-              setGettingChallenge(true);
-              await requestChallenge().then((challenge) => {
-                if (challenge.challenge) {
-                  sendAuthorizationRequest(challenge);
-                } else {
-                  setGettingChallenge(false);
-                  showNotification(notificationsActions, {
-                    type: 'error',
-                    title: 'Error iniciando sesión',
-                    subTitle: 'La conexión ha fallado',
-                    content:
-                      'No se ha podido conseguir la información necesaria para el inicio de sesión',
-                  });
-                }
-              });
-            }}
-          >
-            {!gettingChallenge ? <LoginIcon /> : <CircularProgress color="inherit" />}
-          </IconButton>
-        </Tooltip>
+        <>
+          <Tooltip className="header-button" title="Iniciar sesión" arrow>
+            <IconButton
+              edge="end"
+              size="large"
+              disabled={gettingChallenge}
+              onClick={async () => {
+                setGettingChallenge(true);
+                await requestChallenge().then((challenge) => {
+                  if (challenge.challenge) {
+                    sendAuthorizationRequest(challenge);
+                  } else {
+                    setGettingChallenge(false);
+                    showNotification(notificationsActions, {
+                      type: 'error',
+                      title: 'Error iniciando sesión',
+                      subTitle: 'La conexión ha fallado',
+                      content:
+                        'No se ha podido conseguir la información necesaria para el inicio de sesión',
+                    });
+                  }
+                });
+              }}
+            >
+              {!gettingChallenge ? <LoginIcon /> : <CircularProgress color="inherit" />}
+            </IconButton>
+          </Tooltip>
+        </>
       )}
     </>
   );
+  
 }
+
 export default HeaderToolbar;

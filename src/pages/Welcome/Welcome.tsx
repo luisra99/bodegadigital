@@ -19,7 +19,7 @@ function Welcome() {
           fontWeight={900}
           color={'whitesmoke'}
         >
-          Bienvenido al sistema de bodega digital
+          Nos alegra tenerte por aca...
         </Typography>
         <Typography
           px={3}
@@ -29,8 +29,7 @@ function Welcome() {
           style={{ textAlign: 'left', textShadow: '1px 1px 5px #3c3c3c' }}
           color={'whitesmoke'}
         >
-          Este sistema le permitirá un mejor acceso a las informaciones del acontecer gastronómico
-          de nuestra sociedad funciona
+          
         </Typography>
       </Box>
     </>

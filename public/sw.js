@@ -5,37 +5,12 @@ import { StaleWhileRevalidate, CacheFirst } from 'workbox-strategies';
 
 const version = 1;
 const CACHE_NAME = `my-cache-v${version}`;
-const filesToCache = ['/', '/nukes', '/profile', '/venta-regulada'];
+
 self.__WB_MANIFEST;
 precacheAndRoute(self.__WB_MANIFEST);
 
 self.skipWaiting();
 clientsClaim();
-
-// self.addEventListener('fetch', (event) => {
-//   const url = new URL(event.request.url);
-//   event.respondWith(
-//     (async function () {
-//       const cachedResponse = await caches.match(url.pathname);
-//       if (cachedResponse) {
-//         console.log('La url es ', url.pathname);
-//         const cachestr = cachedResponse;
-//         console.table(cachedResponse.bodyUsed);
-//         return cachedResponse;
-//       }
-//       try {
-//         const fetchResponse = await fetch(event.request);
-//         const cache = await caches.open(CACHE_NAME);
-//         cache.put(event.request, fetchResponse.clone());
-//         return fetchResponse;
-//       } catch (err) {
-//         console.error('Error en el service worker');
-//         console.error(err);
-//         return new Response(null, { status: 404 });
-//       }
-//     })(),
-//   );
-// });
 
 registerRoute(
   ({ url }) => url.origin === 'http://localhost:3000',
@@ -97,26 +72,3 @@ registerRoute(
     },
   }),
 );
-
-// self.addEventListener('fetch', function (event) {
-//   const url = new URL(event.request.url);
-//   url.origin === 'http://localhost:3000/token';
-
-//   // Fetch the Request with Modified Headers
-//   event.respondWith(fetch(modifiedRequest));
-// });
-// self.addEventListener('fetch', function (event) {
-//   const url = new URL(event.request.url);
-//   url.origin === 'https://bodegadigital.prod.xetid.cu/wso2/api/';
-//   // Add Custom Headers
-//   var customHeaders = new Headers();
-//   customHeaders.append('Authorization', 'Bearer myToken');
-
-//   // Create a new Request Object with Custom Headers
-//   var modifiedRequest = new Request(event.request, {
-//     headers: customHeaders,
-//   });
-
-//   // Fetch the Request with Modified Headers
-//   event.respondWith(fetch(modifiedRequest));
-// });

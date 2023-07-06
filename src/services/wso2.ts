@@ -3,7 +3,7 @@ import axios, { AxiosHeaders } from 'axios';
 import { Buffer } from 'buffer';
 
 export async function getToken(): Promise<AxiosHeaders> {
-  const ip = 'http://bodega.prod.xetid.cu/apim';
+  const ip = 'https://bodegadigital.prod.xetid.cu/apim';
   const port = '';
   const token_endpoint = `${ip}${port ? `:${port}` : ''}/oauth2/token`;
   const customer_key = '_02ZmCsRRkFlPi3YuT9YNn3fxDoa';

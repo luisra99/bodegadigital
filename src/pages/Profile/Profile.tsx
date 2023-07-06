@@ -8,24 +8,16 @@ import {
   Box,
   Button,
   Grid,
-  Paper,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableRow,
 } from '@mui/material';
-import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 
 import { GetProfileConfiguration, ReclaimRegistration } from '@/services/user/user.services';
-import GTable from '@/shared/components/Generic/GTable/GTable';
-import GTableContainer from '@/shared/components/Generic/GTableContainer/GTableContainer';
 import Meta from '@/shared/components/Meta';
 import { useSession } from '@/store/hotkeys';
 
 function Profile() {
-  const [sessionState, userData, sessionActions] = useSession();
-
+  const [, userData, ] = useSession();
+  const serverErrorMessage="No se pudieron obtener los datos..."
   const [requestButton, activeButton] = useState<boolean>(true);
   useEffect(() => {
     GetProfileConfiguration();
@@ -34,7 +26,7 @@ function Profile() {
     <>
       <Meta title="Perfil" />
       <Grid container spacing={2} justifyContent="space-around" mt={2}>
-        {!userData ? (
+        {!userData?.PI? (
           <Box textAlign={'center'} m={3}>
             <Typography variant="h4">No se pudo obtener la información del perfil</Typography>
           </Box>
@@ -46,18 +38,24 @@ function Profile() {
                   id="badge"
                   color="primary"
                   anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-                  badgeContent={userData.profile?.jefe_nucleo ? 'Jefe de Núcleo' : 'Integrante'}
+                  badgeContent={
+                    userData?.APP?.jnucleo
+                      ? userData?.APP?.jnucleo
+                        ? 'Jefe de Núcleo'
+                        : 'Integrante'
+                      : null
+                  }
                 >
                   <Avatar
-                    alt={userData?.given_name}
-                    src={`https://media.enzona.net/images/user/avatar/${userData?.sub}.png`}
+                    alt={userData?.PI?.nombre}
+                    src={`https://media.enzona.net/images/user/avatar/${userData?.PI?.username}.png`}
                     sx={{ width: '4rem', height: '4rem' }}
                   />
                 </Badge>
               </div>
             </Grid>
             <Grid item xs={12} sm={12} md={12} lg={6} xl={5}>
-              <div style={{ textAlign: 'center', padding: '16px' }}>
+              <div className='fieldset-box'>
                 <fieldset>
                   <legend>Información personal</legend>
                   <div className="panel panel-default">
@@ -68,7 +66,7 @@ function Profile() {
                             <label className="label-change-switch">Nombre:</label>
                           </Grid>
                           <Grid item xs={12} sm={4} md={3} lg={6} xl={6}>
-                            <span>{`${userData?.given_name} ${userData?.family_name}`}</span>
+                            <span>{`${userData?.PI?.nombre} ${userData?.PI?.apellidos}`}</span>
                           </Grid>
                         </div>
                       </div>
@@ -79,7 +77,7 @@ function Profile() {
                             <label className="label-change-switch">Usuario:</label>
                           </Grid>
                           <Grid item xs={12} sm={4} md={3} lg={6} xl={6}>
-                            <span>{userData?.sub}</span>
+                            <span>{userData?.PI?.username}</span>
                           </Grid>
                         </div>
                       </div>
@@ -90,7 +88,7 @@ function Profile() {
                             <label className="label-change-switch">Carnet de Identidad:</label>
                           </Grid>
                           <Grid item xs={12} sm={4} md={3} lg={6} xl={6}>
-                            <span>{userData?.identification}</span>
+                            <span>{userData?.PI?.ci}</span>
                           </Grid>
                         </div>
                       </div>
@@ -101,7 +99,7 @@ function Profile() {
                             <label className="label-change-switch">Dirección:</label>
                           </Grid>
                           <Grid item xs={12} sm={4} md={3} lg={6} xl={6}>
-                            <span>{userData?.address.address}</span>
+                            <span>{userData?.PI?.direccion}</span>
                           </Grid>
                         </div>
                       </div>
@@ -118,7 +116,7 @@ function Profile() {
                             <label className="label-change-switch">Teléfono:</label>
                           </Grid>
                           <Grid item xs={12} sm={4} md={3} lg={6} xl={6}>
-                            <span>{userData?.phone_number}</span>
+                            <span>{userData?.PI?.telefono}</span>
                           </Grid>
                         </div>
                       </div>
@@ -135,7 +133,7 @@ function Profile() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
-                                {userData?.email}
+                                {userData?.PI?.correo}
                               </a>
                             </span>
                           </Grid>
@@ -147,37 +145,7 @@ function Profile() {
               </div>
             </Grid>
             <Grid item xs={12} sm={12} md={12} lg={6} xl={5} m={'auto'}>
-              {userData.infoNucleo ? (
-                <div style={{ textAlign: 'center' }}>
-                  <Typography variant="h5">Información del núcleo</Typography>
-                  <Typography>
-                    Oficina: {userData.infoNucleo?.oficina} Bodega: {userData.infoNucleo?.bodega}{' '}
-                  </Typography>
-                  <Typography>Núcleo: {userData.infoNucleo?.nucleo}</Typography>
-                  <Box style={{ textAlign: 'left', padding: '0px 10px 10px 10px' }}>
-                    <Typography variant="body2" sx={{ marginLeft: '10px', marginBottom: '5px' }}>
-                      Integrantes: {userData.infoNucleo?.integrantes_count}
-                    </Typography>
-                    <GTableContainer>
-                      <GTable
-                        data={userData?.infoNucleo?.integrantes}
-                        messageForEmpty="No se pudieron obtener los integrantes del nucleo"
-                        columns={[
-                          { header: 'Carnet', name: 'ci', type: 'text' },
-                          { header: 'Nombre', name: 'nombre', type: 'text' },
-                          { header: 'Primer apellido', name: 'primer_apellido', type: 'text' },
-                          { header: 'Segundo apellido', name: 'segundo_apellido', type: 'text' },
-                          // { header: 'Edad', name: 'edad', type: 'text' },
-                          // { header: 'Sexo', name: 'sex', type: 'text' },
-                          // { header: 'Nacimiento', name: 'fecha_n', type: 'text' },
-                        ]}
-                        fullWith={true}
-                        readOnly={true}
-                      />
-                    </GTableContainer>
-                  </Box>
-                </div>
-              ) : (
+              {userData.APP ===false? (
                 <Box sx={{ textAlign: 'center' }}>
                   <Button
                     variant={'contained'}
@@ -190,6 +158,75 @@ function Profile() {
                     Solicitar registro en su núcleo
                   </Button>
                 </Box>
+              ):(
+                <div className='fieldset-box' >
+                  <fieldset>
+                    <legend>Información del Núcleo</legend>
+                    <div className="panel panel-default">
+                      <div className="panel-body">
+                        <div className="form-group">
+                          <div className="row">
+                            <Grid item xs={12} sm={7} md={8} lg={6} xl={6}>
+                              <label className="label-change-switch">Oficina comercial:</label>
+                            </Grid>
+                            <Grid item xs={12} sm={4} md={3} lg={6} xl={6}>
+                              <span>{userData?.APP?.oficina??serverErrorMessage}</span>
+                            </Grid>
+                          </div>
+                        </div>
+                        <hr />
+                        <div className="form-group">
+                          <div className="row">
+                            <Grid item xs={12} sm={7} md={8} lg={6} xl={6}>
+                              <label className="label-change-switch">Bodega:</label>
+                            </Grid>
+                            <Grid item xs={12} sm={4} md={3} lg={6} xl={6}>
+                              <span>{userData?.APP?.bodega??serverErrorMessage}</span>
+                            </Grid>
+                          </div>
+                        </div>
+                        <hr />
+                        <div className="form-group">
+                          <div className="row">
+                            <Grid item xs={12} sm={7} md={8} lg={6} xl={6}>
+                              <label className="label-change-switch">Núcleo:</label>
+                            </Grid>
+                            <Grid item xs={12} sm={4} md={3} lg={6} xl={6}>
+                              <span>{userData?.APP?.nucleo??serverErrorMessage}</span>
+                            </Grid>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <legend>Integrantes del Núcleo</legend>
+                    <div className="panel panel-default">
+                      {userData.APP?(<div className="panel-body">
+                        {['Luis Perez Perez', 'Raul Perez Perez', 'Diego Perez Perez'].map((integrante, i) => {
+                          return (
+                            <div className="form-group" key={i}>
+                              <div className="row">
+                                <Grid
+                                  item
+                                  xs={12}
+                                  sm={12}
+                                  md={12}
+                                  lg={12}
+                                  xl={12}
+                                  textAlign="center"
+                                >
+                                  <label className="label-change-switch">{integrante}</label>
+                                </Grid>
+                              </div>
+                              <hr />
+                            </div>
+                          );
+                        })}
+                      </div>):<legend>No se pudieron obtener los datos...</legend>}
+                    </div>
+                  </fieldset>
+                </div>
               )}
             </Grid>
           </>

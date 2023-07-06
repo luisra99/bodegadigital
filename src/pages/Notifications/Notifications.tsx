@@ -1,7 +1,6 @@
 import './Notifications.sass';
 
-import * as React from 'react';
-import { useState, Fragment, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import List from '@mui/material/List';
 

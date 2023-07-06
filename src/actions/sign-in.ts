@@ -1,19 +1,15 @@
 import { getToken } from '../../src/services/wso2';
 import { default as authConfig } from '../AuthConfig.json';
-import { decodeIdToken, initAuthenticatedSession } from './session';
-import axios, { AxiosHeaders } from 'axios';
+import {  initAuthenticatedSession } from './session';
+import axios from 'axios';
 
 import { setCookie, getCookie } from '@/helpers/cookies';
-import { GetProfileConfiguration } from '@/services/user/user.services';
 
 export type Challenge = {
   verifier: string;
   challenge: string;
 };
 
-/**
- * Sends an authorization request.
- */
 export const sendAuthorizationRequest = ({
   challenge,
   verifier,
@@ -38,12 +34,7 @@ export const requestChallenge = async (): Promise<any> => {
     return { challenge: false };
   }
 };
-/**
- * Sends a token request.
- *
- * @param code Authorization code
- * @return {Promise<AxiosResponse<T> | never>}
- */
+
 export const sendTokenRequest = async (code: any) => {
   return axios
     .post(
@@ -65,13 +56,7 @@ export const sendTokenRequest = async (code: any) => {
       const isToken = JSON.parse(response.data);
       if (isToken.access_token) {
         initAuthenticatedSession(isToken);
-        await GetProfileConfiguration().then((profile) => {
-          setCookie('PROFILE', profile);
-          isToken['profile'] = profile;
-        });
       }
-
-      // Store the response in the session storage
       return isToken;
     })
     .catch((error) => {
@@ -79,11 +64,6 @@ export const sendTokenRequest = async (code: any) => {
     });
 };
 
-/**
- * Helper to set request headers.
- *
- * @return {{headers: {Accept: string, "Access-Control-Allow-Origin": string, "Content-Type": string}}}
- */
 const getTokenRequestHeaders = async () => {
   const wso2TokenHeader = await getToken();
   return {

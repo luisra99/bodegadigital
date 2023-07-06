@@ -7,7 +7,6 @@ import DefaultIcon from '@mui/icons-material/Deblur';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import Collapse from '@mui/material/Collapse';
-import Icon from '@mui/material/Icon';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -23,7 +22,6 @@ function Sidebar() {
   const [isSidebarOpen, sidebarActions] = useSidebar();
   const [open, setOpen] = useState<any>({});
 
-  // funcion que modifica el estado del collapse
   const handleClick = (param: string) => {
     setOpen((prevState: any) => ({ [param]: !prevState[param] }));
   };

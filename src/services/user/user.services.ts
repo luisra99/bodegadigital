@@ -1,5 +1,5 @@
 import { default as authConfig } from '../../AuthConfig.json';
-import { getCookie } from '../../helpers/cookies';
+import { getCookie, setCookie } from '../../helpers/cookies';
 import { getToken } from '../wso2';
 import axios from 'axios';
 
@@ -12,6 +12,7 @@ export async function GetProfileConfiguration(params?: any) {
       },
       headers: wso2TokenHeader,
     });
+    setCookie('PROFILE', data);
     return data;
   } catch (error) {
     console.error('Error en la controladora', error);
@@ -22,9 +23,5 @@ export async function GetProfileConfiguration(params?: any) {
 export function ReclaimRegistration(setState: (value: any) => void, ci: string) {
   setState(false);
   console.log(ci);
-  // axios.post(api + claim_api, ci).then((result: any) => {
-  //   setState(true);
-  //   return result;
-  // });
   setTimeout(() => setState(true), 5000);
 }

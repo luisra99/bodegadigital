@@ -2,7 +2,6 @@ import { getCookie, removeCookie, setCookie } from '../helpers/cookies';
 
 import Cookies from 'universal-cookie';
 
-const cookies = new Cookies();
 interface Session {
   ACCESS_TOKEN: string;
   REFRESH_TOKEN: string;
@@ -11,11 +10,9 @@ interface Session {
   TOKEN_TYPE: string;
   EXPIRES_IN: string;
   PROFILE: any;
+  NOTIFICATIONS: any;
 }
 
-/**
- * Initialize authenticated user session.
- */
 export const initAuthenticatedSession = (data: {
   access_token: any;
   refresh_token: any;
@@ -32,21 +29,11 @@ export const initAuthenticatedSession = (data: {
   setCookie('EXPIRES_IN', data.expires_in);
 };
 
-/**
- * Get session parameter from cookie storage.
- *
- * @param key
- * @return {string}
- */
 export const getSessionParameter = (key: any) => {
   return getCookie(key);
 };
 
-/**
- * Reset authenticated session.
- */
 export const resetAuthenticatedSession = async () => {
-  // console.log('Delete Cookie');
   const token = getCookie('ID_TOKEN');
   removeCookie('ACCESS_TOKEN');
   removeCookie('REFRESH_TOKEN');
@@ -56,24 +43,15 @@ export const resetAuthenticatedSession = async () => {
   removeCookie('EXPIRES_IN');
   removeCookie('PROFILE');
   removeCookie('VERIFIER');
+  removeCookie('NOTIFICATIONS');
   return token;
 };
 
-/**
- * Returns whether session is valid.
- *
- * @return {boolean}
- */
 export const isValidSession = () => {
   const token = getCookie('ACCESS_TOKEN');
   return !!token;
 };
 
-/**
- * Get all session parameters.
- *
- * @returns {{}}
- */
 export const getAllSessionParameters = async () => {
   const session: Session = {
     ACCESS_TOKEN: getCookie('ACCESS_TOKEN'),
@@ -83,16 +61,11 @@ export const getAllSessionParameters = async () => {
     TOKEN_TYPE: getCookie('TOKEN_TYPE'),
     EXPIRES_IN: getCookie('EXPIRES_IN'),
     PROFILE: getCookie('PROFILE'),
+    NOTIFICATIONS: getCookie('NOTIFICATIONS'),
   };
   return session;
 };
 
-/**
- * Base64 decodes the ID token
- *
- * @param token id token
- * @return {any}
- */
 export const decodeIdToken = (token: string) => {
   const isToken = token.split('.')[1];
   if (isToken) {

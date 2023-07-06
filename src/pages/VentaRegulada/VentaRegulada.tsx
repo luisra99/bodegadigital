@@ -9,11 +9,14 @@ import GTabPanel from '@/shared/components/Generic/GTabPanel/GTabPanel';
 import GTable from '@/shared/components/Generic/GTable/GTable';
 import GTableContainer from '@/shared/components/Generic/GTableContainer/GTableContainer';
 import Meta from '@/shared/components/Meta';
+import { useSession } from '@/store/hotkeys';
 
 function VentaRegulada() {
+  const [, userData] = useSession();
   const [products, setProducts] = useState<any[]>([]);
   useEffect(() => {
-    GetProducts().then((response) => {
+    if(userData?.APP)
+    GetProducts(userData?.APP).then((response) => {
       setProducts(response);
     });
   }, []);
@@ -28,12 +31,14 @@ function VentaRegulada() {
     { header: 'Cantidad', name: 'cantidad', type: 'number' },
     { header: 'Fecha', name: 'adquirido', type: 'date' },
   ];
-  const productsForBuy = products.filter(({ confirmado }) => {
-    return !confirmado;
-  });
-  const purchasedProducts = products.filter(({ confirmado }) => {
-    return !!confirmado;
-  });
+  const productsForBuy =
+    products?.filter(({ confirmado }) => {
+      return !confirmado;
+    }) ?? [];
+  const purchasedProducts =
+    products?.filter(({ confirmado }) => {
+      return !!confirmado;
+    }) ?? [];
   return (
     <>
       <Meta title="Venta regulada" />
@@ -44,7 +49,7 @@ function VentaRegulada() {
         ]}
       >
         <GTableContainer>
-          {productsForBuy.map(
+          {productsForBuy?.map(
             (
               {
                 productos,
@@ -91,7 +96,7 @@ function VentaRegulada() {
           )}
         </GTableContainer>
         <GTableContainer>
-          {purchasedProducts.map(
+          {purchasedProducts?.map(
             (
               {
                 productos,

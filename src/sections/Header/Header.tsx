@@ -20,7 +20,7 @@ function Header() {
 
   return (
     <StyledAppBar color="default" elevation={1} position="fixed">
-      <Toolbar sx={{ justifyContent: 'space-between', minHeight: '64px' }}>
+      <Toolbar className='toolBar' sx={{ justifyContent: 'space-between', minHeight: '64px' }}>
         <FlexBox sx={{ alignItems: 'center' }}>
           {sessionState && (
             <IconButton
@@ -33,6 +33,7 @@ function Header() {
                 mr: 1,
                 color: '#fff',
               }}
+              className="menu-icon"
             >
               <MenuIcon />
             </IconButton>
@@ -41,7 +42,7 @@ function Header() {
 
         <FlexBox>
           <Tooltip className="header-button" title="Cambiar tema" arrow>
-            <IconButton color="info" edge="end" size="large" onClick={themeActions.toggle}>
+            <IconButton edge="end" size="large" onClick={themeActions.toggle}>
               <ThemeIcon />
             </IconButton>
           </Tooltip>
